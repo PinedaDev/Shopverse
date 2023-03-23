@@ -2,9 +2,9 @@ import logoImg from '../../assets/logo.png'
 
 const Logo = () => {
   return (
-    <div>
+    <div className="flex justify-between items-center">
       <img src={logoImg} alt="shopverse logo" />
-      <span>SHOPVERSE</span>
+      <h1 className="ml-2 font-normal text-3xl text-gray-300 hidden lg:inline">SHOPVERSE</h1>
     </div>
   )
 }
