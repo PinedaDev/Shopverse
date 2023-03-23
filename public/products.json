@@ -7,16 +7,20 @@
       "categories": ["sneakers"],
       "variants": ["white", "blue", "black"],
       "sizes": [38, 39, 41, 42],
-      "price": 140
+      "price": 140,
+      "reviews": 423,
+      "stars": 4
     },
     {
       "id": "2",
       "name": "Asics GL31",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit urna justo, eget tempor magna semper ac. Etiam quis velit eu neque varius feugiat eget elementum lorem. Quisque ut orci et quam ornare finibus. In scelerisque maximus velit. In efficitur tellus urna, vitae aliquet odio accumsan quis. Ut vel rhoncus nisl. Mauris iaculis id risus hendrerit ultricies. Cras sed erat tellus. Morbi gravida nisl a nisi volutpat consequat.",
-      "categories": ["runing"],
+      "categories": ["running"],
       "variants": ["blue", "gree", "black"],
       "sizes": [39, 41, 42],
-      "price": 80
+      "price": 80,
+      "reviews": 754,
+      "stars": 5
     },
     {
       "id": "3",
@@ -25,7 +29,9 @@
       "categories": ["sneaker"],
       "variants": ["blue", "black"],
       "sizes": [40, 43, 46],
-      "price": 110
+      "price": 110,
+      "reviews": 354,
+      "stars": 5
     }
   ]
 }

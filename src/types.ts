@@ -6,4 +6,6 @@ export type Product = {
   variants: string[]
   sizes: number[]
   price: number
+  reviews: number
+  stars: number
 }

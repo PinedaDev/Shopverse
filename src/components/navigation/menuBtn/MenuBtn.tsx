@@ -8,7 +8,7 @@ type MenuBtnProps = {
 
 const MenuBtn = ({ onClick, menuState }: MenuBtnProps) => {
   return (
-    <button onClick={onClick} className="lg:hidden">
+    <button onClick={onClick} className="ml-4 lg:hidden">
       <Icon
         path={menuState === false ? mdiMenu : mdiClose}
         color={menuState === false ? '#fff' : '#000'}

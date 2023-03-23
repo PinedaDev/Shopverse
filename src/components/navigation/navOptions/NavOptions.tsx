@@ -1,14 +1,17 @@
 import CartLink from '../../cart/cartLink/CartLink'
+import MenuBtn from '../menuBtn/MenuBtn'
 
 type NavOptionsProps = {
   menuState: boolean
+  changeMenuState: () => void
 }
 
-const NavOptions = ({ menuState }: NavOptionsProps) => {
+const NavOptions = ({ menuState, changeMenuState }: NavOptionsProps) => {
   return (
-    <div className="hidden items-center text-gray-300 mr-2 lg:flex ">
-      <button className="text-2xl">Login</button>
-      <CartLink menuState={menuState} />
+    <div className="items-center text-gray-300 mr-2 flex ">
+      <button className="hidden text-2xl lg:inline">Login</button>
+      <CartLink />
+      <MenuBtn menuState={menuState} onClick={changeMenuState} />
     </div>
   )
 }

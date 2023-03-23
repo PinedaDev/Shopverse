@@ -18,7 +18,7 @@ const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
   return (
     <div
       style={!menuState ? hidden : visible}
-      className="absolute top-0 left-0  min-h-screen w-screen bg-white duration-300 ease-in-out">
+      className="absolute top-0 left-0  min-h-screen w-screen bg-white duration-300 ease-in-out z-50">
       <MenuBtn menuState={menuState} onClick={changeMenuState} />
     </div>
   )
