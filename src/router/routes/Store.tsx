@@ -1,6 +1,6 @@
 import NavBar from '../../components/navigation/navBar/NavBar'
 
-const App = () => {
+const Store = () => {
   return (
     <div className="App bg-[url(./assets/bg.webp)] font-montserrat min-h-screen bg-center bg-cover">
       <NavBar />
@@ -8,4 +8,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Store

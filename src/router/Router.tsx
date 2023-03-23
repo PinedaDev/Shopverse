@@ -19,7 +19,7 @@ const ErrorBoundary = () => {
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />} errorElement={<ErrorBoundary />}>
+    <Route element={<App />} errorElement={<ErrorBoundary />}>
       <Route index path="/" element={<Store />} />
       <Route path="/cart" element={<Cart />} />
     </Route>
