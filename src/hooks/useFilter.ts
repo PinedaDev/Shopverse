@@ -7,31 +7,31 @@ import { Product } from '../types'
 type Filter = {
   price: number
 }
-
+const initialFilterState: Filter = {
+  price: 0
+}
 export function useFilter({ price }: Filter) {
   const { products } = useSelector((state: RootState) => state)
-
-  const initialFilter: Filter = {
-    price: 0
-  }
-
-  const [filter, setFilter] = useState<Filter>(initialFilter)
+  const [isFiltered, setIsFiltered] = useState<boolean>(false)
+  const [filter, setFilter] = useState<Filter>(initialFilterState)
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
 
   const handleFilters = (): void => {
     const newProducts = products.all.filter((product: Product) =>
       product.price < filter.price ? true : ''
     )
+    setIsFiltered(true)
     setFilteredProducts(newProducts)
   }
 
   const clearFilters = (): void => {
-    setFilter(initialFilter)
+    setIsFiltered(false)
+    setFilter(initialFilterState)
     setFilteredProducts([])
   }
 
   useEffect(() => {
     setFilter({ price })
   }, [price])
-  return { filteredProducts, handleFilters, clearFilters }
+  return { filteredProducts, handleFilters, clearFilters, isFiltered }
 }
