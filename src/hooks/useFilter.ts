@@ -11,7 +11,11 @@ type Filter = {
 export function useFilter({ price }: Filter) {
   const { products } = useSelector((state: RootState) => state)
 
-  const [filter, setFilter] = useState<Filter>({ price: 0 })
+  const initialFilter: Filter = {
+    price: 0
+  }
+
+  const [filter, setFilter] = useState<Filter>(initialFilter)
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
 
   const handleFilters = (): void => {
@@ -20,12 +24,14 @@ export function useFilter({ price }: Filter) {
     )
     setFilteredProducts(newProducts)
   }
+
+  const clearFilters = (): void => {
+    setFilter(initialFilter)
+    setFilteredProducts([])
+  }
+
   useEffect(() => {
     setFilter({ price })
   }, [price])
-
-  useEffect(() => {
-    console.log(filteredProducts)
-  }, [filteredProducts])
-  return { filteredProducts, handleFilters }
+  return { filteredProducts, handleFilters, clearFilters }
 }
