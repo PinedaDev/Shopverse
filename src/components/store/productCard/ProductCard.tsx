@@ -16,7 +16,7 @@ type ProductProps = {
 
 const ProductCard = ({ id, name, price, reviews, stars }: ProductProps) => {
   return (
-    <div>
+    <div className="text-gray-300 bg-slate-500">
       {/* Top section */}
       <div>
         <DetailsBtn />

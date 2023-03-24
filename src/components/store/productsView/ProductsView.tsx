@@ -1,21 +1,14 @@
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
-import ProductCard from '../productCard/ProductCard'
-import { Product } from '../../../types'
+import Filter from '../filter/Filter'
 
 const ProductsView = () => {
   const { products } = useSelector((state: RootState) => state)
 
   return (
-    <>
-      {!products.isLoading ? (
-        products.all.map((product: Product) => (
-          <ProductCard key={product.name} {...product}></ProductCard>
-        ))
-      ) : (
-        <h2>Loading</h2>
-      )}
-    </>
+    <div className="grid gap-2 overflow-y-scroll w-full h-[80vh]">
+      {!products.isLoading ? <Filter /> : <h2>Loading</h2>}
+    </div>
   )
 }
 

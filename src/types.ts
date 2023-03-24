@@ -9,3 +9,9 @@ export type Product = {
   reviews: number
   stars: number
 }
+
+export type Route = {
+  title: string
+  path: string
+  element: JSX.Element
+}
