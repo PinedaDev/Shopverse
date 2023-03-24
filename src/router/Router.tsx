@@ -6,9 +6,9 @@ import {
 } from 'react-router-dom'
 
 import App from '../App'
-import Store from './routes/Store'
-import Cart from './routes/Cart'
-import Page404 from './routes/Page404'
+import Store from '../pages/store/Store'
+import Cart from '../pages/cart/Cart'
+import Page404 from '../pages/page404/Page404'
 
 const ErrorBoundary = () => {
   const error = useRouteError()
