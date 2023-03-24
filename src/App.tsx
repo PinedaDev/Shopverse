@@ -6,12 +6,6 @@ import { AppDispatch } from './redux/store'
 import { fetchProducts } from './redux/actions/products'
 
 const App = () => {
-  const dispatch = useDispatch<AppDispatch>()
-
-  useEffect(() => {
-    dispatch(fetchProducts())
-  }, [])
-
   return (
     <div>
       <Outlet />
