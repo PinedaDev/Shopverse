@@ -1,32 +1,20 @@
 import { mdiAccountMultiple } from '@mdi/js'
-import { mdiStarOutline } from '@mdi/js'
 
 import DetailsBtn from '../detailsBtn/DetailsBtn'
-import BuyBtn from '../buyBtn/BuyBtn'
-import CartBtn from '../../cart/cartBtn/cartBtn'
 import Icon from '@mdi/react'
+import { Product } from '../../../types'
 
-type ProductProps = {
-  id: number
-  name: string
-  price: number
-  reviews: number
-  stars: number
-}
-
-const ProductCard = ({ id, name, price, reviews, stars }: ProductProps) => {
+const ProductCard = ({ name, price, reviews }: Product) => {
   return (
     <div className="text-gray-300 bg-slate-500">
       {/* Top section */}
       <div>
         <DetailsBtn />
-        <BuyBtn />
-        <CartBtn productID={id} />
       </div>
       {/* Midle section */}
       <div>
-        <span>{name}</span>
-        <span>{price}</span>
+        <span>{name}</span> <br />
+        <span>price:{price}</span>
       </div>
       {/* Bottom section */}
       <div>
