@@ -36,6 +36,7 @@ export function useFilter() {
       filteredProducts: { all: [...filteredByPrice], byPrice: filteredByPrice }
     })
   }
+
   useEffect(() => {
     if (filter.isFiltering) {
       filterByPrice()
