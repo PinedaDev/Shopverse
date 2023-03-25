@@ -23,13 +23,10 @@ export function useSearch({ searchValue }: SearchProps) {
   const stopSearch = () => {
     setIsSearching(false)
     setSearchResult([])
-    console.log('SEARCH STOPED')
   }
 
   useEffect(() => {
     searchValue === '' ? stopSearch() : searchHandler()
-    console.log(searchValue)
-    console.log(searchResult)
   }, [searchValue])
   return { isSearching, searchResult }
 }

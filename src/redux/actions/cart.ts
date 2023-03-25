@@ -10,9 +10,9 @@ export function handleAddToCart(productID: number, products: Product[]) {
   }
 }
 
-export function handleRemoveFromCart(productID: number) {
+export function handleRemoveFromCart(productID: number, products: Product[]) {
   return {
     type: CART_PRODUCT_REMOVE,
-    payload: productID
+    payload: { productID, products }
   }
 }
