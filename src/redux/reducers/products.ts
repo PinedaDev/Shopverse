@@ -22,14 +22,12 @@ const initialState: ProductsState = {
 export function productsReducer(state = initialState, action: AnyAction) {
   switch (action.type) {
     case FETCH_PRODUCTS_REQUEST: {
-      console.log('REQUEST CASE...')
       return {
         ...state,
         isLoading: true
       }
     }
     case FETCH_PRODUCTS_SUCCESS: {
-      console.log('SUCCESS')
       return {
         ...state,
         isLoading: false,
@@ -37,7 +35,6 @@ export function productsReducer(state = initialState, action: AnyAction) {
       }
     }
     case FETCH_PRODUCTS_FAILED: {
-      console.log('ERROR')
       return {
         ...state,
         isLoading: false,

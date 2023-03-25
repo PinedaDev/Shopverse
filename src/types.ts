@@ -8,6 +8,7 @@ export type Product = {
   price: number
   reviews: number
   stars: number
+  isOnCart?: boolean
 }
 
 export type Route = {

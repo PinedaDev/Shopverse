@@ -3,7 +3,7 @@ import { mdiStarOutline } from '@mdi/js'
 
 import DetailsBtn from '../detailsBtn/DetailsBtn'
 import BuyBtn from '../buyBtn/BuyBtn'
-import AddBtn from '../addBtn/AddBtn'
+import CartBtn from '../../cart/cartBtn/cartBtn'
 import Icon from '@mdi/react'
 
 type ProductProps = {
@@ -21,7 +21,7 @@ const ProductCard = ({ id, name, price, reviews, stars }: ProductProps) => {
       <div>
         <DetailsBtn />
         <BuyBtn />
-        <AddBtn />
+        <CartBtn productID={id} />
       </div>
       {/* Midle section */}
       <div>

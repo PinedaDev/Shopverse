@@ -7,7 +7,6 @@ import {
 
 import App from '../App'
 import Store from '../pages/store/Store'
-import Cart from '../pages/cart/Cart'
 import Page404 from '../pages/page404/Page404'
 
 const ErrorBoundary = () => {
@@ -21,7 +20,6 @@ const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />} errorElement={<ErrorBoundary />}>
       <Route index path="/" element={<Store />} />
-      <Route path="/cart" element={<Cart />} />
     </Route>
   )
 )
