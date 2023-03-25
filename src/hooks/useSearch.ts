@@ -4,29 +4,47 @@ import { RootState } from '../redux/store'
 
 import { Product } from '../types'
 
-type SearchProps = {
+export type SearchStateProps = {
+  isSearching: boolean
   searchValue: string
+  searchResult: Product[]
 }
 
-export function useSearch({ searchValue }: SearchProps) {
-  const { products } = useSelector((state: RootState) => state)
-  const [isSearching, setIsSearching] = useState<boolean>(false)
-  const [searchResult, setSearchResult] = useState<Product[]>([])
+type UseSearchProps = {
+  productCollection: Product[]
+}
 
-  const searchHandler = () => {
-    setIsSearching(true)
-    const results = products.all.filter((product: Product) =>
-      product.name.toLowerCase().search(searchValue.toLowerCase()) == -1 ? '' : true
-    )
-    setSearchResult(results)
-  }
-  const stopSearch = () => {
-    setIsSearching(false)
-    setSearchResult([])
+const initialSearchState: SearchStateProps = {
+  isSearching: false,
+  searchValue: '',
+  searchResult: []
+}
+
+export function useSearch({ productCollection }: UseSearchProps) {
+  const [search, setSearch] = useState<SearchStateProps>(initialSearchState)
+  const { products } = useSelector((state: RootState) => state)
+
+  const searchProductByName = () => {
+    if (productCollection.length > 0) {
+      const productsByName: Product[] = productCollection.filter((product: Product) =>
+        product.name.toLowerCase().search(search.searchValue.toLowerCase()) == -1 ? '' : true
+      )
+      setSearch({ ...search, isSearching: true, searchResult: productsByName })
+    } else {
+      const productsByName: Product[] = products.all.filter((product: Product) =>
+        product.name.toLowerCase().search(search.searchValue.toLowerCase()) == -1 ? '' : true
+      )
+      setSearch({ ...search, isSearching: true, searchResult: productsByName })
+    }
   }
 
   useEffect(() => {
-    searchValue === '' ? stopSearch() : searchHandler()
-  }, [searchValue])
-  return { isSearching, searchResult }
+    if (search.searchValue.length > 0) {
+      searchProductByName()
+    }
+    if (search.searchValue === '') {
+      setSearch(initialSearchState)
+    }
+  }, [search.searchValue])
+  return { search, setSearch }
 }

@@ -25,8 +25,9 @@ const initialFilterState: FilterStateProps = {
   }
 }
 export function useFilter() {
-  const [filter, setFilter] = useState(initialFilterState)
+  const [filter, setFilter] = useState<FilterStateProps>(initialFilterState)
   const { products } = useSelector((state: RootState) => state)
+
   const filterByPrice = () => {
     const filteredByPrice: Product[] = products.all.filter((product: Product) =>
       product.price < filter.criteria.price ? true : ''
