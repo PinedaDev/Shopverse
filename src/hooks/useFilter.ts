@@ -4,34 +4,42 @@ import { RootState } from '../redux/store'
 
 import { Product } from '../types'
 
-type Filter = {
-  price: number
+export type FilterStateProps = {
+  isFiltering: boolean
+  criteria: {
+    price: number
+  }
+  filteredProducts: {
+    byPrice: Product[]
+    all: Product[]
+  }
 }
-const initialFilterState: Filter = {
-  price: 0
+const initialFilterState: FilterStateProps = {
+  isFiltering: false,
+  criteria: {
+    price: 0
+  },
+  filteredProducts: {
+    byPrice: [],
+    all: []
+  }
 }
-export function useFilter({ price }: Filter) {
+export function useFilter() {
+  const [filter, setFilter] = useState(initialFilterState)
   const { products } = useSelector((state: RootState) => state)
-  const [isFiltered, setIsFiltered] = useState<boolean>(false)
-  const [filter, setFilter] = useState<Filter>(initialFilterState)
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
-
-  const handleFilters = (): void => {
-    const newProducts = products.all.filter((product: Product) =>
-      product.price < filter.price ? true : ''
+  const filterByPrice = () => {
+    const filteredByPrice: Product[] = products.all.filter((product: Product) =>
+      product.price < filter.criteria.price ? true : ''
     )
-    setIsFiltered(true)
-    setFilteredProducts(newProducts)
+    setFilter({
+      ...filter,
+      filteredProducts: { all: [...filteredByPrice], byPrice: filteredByPrice }
+    })
   }
-
-  const clearFilters = (): void => {
-    setIsFiltered(false)
-    setFilter(initialFilterState)
-    setFilteredProducts([])
-  }
-
   useEffect(() => {
-    setFilter({ price })
-  }, [price])
-  return { filteredProducts, handleFilters, clearFilters, isFiltered }
+    if (filter.isFiltering) {
+      filterByPrice()
+    }
+  }, [filter.isFiltering, filter.criteria])
+  return { filter, setFilter }
 }

@@ -1,8 +1,9 @@
 import { mdiAccountMultiple } from '@mdi/js'
+import Icon from '@mdi/react'
+
+import { Product } from '../../../types'
 
 import DetailsBtn from '../detailsBtn/DetailsBtn'
-import Icon from '@mdi/react'
-import { Product } from '../../../types'
 
 const ProductCard = ({ name, price, reviews }: Product) => {
   return (
