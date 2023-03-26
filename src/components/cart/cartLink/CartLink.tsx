@@ -5,7 +5,7 @@ import { mdiCart } from '@mdi/js'
 const CartLink = () => {
   return (
     <Link to="/cart">
-      <div className="relative flex items-center ml-10">
+      <div className="hidden relative items-center ml-10 lg:flex">
         {/* <span
           className="flex items-center justify-center 
           absolute top-0 -left-2 h-4 w-4 bg-red-500 

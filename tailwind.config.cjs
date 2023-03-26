@@ -16,6 +16,9 @@ module.exports = {
 
       fontFamily: {
         montserrat: 'Montserrat, sans-serif'
+      },
+      colors: {
+        overlay: 'rgba(0,0,0, .8)'
       }
     }
   },
