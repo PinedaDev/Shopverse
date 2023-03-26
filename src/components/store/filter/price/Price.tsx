@@ -23,15 +23,21 @@ const Price = ({ filter, setFilter }: PriceProps) => {
     setFilter({ ...filter, criteria: { price: Number(event.currentTarget.value) } })
   }
   return (
-    <div>
+    <div className="text-gray-300 w-3/4 m-auto">
+      <span>Prices</span>
+      <br />
       <input
+        className="appearance-none w-full h-[8px] rounded-lg bg-black "
         value={filter.criteria.price > maxPrice ? minPrice : filter.criteria.price}
         onChange={priceHandler}
         type="range"
         min={minPrice}
         max={maxPrice}
       />
-      <span>price: {filter.criteria.price > maxPrice ? minPrice : filter.criteria.price}</span>
+      <br />
+      <span className="block text-center">
+        {filter.criteria.price > maxPrice ? minPrice : filter.criteria.price}.00 €
+      </span>
     </div>
   )
 }

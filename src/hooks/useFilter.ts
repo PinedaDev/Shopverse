@@ -30,7 +30,7 @@ export function useFilter() {
 
   const filterByPrice = () => {
     const filteredByPrice: Product[] = products.all.filter((product: Product) =>
-      product.price < filter.criteria.price ? true : ''
+      product.price <= filter.criteria.price ? true : ''
     )
     setFilter({
       ...filter,
