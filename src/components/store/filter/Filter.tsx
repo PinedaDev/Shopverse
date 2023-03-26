@@ -8,15 +8,11 @@ import { useState } from 'react'
 type FilterProps = {
   filter: FilterStateProps
   setFilter: ({ ...props }: FilterStateProps) => void
+  filterOpen: boolean
+  toggleFilter: () => void
 }
 
-const Filter = ({ filter, setFilter }: FilterProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-
-  const openFilter = () => {
-    setIsOpen((prev) => !prev)
-  }
-
+const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) => {
   const applyFilter = () => {
     setFilter({ ...filter, isFiltering: true })
   }
@@ -34,19 +30,17 @@ const Filter = ({ filter, setFilter }: FilterProps) => {
     })
   }
   return (
-    <div>
-      <div
-        className={`absolute bg-overlay w-screen h-screen top-0 left-0 ${
-          isOpen ? 'visible' : 'hidden'
-        }`}></div>
-      <div
-        onClick={openFilter}
-        className="flex items-center justify-between p-3 w-3/4 m-auto mt-8 mb-8 backdrop-blur-xl backdrop-brightness-125 rounded-lg">
-        <span className="text-gray-400 text-xl">Filter</span>
-        <Icon className="text-gray-50" path={mdiTune} size={1} />
-      </div>
+    <div
+      onClick={toggleFilter}
+      className={`relative flex items-center justify-between p-3 w-3/4 m-auto mt-8 mb-8 
+        rounded-lg z-20 backdrop-blur-xl ${
+          !filterOpen ? 'backdrop-brightness-125' : 'backdrop-brightness-200'
+        }`}>
+      <span className="text-gray-400 text-xl">Filter</span>
+      <Icon className="text-gray-50" path={mdiTune} size={1} />
+
       {/* Filters */}
-      <div className={`${isOpen ? 'visible' : 'hidden'}`}>
+      <div className={`${filterOpen ? 'visible' : 'hidden'}`}>
         <Price filter={filter} setFilter={setFilter} />
         <div className="text-gray-300">
           <button onClick={applyFilter}>Apply</button>

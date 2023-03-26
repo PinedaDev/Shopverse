@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import { useState } from 'react'
 
 import { RootState } from '../../../redux/store'
 import { useFilter } from '../../../hooks/useFilter'
@@ -14,6 +15,12 @@ const ProductsView = () => {
 
   const { filter, setFilter } = useFilter()
   const { search, setSearch } = useSearch({ productCollection: filter.filteredProducts.all })
+
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const toggleFilter = () => {
+    setIsOpen((prev) => !prev)
+  }
 
   const showProducts = () => {
     if (!filter.isFiltering && !search.isSearching) {
@@ -39,9 +46,18 @@ const ProductsView = () => {
   }
   return (
     <div className="w-full">
+      <div
+        className={`absolute bg-overlay w-screen h-screen top-0 left-0 z-10 ${
+          isOpen ? 'visible' : 'hidden'
+        }`}></div>
       <SearchField search={search} setSearch={setSearch} />
-      <Filter filter={filter} setFilter={setFilter} />
-      <div className="w-9/12 grid gap-2 h-[80vh] overflow-y-scroll ">
+      <Filter
+        filterOpen={isOpen}
+        toggleFilter={toggleFilter}
+        filter={filter}
+        setFilter={setFilter}
+      />
+      <div className="relative grid gap-8 w-11/12 max-h-[70vh] p-2 m-auto overflow-y-scroll">
         {!products.isLoading ? showProducts() : <h2>Loading</h2>}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router'
 const App = () => {
   return (
-    <div className="w-screen h-screen overflow-hidden">
+    <div className="App">
       <Outlet />
     </div>
   )

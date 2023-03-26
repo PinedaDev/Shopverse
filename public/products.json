@@ -3,17 +3,19 @@
     {
       "id": "1",
       "name": "Nike Indoor Supreame",
+      "img": "nike-balance.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit urna justo, eget tempor magna semper ac. Etiam quis velit eu neque varius feugiat eget elementum lorem. Quisque ut orci et quam ornare finibus. In scelerisque maximus velit. In efficitur tellus urna, vitae aliquet odio accumsan quis. Ut vel rhoncus nisl. Mauris iaculis id risus hendrerit ultricies. Cras sed erat tellus. Morbi gravida nisl a nisi volutpat consequat.",
       "categories": ["sneakers"],
       "variants": ["white", "blue", "black"],
       "sizes": [38, 39, 41, 42],
-      "price": 140,
+      "price": 140.0,
       "reviews": 423,
       "stars": 4
     },
     {
       "id": "2",
       "name": "Asics GL31",
+      "img": "nike-balance.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit urna justo, eget tempor magna semper ac. Etiam quis velit eu neque varius feugiat eget elementum lorem. Quisque ut orci et quam ornare finibus. In scelerisque maximus velit. In efficitur tellus urna, vitae aliquet odio accumsan quis. Ut vel rhoncus nisl. Mauris iaculis id risus hendrerit ultricies. Cras sed erat tellus. Morbi gravida nisl a nisi volutpat consequat.",
       "categories": ["running"],
       "variants": ["blue", "gree", "black"],
@@ -25,6 +27,7 @@
     {
       "id": "3",
       "name": "Asics Sneaker Golden",
+      "img": "nike-balance.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit urna justo, eget tempor magna semper ac. Etiam quis velit eu neque varius feugiat eget elementum lorem. Quisque ut orci et quam ornare finibus. In scelerisque maximus velit. In efficitur tellus urna, vitae aliquet odio accumsan quis. Ut vel rhoncus nisl. Mauris iaculis id risus hendrerit ultricies. Cras sed erat tellus. Morbi gravida nisl a nisi volutpat consequat.",
       "categories": ["sneaker"],
       "variants": ["blue", "black"],
@@ -36,6 +39,7 @@
     {
       "id": "4",
       "name": "Asics Plus Nirso",
+      "img": "nike-balance.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit urna justo, eget tempor magna semper ac. Etiam quis velit eu neque varius feugiat eget elementum lorem. Quisque ut orci et quam ornare finibus. In scelerisque maximus velit. In efficitur tellus urna, vitae aliquet odio accumsan quis. Ut vel rhoncus nisl. Mauris iaculis id risus hendrerit ultricies. Cras sed erat tellus. Morbi gravida nisl a nisi volutpat consequat.",
       "categories": ["sports"],
       "variants": ["blue", "black", "violet"],
@@ -47,6 +51,7 @@
     {
       "id": "5",
       "name": "Asics ALS Supra",
+      "img": "nike-balance.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit urna justo, eget tempor magna semper ac. Etiam quis velit eu neque varius feugiat eget elementum lorem. Quisque ut orci et quam ornare finibus. In scelerisque maximus velit. In efficitur tellus urna, vitae aliquet odio accumsan quis. Ut vel rhoncus nisl. Mauris iaculis id risus hendrerit ultricies. Cras sed erat tellus. Morbi gravida nisl a nisi volutpat consequat.",
       "categories": ["sneaker"],
       "variants": ["blue", "black"],
