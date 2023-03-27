@@ -11,6 +11,7 @@ import { useSearch } from '../../../hooks/useSearch'
 import SearchField from '../../searchField/SearchField'
 import Details from '../productCard/Details'
 
+// Type and initial value of details window UI for the products
 type DetailsState = {
   detailsOpen: boolean
   productID: number
@@ -26,21 +27,22 @@ const ProductsView = () => {
   const { filter, setFilter } = useFilter()
   //Hook to manage the seach value along side with the filter
   const { search, setSearch } = useSearch({ productCollection: filter.filteredProducts.all })
-  //State for the finlter window interface
+  //State of the filter window UI
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false)
-
+  //State of the details window UI
   const [details, setDetails] = useState<DetailsState>(initialDetails)
 
   const toggleFilter = () => {
     setFilterIsOpen((prev) => !prev)
   }
+  // Controls for the details window UI
   const openDetails = (productID: number) => {
     setDetails({ productID, detailsOpen: true })
   }
   const closeDetails = () => {
     setDetails({ ...details, detailsOpen: false })
   }
-
+  // Show the store products according to the filter state if filtering or searching
   const showProducts = () => {
     if (!filter.isFiltering && !search.isSearching) {
       return products.all.map((product: Product) => (
@@ -86,6 +88,7 @@ const ProductsView = () => {
         className={`absolute bg-overlay w-screen h-screen top-0 left-0 z-10 ${
           filterIsOpen || details.detailsOpen ? 'visible' : 'hidden'
         }`}></div>
+      {/* Details window */}
       <Details details={{ ...details }} closeDetails={closeDetails} />
       <SearchField search={search} setSearch={setSearch} />
       <Filter
@@ -95,7 +98,9 @@ const ProductsView = () => {
         setFilter={setFilter}
       />
       {/* Products container */}
-      <div className="relative grid gap-8 w-11/12 max-h-[70vh] p-2 pb-20 m-auto overflow-y-scroll">
+      <div
+        className="relative grid gap-8 w-11/12 max-h-[70vh] p-2 pb-20 m-auto overflow-y-scroll
+      md:w-4/5 lg:w-[96%] lg:mt-24 lg:grid-cols-4 ">
         {!products.isLoading ? showProducts() : <h2>Loading</h2>}
       </div>
     </div>

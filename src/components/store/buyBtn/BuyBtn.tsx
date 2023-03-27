@@ -1,11 +1,10 @@
-import Icon from '@mdi/react'
-import { mdiCreditCardOutline } from '@mdi/js'
-
 const BuyBtn = () => {
   return (
-    <button>
-      <span>Buy</span>
-      <Icon className="text-gray-300" path={mdiCreditCardOutline} size={2} />
+    <button
+      className="flex justify-around items-center duration-300 
+      ease-in-out bg-gray-900 hover:bg-black 
+      rounded-lg p-1 lg:p-2 min-w-[6rem] lg:min-w-fit">
+      <span className="text-xl lg:text-2xl">Buy</span>
     </button>
   )
 }

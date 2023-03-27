@@ -1,8 +1,6 @@
 import { AnyAction } from 'redux'
 import { Product } from '../../types'
 
-import { ProductsAction } from '../actions/products'
-
 import {
   FETCH_PRODUCTS_FAILED,
   FETCH_PRODUCTS_REQUEST,

@@ -1,6 +1,5 @@
 import Icon from '@mdi/react'
-import { mdiAccountMultiple } from '@mdi/js'
-import { mdiStarOutline } from '@mdi/js'
+import { mdiAccountMultiple, mdiStarOutline } from '@mdi/js'
 
 import { Product } from '../../../types'
 
@@ -16,7 +15,7 @@ const ProductCard = ({ product, openDetails }: ProductCardProps) => {
     .fill('')
     .map((_, i) => <Icon key={i} path={mdiStarOutline} size={1} />)
   return (
-    <div className=" text-gray-300 backdrop-blur-lg p-4 backdrop-brightness-125 rounded-xl">
+    <div className=" text-gray-300 backdrop-blur-lg p-4 backdrop-brightness-125 duration-300 ease-in-out rounded-xl shadow-md hover:shadow-gray-400">
       {/* Top section */}
       <div>
         <DetailsBtn productID={product.id} openDetails={openDetails} />

@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
 
 import { handleAddToCart } from '../../../redux/actions/cart'
-import Icon from '@mdi/react'
-import { mdiCartPlus } from '@mdi/js'
 import { AppDispatch } from '../../../redux/store'
 
 type CartBtnProps = {
@@ -15,9 +13,12 @@ const CartBtn = ({ productID }: CartBtnProps) => {
   const dispatch = useDispatch<AppDispatch>()
   return (
     <div>
-      <button onClick={() => dispatch(handleAddToCart(productID, products.all))}>
-        <span>Add</span>
-        <Icon className="text-gray-300" path={mdiCartPlus} size={2} />
+      <button
+        className="flex justify-around items-center duration-300 
+        ease-in-out bg-gray-900 hover:bg-black 
+        rounded-lg p-1 lg:p-2 min-w-[6rem] lg:min-w-fit"
+        onClick={() => dispatch(handleAddToCart(productID, products.all))}>
+        <span className="text-xl lg:text-2xl">Add</span>
       </button>
     </div>
   )

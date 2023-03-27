@@ -1,10 +1,10 @@
 import { AnyAction } from 'redux'
 import { Product } from '../../types'
-import { CartAction } from '../actions/cart'
 
 import { CART_PRODUCT_ADD, CART_PRODUCT_REMOVE } from '../actions/cart'
 
 type CartState = {
+  cartOpen: boolean
   cartProducts: Product[]
 }
 
@@ -14,6 +14,7 @@ type GetProductProps = {
 }
 
 const initialState: CartState = {
+  cartOpen: false,
   cartProducts: []
 }
 
