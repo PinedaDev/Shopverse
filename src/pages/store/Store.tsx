@@ -12,7 +12,7 @@ const Store = () => {
     dispatch(fetchProducts())
   }, [])
   return (
-    <div className="relative bg-[url(./assets/bg.webp)] font-montserrat min-h-screen bg-center bg-cover">
+    <div className="relative bg-[url(./assets/bg.webp)] font-montserrat overflow-hidden h-screen bg-center bg-cover">
       <NavBar />
       <ProductsView />
     </div>
