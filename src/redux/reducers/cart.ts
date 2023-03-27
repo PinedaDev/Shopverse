@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux'
 import { Product } from '../../types'
 
-import { CART_PRODUCT_ADD, CART_PRODUCT_REMOVE } from '../actions/cart'
+import { CART_PRODUCT_ADD, CART_PRODUCT_REMOVE, CART_TOGGLE } from '../actions/cart'
 
 type CartState = {
   cartOpen: boolean
@@ -30,9 +30,10 @@ export function cartReducer(state = initialState, action: AnyAction) {
         id: action.payload.productID,
         allProducts: action.payload.products
       })
-      const updatedCart: Product[] = [...state.cartProducts, targetProduct]
+      const updatedCartProducts: Product[] = [...state.cartProducts, targetProduct]
       return {
-        cartProducts: updatedCart
+        ...state,
+        cartProducts: updatedCartProducts
       }
     }
     case CART_PRODUCT_REMOVE: {
@@ -45,7 +46,14 @@ export function cartReducer(state = initialState, action: AnyAction) {
         product.id === targetProduct.id ? '' : true
       )
       return {
+        ...state,
         cartProducts: updatedCartProducts
+      }
+    }
+    case CART_TOGGLE: {
+      return {
+        ...state,
+        cartOpen: !state.cartOpen
       }
     }
     default:

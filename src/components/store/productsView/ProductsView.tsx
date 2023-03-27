@@ -85,8 +85,10 @@ const ProductsView = () => {
     <div className="w-full">
       {/* Background overlay applied when the datails or the filter are expanded */}
       <div
-        className={`absolute bg-overlay w-screen h-screen top-0 left-0 z-10 ${
-          filterIsOpen || details.detailsOpen ? 'visible' : 'hidden'
+        className={`absolute bg-overlay w-screen h-screen duration-300 ease-in-out top-0 left-0 z-10 
+        ${details.detailsOpen ? 'z-30' : ''}
+        ${
+          filterIsOpen || details.detailsOpen ? 'visible opacity-100' : 'invisible opacity-0'
         }`}></div>
       {/* Details window */}
       <Details details={{ ...details }} closeDetails={closeDetails} />

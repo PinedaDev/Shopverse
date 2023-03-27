@@ -6,6 +6,7 @@ export type CartAction =
 
 export const CART_PRODUCT_ADD = 'CART_PRODUCT_ADD'
 export const CART_PRODUCT_REMOVE = 'CART_PRODUCT_REMOVE'
+export const CART_TOGGLE = 'CART_TOGGLE'
 
 export function handleAddToCart(productID: number, products: Product[]) {
   return {
@@ -18,5 +19,11 @@ export function handleRemoveFromCart(productID: number, products: Product[]) {
   return {
     type: CART_PRODUCT_REMOVE,
     payload: { productID, products }
+  }
+}
+
+export function handleToggleCart() {
+  return {
+    type: CART_TOGGLE
   }
 }

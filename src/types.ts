@@ -11,9 +11,3 @@ export type Product = {
   stars: number
   isOnCart?: boolean
 }
-
-export type Route = {
-  title: string
-  path: string
-  element: JSX.Element
-}

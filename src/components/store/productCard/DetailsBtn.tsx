@@ -8,7 +8,9 @@ type DetailsBtnProps = {
 
 const DetailsBtn = ({ openDetails, productID }: DetailsBtnProps) => {
   return (
-    <button onClick={() => openDetails(productID)} className="flex">
+    <button
+      onClick={() => openDetails(productID)}
+      className="flex items-center justify-around p-1 pr-4 rounded-lg hover:bg-gray-800 duration-300">
       <Icon path={mdiDotsVertical} size={1}></Icon>
       Details
     </button>
