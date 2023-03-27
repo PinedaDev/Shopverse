@@ -1,5 +1,9 @@
 import { Product } from '../../types'
 
+export type CartAction =
+  | ReturnType<typeof handleAddToCart>
+  | ReturnType<typeof handleRemoveFromCart>
+
 export const CART_PRODUCT_ADD = 'CART_PRODUCT_ADD'
 export const CART_PRODUCT_REMOVE = 'CART_PRODUCT_REMOVE'
 

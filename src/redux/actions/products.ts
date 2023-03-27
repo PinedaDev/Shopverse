@@ -1,13 +1,19 @@
 import { Dispatch } from 'redux'
 import { Product } from '../../types'
 
+export type ProductsAction =
+  | ReturnType<typeof handleProductsRequest>
+  | ReturnType<typeof handleProductsSuccess>
+  | ReturnType<typeof handleProductsFailed>
+
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST'
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS'
 export const FETCH_PRODUCTS_FAILED = 'FETCH_PRODUCTS_FAILED'
 
 export function handleProductsRequest() {
   return {
-    type: FETCH_PRODUCTS_REQUEST
+    type: FETCH_PRODUCTS_REQUEST,
+    payload: ''
   }
 }
 
@@ -20,7 +26,8 @@ export function handleProductsSuccess(products: Product[]) {
 
 export function handleProductsFailed() {
   return {
-    type: FETCH_PRODUCTS_FAILED
+    type: FETCH_PRODUCTS_FAILED,
+    payload: ''
   }
 }
 

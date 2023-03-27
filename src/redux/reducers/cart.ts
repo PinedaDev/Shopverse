@@ -1,6 +1,6 @@
-import { AnyAction } from 'redux'
-
 import { Product } from '../../types'
+import { CartAction } from '../actions/cart'
+
 import { CART_PRODUCT_ADD, CART_PRODUCT_REMOVE } from '../actions/cart'
 
 type CartState = {
@@ -16,7 +16,7 @@ const initialState: CartState = {
   cartProducts: []
 }
 
-export function cartReducer(state = initialState, action: AnyAction) {
+export function cartReducer(state = initialState, action: CartAction) {
   // Get the product to add to the cart
   function getProduct({ id, allProducts }: GetProductProps): Product {
     const target = allProducts.filter((product: Product) => (product.id === id ? true : ''))
