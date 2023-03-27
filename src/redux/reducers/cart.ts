@@ -24,7 +24,6 @@ export function cartReducer(state = initialState, action: CartAction) {
   }
   switch (action.type) {
     case CART_PRODUCT_ADD: {
-      console.log('hi from add')
       const targetProduct: Product = getProduct({
         id: action.payload.productID,
         allProducts: action.payload.products
@@ -35,7 +34,6 @@ export function cartReducer(state = initialState, action: CartAction) {
       }
     }
     case CART_PRODUCT_REMOVE: {
-      console.log('hi from remove')
       const targetProduct: Product = getProduct({
         id: action.payload.productID,
         allProducts: action.payload.products

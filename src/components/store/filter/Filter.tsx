@@ -1,5 +1,6 @@
 import Icon from '@mdi/react'
 import { mdiTune } from '@mdi/js'
+import { mdiClose } from '@mdi/js'
 
 import { FilterStateProps } from '../../../hooks/useFilter'
 import Price from './price/Price'
@@ -35,7 +36,7 @@ const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) =>
           rounded-lg  ${!filterOpen ? 'backdrop-brightness-125' : 'backdrop-brightness-200'} z-20`}>
       <div onClick={toggleFilter} className={`relative flex items-center justify-between `}>
         <span className="text-gray-400 text-xl">Filter</span>
-        <Icon className="text-gray-50" path={mdiTune} size={1} />
+        <Icon className="text-gray-50" path={filterOpen ? mdiClose : mdiTune} size={1} />
       </div>
       {/* Filters */}
       <div className={`${filterOpen ? 'visible' : 'hidden'}`}>

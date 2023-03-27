@@ -12,8 +12,7 @@ export const FETCH_PRODUCTS_FAILED = 'FETCH_PRODUCTS_FAILED'
 
 export function handleProductsRequest() {
   return {
-    type: FETCH_PRODUCTS_REQUEST,
-    payload: []
+    type: FETCH_PRODUCTS_REQUEST
   }
 }
 
@@ -27,7 +26,7 @@ export function handleProductsSuccess(products: Product[]) {
 export function handleProductsFailed() {
   return {
     type: FETCH_PRODUCTS_FAILED,
-    payload: []
+    payload: 'Something went wrong'
   }
 }
 

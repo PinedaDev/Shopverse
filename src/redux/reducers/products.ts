@@ -8,10 +8,10 @@ import {
   FETCH_PRODUCTS_SUCCESS
 } from '../actions/products'
 
-type ProductsState = {
+export type ProductsState = {
   isLoading: boolean
   error: null | string
-  all: Product[]
+  all: Product[] | undefined
 }
 
 const initialState: ProductsState = {
