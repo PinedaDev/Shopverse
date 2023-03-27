@@ -1,3 +1,4 @@
+import { AnyAction } from 'redux'
 import { Product } from '../../types'
 
 import { ProductsAction } from '../actions/products'
@@ -20,7 +21,7 @@ const initialState: ProductsState = {
   all: []
 }
 
-export function productsReducer(state = initialState, action: ProductsAction) {
+export function productsReducer(state = initialState, action: AnyAction) {
   switch (action.type) {
     case FETCH_PRODUCTS_REQUEST: {
       return {
