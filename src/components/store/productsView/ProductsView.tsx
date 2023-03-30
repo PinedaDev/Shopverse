@@ -91,7 +91,7 @@ const ProductsView = () => {
           filterIsOpen || details.detailsOpen ? 'visible opacity-100' : 'invisible opacity-0'
         }`}></div>
       {/* Details window */}
-      <Details details={{ ...details }} closeDetails={closeDetails} />
+      <Details detailsState={{ ...details }} closeDetails={closeDetails} />
       <SearchField search={search} setSearch={setSearch} />
       <Filter
         filterOpen={filterIsOpen}

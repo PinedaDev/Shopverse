@@ -5,64 +5,128 @@ import { mdiClose, mdiAccountMultiple, mdiStarOutline } from '@mdi/js'
 
 import { RootState } from '../../../redux/store'
 import { Product } from '../../../types'
+import { Order } from '../../../types'
 
 import VariantSelector from '../../variantSelector/VariantSelector'
 import CartBtn from '../../cart/cartBtn/CartBtn'
 import BuyBtn from '../buyBtn/BuyBtn'
+import { useEffect, useState } from 'react'
 
 type DetailsProps = {
-  details: { productID: number; detailsOpen: boolean }
+  detailsState: { productID: number; detailsOpen: boolean }
   closeDetails: () => void
 }
 
-const Details = ({ details, closeDetails }: DetailsProps) => {
+const Details = ({ detailsState, closeDetails }: DetailsProps) => {
   const { products } = useSelector((state: RootState) => state)
+  const details: Product = products.all.find(
+    (product: Product) => product.id === detailsState.productID
+  )
+  const [size, setSize] = useState<number>(0)
+  const [color, setColor] = useState<string>('')
+
+  const [order, setOrder] = useState<Order>({
+    id: 0,
+    name: '',
+    img: '',
+    size: 0,
+    color: '',
+    price: 0,
+    quantity: 0
+  })
+
+  useEffect(() => {
+    if (detailsState.productID !== 0) {
+      setOrder({
+        id: details.id,
+        name: details.name,
+        img: details.img,
+        size: details.size[0],
+        color: details.color[0],
+        price: details.price,
+        quantity: 1
+      })
+    }
+  }, [detailsState.productID])
+  useEffect(() => {
+    setOrder({ ...order, size: size })
+  }, [size])
+  useEffect(() => {
+    setOrder({ ...order, color: color })
+  }, [color])
+  const handleSizeChange = (event: React.FormEvent<HTMLSelectElement>) => {
+    setSize(Number(event.currentTarget.value))
+  }
+  const handleColorChange = (event: React.FormEvent<HTMLSelectElement>) => {
+    setColor(event.currentTarget.value)
+  }
 
   const showDetails = () => {
-    const getProdductDetails: Product[] = products.all.filter((product: Product) =>
-      product.id === details.productID ? true : ''
-    )
-
-    const productDetails: Product = getProdductDetails[0]
-
-    const showStars = Array(productDetails.stars)
+    const showStars = Array(details.stars)
       .fill('')
       .map((_, i) => <Icon key={i} path={mdiStarOutline} size={1} />)
+
     return (
       <>
         {/* First Details Column */}
         <div className="grid place-items-center">
-          <span className="w-full text-center text-xl lg:text-4xl">{productDetails.name}</span>
+          <span className="w-full text-center text-xl lg:text-4xl">{details.name}</span>
           <img
             width="279px"
             height="279px"
             className="w-2/4 mt-3 mb-3"
-            src={`../../../productImgs/${productDetails.img}`}
+            src={`../../../productImgs/${details.img}`}
           />
+
           <span className="flex justify-around items-center lg:text-xl">
-            user ratings: {productDetails.reviews}
+            user ratings: {details.reviews}
             <Icon className="text-gray-300 ml-2 mr-2" path={mdiAccountMultiple} size={1} />
           </span>
+
           <div className="flex justify-around items-center mt-3 mb-3 w-[70%] lg:w-[50%]">
             {showStars}
           </div>
+
           <div className=" mt-3 justify-around w-full hidden lg:flex">
-            <VariantSelector title="Color" variants={productDetails.variants} />
-            <VariantSelector title="Size" variants={productDetails.sizes} />
+            <VariantSelector
+              variantState={color}
+              handleVariant={handleColorChange}
+              title="Color"
+              variants={details.color}
+            />
+            <VariantSelector
+              variantState={size}
+              handleVariant={handleSizeChange}
+              title="Size"
+              variants={details.size}
+            />
           </div>
         </div>
+
         {/* Second Details Column */}
         <div className="grid place-items-center">
           <span className="block mt-3 mb-3">description:</span>
-          <p className="lg:text-2xl">{productDetails.description}</p>
-          <span className="mt-3 text-3xl lg:text-3xl">{productDetails.price}.99 €</span>
+          <p className="lg:text-2xl">{details.description}</p>
+          <span className="mt-3 text-3xl lg:text-3xl">{details.price}.99 €</span>
+
           <div className="flex mt-3 justify-around w-full lg:hidden">
-            <VariantSelector title="Color" variants={productDetails.variants} />
-            <VariantSelector title="Size" variants={productDetails.sizes} />
+            <VariantSelector
+              variantState={color}
+              handleVariant={handleColorChange}
+              title="Color"
+              variants={details.color}
+            />
+            <VariantSelector
+              variantState={size}
+              handleVariant={handleSizeChange}
+              title="Size"
+              variants={details.size}
+            />
           </div>
+
           <div className="grid gap-3 place-items-center mt-3 pb-3 lg:flex">
             <BuyBtn />
-            <CartBtn productID={productDetails.id} />
+            <CartBtn order={order} />
           </div>
         </div>
       </>
@@ -73,14 +137,17 @@ const Details = ({ details, closeDetails }: DetailsProps) => {
     <div
       className={`absolute bg-[rgba(255,255,255,.1)] w-5/6 h-4/5 
       top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 z-30 
-      backdrop-blur-xl rounded-lg p-4 overflow-y-scroll lg:h-max lg:w-2/4
-      ${details.detailsOpen ? 'visible' : 'hidden'}`}>
+      backdrop-blur-xl rounded-lg p-4 overflow-y-scroll lg:h-max lg:w-7/12
+      ${detailsState.detailsOpen ? 'visible' : 'hidden'}`}>
       {/* Details Content Container */}
       <div className="relative grid place-items-center text-gray-300">
         <button className="absolute top-0 left-[90%] lg:left-[95%]" onClick={closeDetails}>
           <Icon path={mdiClose} size={1.5} className="text-gray-300 lg:text-3xl" />
         </button>
-        <div className="grid lg:grid-cols-2">{details.productID !== 0 ? showDetails() : ''}</div>
+
+        <div className="grid lg:grid-cols-2">
+          {detailsState.productID !== 0 ? showDetails() : ''}
+        </div>
       </div>
     </div>
   )

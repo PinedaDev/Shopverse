@@ -18,7 +18,7 @@ module.exports = {
         montserrat: 'Montserrat, sans-serif'
       },
       colors: {
-        overlay: 'rgba(0,0,0, .8)'
+        overlay: 'rgba(0,0,0, .9)'
       }
     }
   },

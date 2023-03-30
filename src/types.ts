@@ -4,10 +4,20 @@ export type Product = {
   img: string
   description: string
   categories: string[]
-  variants: string[]
-  sizes: number[]
+  size: number[]
+  color: string[]
   price: number
   reviews: number
   stars: number
-  isOnCart?: boolean
+}
+
+export type Order = {
+  id: number
+  productID?: number
+  name: string
+  img: string
+  size: number
+  color: string
+  price: number
+  quantity: number
 }
