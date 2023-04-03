@@ -55,7 +55,9 @@ const CartItem = ({ id, name, img, price, size, color, quantity }: CartItemProps
           <span>{size}</span>
         </div>
         <div className={`${columnStyles}`}>
-          <button onClick={() => dispatch(handleRemoveFromCart(id))}>
+          <button
+            className="hover:text-red-500 duration-300"
+            onClick={() => dispatch(handleRemoveFromCart(id))}>
             <Icon path={mdiTrashCanOutline} size={1} />
           </button>
         </div>

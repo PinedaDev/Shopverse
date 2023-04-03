@@ -122,7 +122,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
         <div className="grid place-items-center">
           <span className="block mt-3 mb-3">description:</span>
           <p className="lg:text-2xl">{details.description}</p>
-          <span className="mt-3 text-3xl lg:text-3xl">{details.price}.99 €</span>
+          <span className="mt-3 text-3xl lg:text-3xl">{details.price}.00 €</span>
 
           <div className="flex mt-3 justify-around w-full lg:hidden">
             <VariantSelector
@@ -156,7 +156,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
       ${detailsState.detailsOpen ? 'visible' : 'hidden'}`}>
       {/* Details Content Container */}
       <div className="relative grid place-items-center text-gray-300">
-        <button className="absolute top-0 left-[90%] lg:left-[95%]" onClick={closeDetails}>
+        <button className="absolute top-0 left-[90%] lg:left-[95%] z-40" onClick={closeDetails}>
           <Icon path={mdiClose} size={1.5} className="text-gray-300 lg:text-3xl" />
         </button>
         <div className="grid lg:grid-cols-2">

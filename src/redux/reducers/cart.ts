@@ -2,6 +2,7 @@ import { AnyAction } from 'redux'
 import { Order } from '../../types'
 
 import {
+  CART_CLEAR,
   CART_PRODUCT_ADD,
   CART_PRODUCT_DECREASE_AMOUNT,
   CART_PRODUCT_INCREASE_AMOUNT,
@@ -102,6 +103,12 @@ export function cartReducer(state = initialState, action: AnyAction) {
       return {
         ...state,
         orders: updatedOrders
+      }
+    }
+    case CART_CLEAR: {
+      return {
+        ...state,
+        orders: []
       }
     }
     case CART_TOGGLE: {
