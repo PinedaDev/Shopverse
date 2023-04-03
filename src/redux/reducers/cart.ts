@@ -1,7 +1,13 @@
 import { AnyAction } from 'redux'
 import { Order } from '../../types'
 
-import { CART_PRODUCT_ADD, CART_PRODUCT_REMOVE, CART_TOGGLE } from '../actions/cart'
+import {
+  CART_PRODUCT_ADD,
+  CART_PRODUCT_DECREASE_AMOUNT,
+  CART_PRODUCT_INCREASE_AMOUNT,
+  CART_PRODUCT_REMOVE,
+  CART_TOGGLE
+} from '../actions/cart'
 
 type CartState = {
   cartOpen: boolean
@@ -53,6 +59,46 @@ export function cartReducer(state = initialState, action: AnyAction) {
         }
         return order
       })
+      return {
+        ...state,
+        orders: updatedOrders
+      }
+    }
+    case CART_PRODUCT_REMOVE: {
+      const updatedOrders = state.orders.filter((order) => order.id !== action.payload)
+      return {
+        ...state,
+        orders: updatedOrders
+      }
+    }
+    case CART_PRODUCT_INCREASE_AMOUNT: {
+      const updatedOrders = state.orders.map((order) => {
+        if (order.id === action.payload) {
+          const updatedOrder = { ...order }
+          updatedOrder.quantity += 1
+          return updatedOrder
+        }
+        return order
+      })
+
+      return {
+        ...state,
+        orders: updatedOrders
+      }
+    }
+    case CART_PRODUCT_DECREASE_AMOUNT: {
+      const updatedOrders = state.orders.map((order) => {
+        if (order.quantity < 1) {
+          return order
+        }
+        if (order.id === action.payload) {
+          const updatedOrder = { ...order }
+          updatedOrder.quantity -= 1
+          return updatedOrder
+        }
+        return order
+      })
+
       return {
         ...state,
         orders: updatedOrders

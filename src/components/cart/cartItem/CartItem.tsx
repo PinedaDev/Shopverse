@@ -1,5 +1,10 @@
-import React from 'react'
+import { useDispatch } from 'react-redux'
+
+import { handleRemoveFromCart } from '../../../redux/actions/cart'
 import Amount from '../amount/Amount'
+import Icon from '@mdi/react'
+import { mdiTrashCanOutline } from '@mdi/js'
+import { AppDispatch } from '../../../redux/store'
 
 type CartItemProps = {
   id: number
@@ -12,40 +17,47 @@ type CartItemProps = {
 }
 
 const CartItem = ({ id, name, img, price, size, color, quantity }: CartItemProps) => {
+  const dispatch = useDispatch<AppDispatch>()
   return (
-    <div>
+    <div
+      className="bg-[rgba(0,0,0,0.45)] p-1 rounded-xl h-fit
+      lg:grid lg:place-items-center lg:grid-cols-4 lg:p-3 min-w-full">
       {/* first section wrapper */}
-      <div>
-        <div>
-          <span>{name}</span>
-          <span className="hidden lg:block">Product</span>
-          <img src={`../../../productImgs/${img}`} alt="" />
-        </div>
-        <div>
-          <span>Name</span>
-          <span>{name}</span>
+      <div className="lg:flex">
+        <div className="grid place-items-center text-lg">
+          <span className="lg:hidden">{name}</span>
+          <img height="100px" width="80px" src={`../../../productImgs/${img}`} alt="" />
         </div>
       </div>
       {/* second section wrapper */}
-      <div>
-        <div>
+      <div className="flex justify-around lg:grid lg:grid-cols-6 lg:col-span-3 w-full">
+        <div className={`hidden lg:${columnStyles}`}>
+          <span>Name</span>
+          <span>{name}</span>
+        </div>
+        <div className={`${columnStyles}`}>
           <span>Price</span>
-          <span>{price}</span>
+          <span>{price}.00€</span>
         </div>
 
-        <div>
+        <div className={`${columnStyles}`}>
           <span>Amount</span>
-          <Amount value={quantity} />
+          <Amount id={id} value={quantity} />
         </div>
 
-        <div>
+        <div className={`${columnStyles}`}>
           <span>Color</span>
           <span>{color}</span>
         </div>
 
-        <div>
+        <div className={`${columnStyles}`}>
           <span>Size</span>
           <span>{size}</span>
+        </div>
+        <div className={`${columnStyles}`}>
+          <button onClick={() => dispatch(handleRemoveFromCart(id))}>
+            <Icon path={mdiTrashCanOutline} size={1} />
+          </button>
         </div>
       </div>
     </div>
@@ -53,3 +65,5 @@ const CartItem = ({ id, name, img, price, size, color, quantity }: CartItemProps
 }
 
 export default CartItem
+
+const columnStyles = 'grid place-items-center m-auto'

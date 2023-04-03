@@ -23,7 +23,7 @@ const Cart = () => {
   }
   const showOrders = () => {
     return (
-      <ul>
+      <ul className="grid gap-3 list-none lg:mx-10 overflow-y-auto">
         {cart.orders.map((order: Order) => (
           <li key={`${order.id}${order.name}`}>
             <CartItem {...order} />
@@ -33,7 +33,7 @@ const Cart = () => {
     )
   }
   const showTotal = () => {
-    return <span className="text-lg block text-center">TOTAL : {total} €</span>
+    return <span className="text-lg block text-center lg:text-2xl">TOTAL : {total} €</span>
   }
   useEffect(() => {
     setTotal(getTotal(cart.orders))
@@ -41,21 +41,23 @@ const Cart = () => {
   return (
     <div
       className={`absolute w-screen h-screen duration-300 
-       top-0 left-0 z-30 bg-overlay
+       top-0 left-0 z-30 bg-[rgba(0,0,0,.84)]
         ${cart && cart.cartOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
       <span className="block text-center text-gray-300 text-xl p-4">CART</span>
       <div
-        className="absolute bg-[rgba(255,255,255,0.03)] w-[95%] h-[85%]
+        className="absolute  w-[95%] h-[85%]
       top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 z-30  text-white
-      backdrop-blur-xl rounded-lg p-4 overflow-y-scroll lg:h-4/5 lg:w-3/4">
-        <div className="relative">
-          <button
-            onClick={() => dispatch(handleToggleCart())}
-            className="absolute top-0 left-[90%] lg:left-[98%]">
-            <Icon path={mdiClose} size={1.5} color="#fff" />
-          </button>
+      backdrop-blur-xl backdrop-brightness-[2.7] rounded-lg p-4 overflow-y-auto lg:h-4/5 lg:w-[90%]
+      
+      lg:flex lg:flex-row-reverse lg:justify-center lg:py-20">
+        <button
+          onClick={() => dispatch(handleToggleCart())}
+          className="absolute top-2 left-[90%] lg:left-[97%] z-40">
+          <Icon path={mdiClose} size={1.5} color="#fff" />
+        </button>
+        <div className="relative lg:mx-10">
           {cart.orders.length > 0 && showTotal()}
-          <hr className="w-11/12 my-3" />
+          <hr className="w-11/12 my-3 mx-auto lg:hidden" />
         </div>
         {cart.orders.length > 0 ? showOrders() : <h1>cart is empty</h1>}
       </div>

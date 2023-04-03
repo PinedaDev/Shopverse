@@ -19,6 +19,7 @@ type DetailsProps = {
 
 const Details = ({ detailsState, closeDetails }: DetailsProps) => {
   const { products } = useSelector((state: RootState) => state)
+  const { cart } = useSelector((state: RootState) => state)
   const details: Product = products.all.find(
     (product: Product) => product.id === detailsState.productID
   )
@@ -54,6 +55,15 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
   useEffect(() => {
     setOrder({ ...order, color: color })
   }, [color])
+
+  const [addedAlert, setAddedAlert] = useState(false)
+
+  useEffect(() => {
+    if (cart.orders.length > 0) {
+      setAddedAlert(true)
+      setTimeout(() => setAddedAlert(false), 1000)
+    }
+  }, [cart.orders])
   const handleSizeChange = (event: React.FormEvent<HTMLSelectElement>) => {
     setSize(Number(event.currentTarget.value))
   }
@@ -69,7 +79,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
     return (
       <>
         {/* First Details Column */}
-        <div className="grid place-items-center">
+        <div className="relative grid place-items-center">
           <span className="w-full text-center text-xl lg:text-4xl">{details.name}</span>
           <img
             width="279px"
@@ -77,7 +87,12 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
             className="w-2/4 mt-3 mb-3"
             src={`../../../productImgs/${details.img}`}
           />
-
+          <div
+            className={`absolute top-2/4 left-2/4 duration-300 -translate-x-2/4 text-center text-2xl text-gray-900 p-2 font-bold rounded-xl bg-cyan-500 ${
+              addedAlert ? 'opacity-1' : 'opacity-0'
+            }`}>
+            Added to the cart
+          </div>
           <span className="flex justify-around items-center lg:text-xl">
             user ratings: {details.reviews}
             <Icon className="text-gray-300 ml-2 mr-2" path={mdiAccountMultiple} size={1} />
@@ -137,14 +152,13 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
     <div
       className={`absolute bg-[rgba(255,255,255,.1)] w-5/6 h-4/5 
       top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 z-30 
-      backdrop-blur-xl rounded-lg p-4 overflow-y-scroll lg:h-max lg:w-7/12
+      backdrop-blur-xl rounded-lg p-4 overflow-y-auto lg:h-max lg:w-7/12
       ${detailsState.detailsOpen ? 'visible' : 'hidden'}`}>
       {/* Details Content Container */}
       <div className="relative grid place-items-center text-gray-300">
         <button className="absolute top-0 left-[90%] lg:left-[95%]" onClick={closeDetails}>
           <Icon path={mdiClose} size={1.5} className="text-gray-300 lg:text-3xl" />
         </button>
-
         <div className="grid lg:grid-cols-2">
           {detailsState.productID !== 0 ? showDetails() : ''}
         </div>
