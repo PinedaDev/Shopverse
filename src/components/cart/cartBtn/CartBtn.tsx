@@ -1,9 +1,7 @@
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 
 import { handleAddToCart } from '../../../redux/actions/cart'
-import { AppDispatch, RootState } from '../../../redux/store'
+import { AppDispatch } from '../../../redux/store'
 import { Order } from '../../../types'
 
 type CartBtnProps = {
@@ -12,10 +10,6 @@ type CartBtnProps = {
 
 const CartBtn = ({ order }: CartBtnProps) => {
   const dispatch = useDispatch<AppDispatch>()
-  const { cart } = useSelector((state: RootState) => state)
-  useEffect(() => {
-    console.log(cart?.orders)
-  }, [cart?.orders])
   return (
     <div>
       <button
