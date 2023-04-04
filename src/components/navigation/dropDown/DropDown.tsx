@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 
 import { handleToggleCart } from '../../../redux/actions/cart'
 import { AppDispatch, RootState } from '../../../redux/store'
-import CartLink from '../../cart/cartLink/CartLink'
 import MenuBtn from '../menuBtn/MenuBtn'
 
 type DropdownMenuProps = {
@@ -20,21 +19,15 @@ const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
       resolve(changeMenuState())
     })
   }
+  const hidden = 'opacity-0 invisible'
+  const visible = 'opacity-1 visible'
 
-  const hidden = {
-    opacity: '0',
-    visibility: 'hidden'
-  }
-
-  const visible = {
-    opacity: '1',
-    visibility: 'visible'
-  }
   return (
     <div
-      style={!menuState ? hidden : visible}
-      className="absolute grid gap-12 p-4 place-items-center top-0 left-0 text-gray-300  
-      backdrop-blur-xl min-h-screen w-screen bg-[rgba(0,0,0,.8)] duration-300 ease-in-out z-50">
+      className={`absolute grid gap-12 p-4 place-items-center top-0 left-0 text-gray-300  
+      backdrop-blur-xl min-h-screen w-screen bg-[rgba(0,0,0,.8)] duration-300 ease-in-out z-50 ${
+        !menuState ? hidden : visible
+      }`}>
       <span className="absolute top-3 left-[82%]">
         <MenuBtn menuState={menuState} onClick={changeMenuState} />
       </span>
