@@ -1,6 +1,12 @@
 import { Order } from '../../types'
 
-export type CartAction = ReturnType<typeof handleAddToCart>
+export type CartAction =
+  | ReturnType<typeof handleAddToCart>
+  | ReturnType<typeof handleRemoveFromCart>
+  | ReturnType<typeof handleIncreaseAmount>
+  | ReturnType<typeof handleDecreaseAmount>
+  | ReturnType<typeof handleClearCart>
+  | ReturnType<typeof handleToggleCart>
 
 export const CART_PRODUCT_ADD = 'CART_PRODUCT_ADD'
 export const CART_PRODUCT_REMOVE = 'CART_PRODUCT_REMOVE'

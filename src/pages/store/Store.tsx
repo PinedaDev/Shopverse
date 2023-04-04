@@ -6,6 +6,7 @@ import { fetchProducts } from '../../redux/actions/products'
 import NavBar from '../../components/navigation/navBar/NavBar'
 import Cart from '../cart/Cart'
 import ProductsView from '../../components/store/productsView/ProductsView'
+import Login from '../login/Login'
 
 const Store = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -17,6 +18,7 @@ const Store = () => {
       <NavBar />
       <Cart />
       <ProductsView />
+      <Login />
     </div>
   )
 }
