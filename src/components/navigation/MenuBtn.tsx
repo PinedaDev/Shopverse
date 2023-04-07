@@ -1,7 +1,6 @@
-import Icon from '@mdi/react'
-import { mdiMenu, mdiClose } from '@mdi/js'
+import Icon from '../global/Icon'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../../redux/store'
+import { RootState } from '../../redux/store'
 
 type MenuBtnProps = {
   menuState: boolean
@@ -18,7 +17,8 @@ const MenuBtn = ({ onClick, menuState }: MenuBtnProps) => {
           absolute top-0 -left-2 h-4 w-4 bg-white 
           rounded-full text-white z-0"></span>
       )}
-      <Icon path={menuState === false ? mdiMenu : mdiClose} color="#fff" size={1.5} />
+      {/* <Icon path={menuState === false ? mdiMenu : mdiClose} color="#fff" size={1.5} /> */}
+      <Icon iconRef={`${menuState === false ? 'mdi-menu' : 'mdi-close'}`} />
     </button>
   )
 }

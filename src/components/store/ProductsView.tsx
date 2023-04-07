@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 
-import { RootState } from '../../../redux/store'
-import { useFilter } from '../../../hooks/useFilter'
-import { Product } from '../../../types'
+import { RootState } from '../../redux/store'
+import { useFilter } from '../../hooks/useFilter'
+import { useSearch } from '../../hooks/useSearch'
+import { Product } from '../../types'
 
-import Filter from '../filter/Filter'
-import ProductCard from '../productCard/ProductCard'
-import { useSearch } from '../../../hooks/useSearch'
-import SearchField from '../../searchField/SearchField'
-import Details from '../productCard/Details'
+import Filter from './Filter'
+import ProductCard from './ProductCard'
+import SearchField from '../global/SearchField'
+import Details from './Details'
 
 // Type and initial value of details window UI for the products
 type DetailsState = {

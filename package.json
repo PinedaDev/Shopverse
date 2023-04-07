@@ -5,15 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --base=./",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
-    "@mdi/js": "^7.2.96",
-    "@mdi/react": "^1.6.1",
     "@react-oauth/google": "^0.9.0",
     "@reduxjs/toolkit": "^1.9.3",
     "framer-motion": "^10.8.4",

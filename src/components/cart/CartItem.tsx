@@ -1,10 +1,9 @@
 import { useDispatch } from 'react-redux'
 
-import { handleRemoveFromCart } from '../../../redux/actions/cart'
-import Amount from '../amount/Amount'
-import Icon from '@mdi/react'
-import { mdiTrashCanOutline } from '@mdi/js'
-import { AppDispatch } from '../../../redux/store'
+import { handleRemoveFromCart } from '../../redux/actions/cart'
+import Amount from './Amount'
+import Icon from '../global/Icon'
+import { AppDispatch } from '../../redux/store'
 
 type CartItemProps = {
   id: number
@@ -58,7 +57,7 @@ const CartItem = ({ id, name, img, price, size, color, quantity }: CartItemProps
           <button
             className="hover:text-red-500 duration-300"
             onClick={() => dispatch(handleRemoveFromCart(id))}>
-            <Icon path={mdiTrashCanOutline} size={1} />
+            <Icon iconRef="mdi-trash-can-outline" />
           </button>
         </div>
       </div>

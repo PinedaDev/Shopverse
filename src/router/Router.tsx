@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom'
 
 import App from '../App'
-import Store from '../pages/store/Store'
-import Page404 from '../pages/page404/Page404'
+import Store from '../pages/Store'
+import Page404 from '../pages/Page404'
 
 const ErrorBoundary = () => {
   const error = useRouteError()
@@ -15,7 +15,6 @@ const ErrorBoundary = () => {
   // Uncaught ReferenceError: path is not defined
   return <Page404 />
 }
-
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />} errorElement={<ErrorBoundary />}>
