@@ -140,7 +140,6 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
           </div>
 
           <div className="grid gap-3 place-items-center mt-3 pb-3 lg:flex">
-            <BuyBtn />
             <CartBtn order={order} />
           </div>
         </div>

@@ -14,9 +14,9 @@ const MenuBtn = ({ onClick, menuState }: MenuBtnProps) => {
     <button onClick={onClick} className="relative ml-4 lg:hidden">
       {cart && cart.orders.length > 0 && !menuState && (
         <span
-          className={`flex items-center justify-center 
+          className="flex items-center justify-center 
           absolute top-0 -left-2 h-4 w-4 bg-white 
-          rounded-full text-white z-0`}></span>
+          rounded-full text-white z-0"></span>
       )}
       <Icon path={menuState === false ? mdiMenu : mdiClose} color="#fff" size={1.5} />
     </button>

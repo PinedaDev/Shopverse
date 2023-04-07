@@ -54,7 +54,7 @@ const ProductsView = () => {
       ))
     }
     if (search.isSearching && filter.isFiltering) {
-      return search.searchResult.map((product: Product) => (
+      return search.searchResult.map((product) => (
         <ProductCard
           key={`${product.name}${product.id}`}
           openDetails={openDetails}
@@ -63,7 +63,7 @@ const ProductsView = () => {
       ))
     }
     if (search.isSearching && search.searchResult.length > 0) {
-      return search.searchResult.map((product: Product) => (
+      return search.searchResult.map((product) => (
         <ProductCard
           key={`${product.name}${product.id}`}
           openDetails={openDetails}
@@ -72,7 +72,7 @@ const ProductsView = () => {
       ))
     }
     if (filter.isFiltering && filter.filteredProducts.all.length > 0) {
-      return filter.filteredProducts.all.map((product: Product) => (
+      return filter.filteredProducts.all.map((product) => (
         <ProductCard
           key={`${product.name}${product.id}`}
           openDetails={openDetails}
