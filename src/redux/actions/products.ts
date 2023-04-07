@@ -34,7 +34,7 @@ export function fetchProducts() {
   return async (dispatch: Dispatch) => {
     try {
       dispatch(handleProductsRequest())
-      const req = await fetch('http://localhost:5173/products.json')
+      const req = await fetch('../products.json')
       const res = await req.json()
       const products = res.data
       if (!req.ok) throw products
