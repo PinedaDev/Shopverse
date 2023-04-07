@@ -1,12 +1,11 @@
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
-import { AppDispatch } from '../../redux/store'
+import { AppDispatch } from '../redux/store'
 
-import { fetchProducts } from '../../redux/actions/products'
-import NavBar from '../../components/navigation/navBar/NavBar'
-import Cart from '../cart/Cart'
-import ProductsView from '../../components/store/productsView/ProductsView'
-import Login from '../../components/login/Login'
+import { fetchProducts } from '../redux/actions/products'
+import NavBar from '../components/navigation/NavBar'
+import Cart from './Cart'
+import ProductsView from '../components/store/ProductsView'
 
 const Store = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -18,7 +17,6 @@ const Store = () => {
       <NavBar />
       <Cart />
       <ProductsView />
-      <Login />
     </div>
   )
 }

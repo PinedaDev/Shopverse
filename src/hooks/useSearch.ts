@@ -26,7 +26,7 @@ export function useSearch({ productCollection }: UseSearchProps) {
 
   const searchProductByName = () => {
     if (productCollection.length > 0) {
-      const productsByName: Product[] = productCollection.filter((product: Product) =>
+      const productsByName: Product[] = productCollection.filter((product) =>
         product.name.toLowerCase().search(search.searchValue.toLowerCase()) == -1 ? '' : true
       )
       setSearch({ ...search, isSearching: true, searchResult: productsByName })

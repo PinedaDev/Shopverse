@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 
-import { RootState } from '../../../redux/store'
-import { useFilter } from '../../../hooks/useFilter'
-import { Product } from '../../../types'
+import { RootState } from '../../redux/store'
+import { useFilter } from '../../hooks/useFilter'
+import { useSearch } from '../../hooks/useSearch'
+import { Product } from '../../types'
 
-import Filter from '../filter/Filter'
-import ProductCard from '../productCard/ProductCard'
-import { useSearch } from '../../../hooks/useSearch'
-import SearchField from '../../searchField/SearchField'
-import Details from '../productCard/Details'
+import Filter from './Filter'
+import ProductCard from './ProductCard'
+import SearchField from '../global/SearchField'
+import Details from './Details'
 
 // Type and initial value of details window UI for the products
 type DetailsState = {
@@ -54,7 +54,7 @@ const ProductsView = () => {
       ))
     }
     if (search.isSearching && filter.isFiltering) {
-      return search.searchResult.map((product: Product) => (
+      return search.searchResult.map((product) => (
         <ProductCard
           key={`${product.name}${product.id}`}
           openDetails={openDetails}
@@ -63,7 +63,7 @@ const ProductsView = () => {
       ))
     }
     if (search.isSearching && search.searchResult.length > 0) {
-      return search.searchResult.map((product: Product) => (
+      return search.searchResult.map((product) => (
         <ProductCard
           key={`${product.name}${product.id}`}
           openDetails={openDetails}
@@ -72,7 +72,7 @@ const ProductsView = () => {
       ))
     }
     if (filter.isFiltering && filter.filteredProducts.all.length > 0) {
-      return filter.filteredProducts.all.map((product: Product) => (
+      return filter.filteredProducts.all.map((product) => (
         <ProductCard
           key={`${product.name}${product.id}`}
           openDetails={openDetails}

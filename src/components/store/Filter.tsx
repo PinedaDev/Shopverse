@@ -1,9 +1,7 @@
-import Icon from '@mdi/react'
-import { mdiTune } from '@mdi/js'
-import { mdiClose } from '@mdi/js'
+import Icon from '../global/Icon'
 
-import { FilterStateProps } from '../../../hooks/useFilter'
-import Price from './price/Price'
+import { FilterStateProps } from '../../hooks/useFilter'
+import Price from './Price'
 
 type FilterProps = {
   filter: FilterStateProps
@@ -32,12 +30,12 @@ const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) =>
   return (
     <div
       className={`relative w-3/4 m-auto   backdrop-blur-xl p-3 mt-8 mb-8 
-          rounded-lg lg:w-1/5 lg:absolute lg:top-14 lg:left-10  ${
-            !filterOpen ? 'backdrop-brightness-125' : 'backdrop-brightness-200'
+          rounded-lg lg:w-1/5 lg:absolute lg:top-14 lg:left-10 duration-300 ease-in-out  ${
+            !filterOpen ? 'backdrop-brightness-125' : 'backdrop-brightness-[3]'
           } z-20`}>
       <div onClick={toggleFilter} className="relative flex items-center justify-between">
         <span className="text-gray-400 text-xl">Filter</span>
-        <Icon className="text-gray-50" path={filterOpen ? mdiClose : mdiTune} size={1} />
+        <Icon iconRef={`${filterOpen ? 'mdi-close' : 'mdi-tune'}`} />
       </div>
       {/* Filters */}
       <div className={`${filterOpen ? 'visible' : 'hidden'}`}>

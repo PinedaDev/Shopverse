@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import Logo from '../../logo/Logo'
-import NavOptions from '../navOptions/NavOptions'
-import DropdownMenu from '../dropDown/DropDown'
+import Logo from '../global/Logo'
+import NavOptions from './NavOptions'
+import DropdownMenu from './DropDown'
 
 const NavBar = () => {
   const [menuState, setMenuState] = useState<boolean>(false)

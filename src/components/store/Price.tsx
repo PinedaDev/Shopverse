@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { FilterStateProps } from '../../../../hooks/useFilter'
-import { RootState } from '../../../../redux/store'
-import { Product } from '../../../../types'
+import { FilterStateProps } from '../../hooks/useFilter'
+import { RootState } from '../../redux/store'
+import { Product } from '../../types'
 
 type PriceProps = {
   filter: FilterStateProps

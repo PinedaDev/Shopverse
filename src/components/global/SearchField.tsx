@@ -1,5 +1,4 @@
-import Icon from '@mdi/react'
-import { mdiMagnify } from '@mdi/js'
+import Icon from './Icon'
 import { SearchStateProps } from '../../hooks/useSearch'
 
 type SearchField = {
@@ -15,7 +14,7 @@ const SearchField = ({ search, setSearch }: SearchField) => {
     <div
       className="relative flex border-4 border-gray-400 w-4/5 rounded-full 
       m-auto md:absolute md:top-4 md:left-2/4 md:-translate-x-2/4 lg:w-4/12 ">
-      <Icon className="text-gray-400" path={mdiMagnify} size={2} />
+      <Icon iconRef="mdi-magnify" />
       <input
         className="bg-transparent text-gray-200 text-center w-full rounded-full"
         type="text"

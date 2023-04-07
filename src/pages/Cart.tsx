@@ -1,12 +1,11 @@
-import { AppDispatch, RootState } from '../../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import Icon from '@mdi/react'
-import { mdiClose } from '@mdi/js'
 
-import { handleClearCart, handleToggleCart } from '../../redux/actions/cart'
-import { Order } from '../../types'
-import CartItem from '../../components/cart/cartItem/CartItem'
+import { AppDispatch, RootState } from '../redux/store'
+import { handleClearCart, handleToggleCart } from '../redux/actions/cart'
+import { Order } from '../types'
+import CartItem from '../components/cart/CartItem'
+import Icon from '../components/global/Icon'
 
 const Cart = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -52,7 +51,7 @@ const Cart = () => {
         <button
           onClick={() => dispatch(handleToggleCart())}
           className="absolute top-2 left-[90%] lg:left-[97%] z-40">
-          <Icon path={mdiClose} size={1.5} color="#fff" />
+          <Icon iconRef="mdi-close" />
         </button>
         {cart.orders.length > 0 && (
           <div className="relative lg:mx-10">

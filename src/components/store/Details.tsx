@@ -1,15 +1,13 @@
 import { useSelector } from 'react-redux'
 
-import Icon from '@mdi/react'
-import { mdiClose, mdiAccountMultiple, mdiStarOutline } from '@mdi/js'
+import Icon from '../global/Icon'
 
-import { RootState } from '../../../redux/store'
-import { Product } from '../../../types'
-import { Order } from '../../../types'
+import { RootState } from '../../redux/store'
+import { Product } from '../../types'
+import { Order } from '../../types'
 
-import VariantSelector from '../../variantSelector/VariantSelector'
-import CartBtn from '../../cart/cartBtn/CartBtn'
-import BuyBtn from '../buyBtn/BuyBtn'
+import VariantSelector from './VariantSelector'
+import CartBtn from '../cart/CartBtn'
 import { useEffect, useState } from 'react'
 
 type DetailsProps = {
@@ -74,7 +72,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
   const showDetails = () => {
     const showStars = Array(details.stars)
       .fill('')
-      .map((_, i) => <Icon key={i} path={mdiStarOutline} size={1} />)
+      .map((_, i) => <Icon key={i} iconRef="mdi-star-outline" />)
 
     return (
       <>
@@ -95,7 +93,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
           </div>
           <span className="flex justify-around items-center lg:text-xl">
             user ratings: {details.reviews}
-            <Icon className="text-gray-300 ml-2 mr-2" path={mdiAccountMultiple} size={1} />
+            <Icon iconRef="mdi-account-multiple" />
           </span>
 
           <div className="flex justify-around items-center mt-3 mb-3 w-[70%] lg:w-[50%]">
@@ -140,7 +138,6 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
           </div>
 
           <div className="grid gap-3 place-items-center mt-3 pb-3 lg:flex">
-            <BuyBtn />
             <CartBtn order={order} />
           </div>
         </div>
@@ -157,7 +154,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
       {/* Details Content Container */}
       <div className="relative grid place-items-center text-gray-300">
         <button className="absolute top-0 left-[90%] lg:left-[95%] z-40" onClick={closeDetails}>
-          <Icon path={mdiClose} size={1.5} className="text-gray-300 lg:text-3xl" />
+          <Icon iconRef="mdi-close" />
         </button>
         <div className="grid lg:grid-cols-2">
           {detailsState.productID !== 0 ? showDetails() : ''}

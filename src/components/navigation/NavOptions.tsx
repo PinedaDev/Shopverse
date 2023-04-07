@@ -1,5 +1,5 @@
-import CartLink from '../../cart/cartLink/CartLink'
-import MenuBtn from '../menuBtn/MenuBtn'
+import CartLink from '../cart/CartLink'
+import MenuBtn from './MenuBtn'
 
 type NavOptionsProps = {
   menuState: boolean

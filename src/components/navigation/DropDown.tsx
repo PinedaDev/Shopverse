@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 
-import { handleToggleCart } from '../../../redux/actions/cart'
-import { AppDispatch, RootState } from '../../../redux/store'
-import MenuBtn from '../menuBtn/MenuBtn'
+import { handleToggleCart } from '../../redux/actions/cart'
+import { AppDispatch, RootState } from '../../redux/store'
+import MenuBtn from './MenuBtn'
 
 type DropdownMenuProps = {
   changeMenuState: () => void
@@ -15,7 +15,7 @@ const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
   const { cart } = useSelector((state: RootState) => state)
 
   function menuItemHandler() {
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<void>((resolve) => {
       resolve(changeMenuState())
     })
   }

@@ -1,11 +1,9 @@
 import { useSelector } from 'react-redux'
-import Icon from '@mdi/react'
-import { Link } from 'react-router-dom'
+import Icon from '../global/Icon'
 
-import { AppDispatch, RootState } from '../../../redux/store'
-import { mdiCart } from '@mdi/js'
+import { AppDispatch, RootState } from '../../redux/store'
 import { useDispatch } from 'react-redux'
-import { handleToggleCart } from '../../../redux/actions/cart'
+import { handleToggleCart } from '../../redux/actions/cart'
 
 const CartLink = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -24,7 +22,7 @@ const CartLink = () => {
     <button onClick={() => dispatch(handleToggleCart())}>
       <div className="hidden relative items-center ml-10 lg:flex">
         {cart && cart.orders.length > 0 && showCount()}
-        <Icon path={mdiCart} color="#fff" size={1.5} />
+        <Icon iconRef="mdi-cart" />
       </div>
     </button>
   )
