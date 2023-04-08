@@ -1,6 +1,6 @@
 import { GoogleLogin } from '@react-oauth/google'
 import jwtDecode from 'jwt-decode'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AppDispatch } from '../redux/store'
 import { useDispatch } from 'react-redux'
 
@@ -10,13 +10,14 @@ import { login } from '../redux/actions/user'
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>()
-
+  const navigate = useNavigate()
   const handleResponse = (response: any) => {
     if (response.credential) {
       localStorage.setItem('token', response.credential)
       const userDecoded: UserType = jwtDecode(response.credential)
       console.log(userDecoded)
       dispatch(login(userDecoded))
+      navigate('/')
     }
   }
   return (

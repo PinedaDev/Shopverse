@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { AppDispatch, RootState } from '../../redux/store'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/actions/user'
+import Icon from '../global/Icon'
 
 type NavOptionsProps = {
   menuState: boolean
@@ -15,11 +16,11 @@ const NavOptions = ({ menuState, changeMenuState }: NavOptionsProps) => {
   const dispatch = useDispatch<AppDispatch>()
   const { user } = useSelector((state: RootState) => state)
   return (
-    <div className="items-center text-gray-300 mr-2 flex justify-around space-x-12">
+    <div className="items-center text-gray-300 mr-2 flex justify-around md:space-x-12">
       {user.info ? (
         <>
-          <span className="text-2xl">{`${user.info.given_name} ${user.info.family_name}`}</span>
-          <button className="text-2xl" onClick={() => dispatch(logout())}>
+          <span className="hidden text-2xl  lg:inline">{`${user.info.given_name} ${user.info.family_name}`}</span>
+          <button className="hidden text-2xl lg:inline" onClick={() => dispatch(logout())}>
             Signout
           </button>
         </>
@@ -30,6 +31,13 @@ const NavOptions = ({ menuState, changeMenuState }: NavOptionsProps) => {
       )}
       <CartLink />
       <MenuBtn menuState={menuState} onClick={changeMenuState} />
+      {user.info && user.info.role === 'ADMIN' ? (
+        <Link to="/dashboard">
+          <Icon iconRef="mdi-cog" />
+        </Link>
+      ) : (
+        ''
+      )}
     </div>
   )
 }
