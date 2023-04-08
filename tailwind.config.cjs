@@ -18,7 +18,11 @@ module.exports = {
         montserrat: 'Montserrat, sans-serif'
       },
       colors: {
-        overlay: 'rgba(0,0,0, .9)'
+        overlay: 'rgba(0,0,0, .9)',
+        main: '#222831',
+        secondary: '#393E46',
+        third: '#EEEEEE',
+        accent: '#00ADB5'
       }
     }
   },
