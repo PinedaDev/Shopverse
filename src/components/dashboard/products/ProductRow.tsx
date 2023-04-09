@@ -2,6 +2,8 @@ import { useDispatch } from 'react-redux'
 import { Product } from '../../../types'
 import { AppDispatch } from '../../../redux/store'
 import { deleteProduct } from '../../../redux/actions/products'
+import { useState } from 'react'
+import EditForm from './EditForm'
 
 type ProductRowProps = {
   id: number
@@ -10,8 +12,9 @@ type ProductRowProps = {
   price: number
   color: string[]
   size: number[]
+  edit: (id: number) => void
 }
-const ProductRow = ({ id, name, categories, price, color, size }: ProductRowProps) => {
+const ProductRow = ({ id, name, categories, price, color, size, edit }: ProductRowProps) => {
   const dispatch = useDispatch<AppDispatch>()
   const showProductRow = () => {
     return (
@@ -23,7 +26,7 @@ const ProductRow = ({ id, name, categories, price, color, size }: ProductRowProp
         <span className="grid place-items-center">{color.map((color) => `${color},`)}</span>
         <span className="grid place-items-center">{size.map((size) => `${size},`)}</span>
         <div className="flex justify-around space-x-3">
-          <button>edit</button>
+          <button onClick={() => edit(id)}>edit</button>
           <button onClick={() => dispatch(deleteProduct(id))}>delete</button>
         </div>
       </>
