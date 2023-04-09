@@ -11,7 +11,8 @@ const TableLink = ({ path, tableName }: TableLink) => {
         to={path}
         className={({ isActive, isPending }) =>
           isPending ? styles.pending : isActive ? styles.active : ''
-        }>
+        }
+        end>
         {tableName}
       </NavLink>
     </>
@@ -19,7 +20,7 @@ const TableLink = ({ path, tableName }: TableLink) => {
 }
 
 const styles = {
-  active: 'text-cyan-300',
+  active: 'bg-cyan-300 text-black',
   pending: ''
 }
 

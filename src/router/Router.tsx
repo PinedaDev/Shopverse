@@ -11,6 +11,8 @@ import Page404 from '../pages/Page404'
 import Login from '../auth/Login'
 import Dashboard from '../pages/Dashboard'
 import DashProducts from '../components/dashboard/products/DashProducts'
+import DashOrders from '../components/dashboard/orders/DashOrders'
+import DashUsers from '../components/dashboard/users/DashUsers'
 
 const ErrorBoundary = () => {
   const error = useRouteError()
@@ -26,6 +28,8 @@ const Router = createBrowserRouter(
       </Route>
       <Route path="/dashboard" element={<Dashboard />}>
         <Route path="products" element={<DashProducts />} />
+        <Route path="orders" element={<DashOrders />} />
+        <Route path="users" element={<DashUsers />} />
       </Route>
     </Route>
   )

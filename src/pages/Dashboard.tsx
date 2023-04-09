@@ -15,15 +15,13 @@ const Dashboard = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(fetchProducts())
     navigate('/dashboard/products')
+    if (!user.info) {
+      navigate('/')
+    } else {
+      user.info.role !== 'ADMIN' ? navigate('/') : ''
+    }
   }, [])
-
-  if (!user.info) {
-    navigate('/')
-  } else {
-    user.info.role !== 'ADMIN' ? navigate('/') : ''
-  }
 
   const showTableLinks = () =>
     tables.map((tableLink, i) => (
@@ -36,7 +34,7 @@ const Dashboard = () => {
   return (
     <div className="bg-main min-h-screen font-montserrat">
       <Header />
-      <div>{showTableLinks()}</div>
+      <div className="flex space-x-10 ml-3 mt-3">{showTableLinks()}</div>
       <Outlet />
     </div>
   )
