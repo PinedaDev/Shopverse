@@ -25,12 +25,20 @@ const ProductRow = ({ id, name, categories, price, colors, sizes, edit }: Produc
           {colors.map((color) => `${color}, `)}
         </span>
         <span className="grid place-items-center font-bold">{sizes.map((size) => `${size} `)}</span>
-        <div className="flex justify-around space-x-3">
-          <button onClick={() => edit(id)}>
+        <div className="flex justify-around space-x-3 font-bold">
+          <button
+            className="flex space-x-2 items-center text-xl 
+          bg-secondary py-2 px-4 rounded-sm duration-300 hover:text-accent"
+            onClick={() => edit(id)}>
             <Icon iconRef="mdi-pencil" />
+            <span>Edit</span>
           </button>
-          <button onClick={() => dispatch(deleteProduct(id))}>
-            <span className="mdi mdi-trash-can-outline hover:text-red-600 text-2xl"></span>
+          <button
+            className="flex space-x-2 items-center text-xl 
+          bg-secondary py-2 px-4 rounded-sm duration-300 hover:text-red-500"
+            onClick={() => dispatch(deleteProduct(id))}>
+            <span className="mdi mdi-trash-can-outline"></span>
+            <span>Delete</span>
           </button>
         </div>
       </>

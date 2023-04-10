@@ -3,7 +3,7 @@
     {
       "id": 87231,
       "userId": 427352,
-      "products": [
+      "orderItems": [
         {
           "productId": 39761,
           "quantity": 1,
@@ -16,55 +16,60 @@
           "size": 41,
           "color": "black"
         }
-      ]
+      ],
+      "totalInvoice": 220
     },
     {
       "id": 87232,
       "userId": 427353,
-      "products": [
+      "orderItems": [
         {
           "productId": 39764,
           "quantity": 1,
           "size": 43,
           "color": "violet"
         }
-      ]
+      ],
+      "totalInvoice": 134
     },
     {
       "id": 87233,
       "userId": 427354,
-      "products": [
+      "orderItems": [
         {
           "productId": 39765,
           "quantity": 1,
           "size": 42,
           "color": "black"
         }
-      ]
+      ],
+      "totalInvoice": 170
     },
     {
       "id": 87234,
       "userId": 427355,
-      "products": [
+      "orderItems": [
         {
           "productId": 39763,
           "quantity": 1,
           "size": 43,
           "color": "green"
         }
-      ]
+      ],
+      "totalInvoice": 110
     },
     {
       "id": 87235,
       "userId": 427358,
-      "products": [
+      "orderItems": [
         {
           "productId": 39762,
           "quantity": 4,
           "size": 39,
           "color": "black"
         }
-      ]
+      ],
+      "totalInvoice": 80
     }
   ]
 }

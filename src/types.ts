@@ -14,12 +14,13 @@ export type Product = {
 export type Order = {
   id: number
   userId: number
-  products: {
-    productID: number
+  orderItems: {
+    productId: number
     quantity: number
     size: number
     color: string
   }[]
+  totalInvoice: number
 }
 
 export type CartItem = {
@@ -31,6 +32,14 @@ export type CartItem = {
   color: string
   price: number
   quantity: number
+}
+
+export type User = {
+  id: number
+  firstName: string
+  lastName: string
+  email: string
+  orders: number[]
 }
 
 export type GoogleUser = {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import TableHeader from '../TableHeader'
 import { Order } from '../../../types'
+import OrdersRow from './OrdersRow'
 
 type OrdersState = {
   isLoading: boolean
@@ -9,7 +10,7 @@ type OrdersState = {
 }
 
 const initialOrders = {
-  isLoading: false,
+  isLoading: true,
   error: null,
   all: []
 }
@@ -18,6 +19,13 @@ const DashOrders = () => {
   const headers = ['Id', 'User Id', "Product's Id", 'Total Invoice']
 
   const [orders, setOrders] = useState<OrdersState>(initialOrders)
+  const showOrders = () => {
+    if (orders.all) {
+      return orders.all.map((order) => {
+        return <OrdersRow key={order.id} {...order} />
+      })
+    }
+  }
 
   useEffect(() => {
     const getOrders = async () => {
@@ -38,6 +46,8 @@ const DashOrders = () => {
   return (
     <div className="relative">
       <TableHeader headers={headers} />
+      {orders.isLoading && <h1>Loading Data</h1>}
+      {!orders.isLoading && showOrders()}
     </div>
   )
 }

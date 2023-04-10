@@ -53,7 +53,7 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
     <div
       className={`${
         isEditing ? 'block' : 'hidden'
-      } absolute bg-secondary top-4/4 left-2/4 -translate-x-2/4 -translate-y-2/4
+      } absolute bg-secondary top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4
       w-[30%] p-5 border-2 border-solid border-main duration-300 max-h-[80vh] overflow-auto text-white `}>
       <h1 className="text-2xl text-center font-bold">Product Info</h1>
       <form className="grid  m-auto" onSubmit={submitHandler}>
