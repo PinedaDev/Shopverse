@@ -4,7 +4,8 @@ import { Product } from '../../types'
 import {
   FETCH_PRODUCTS_FAILED,
   FETCH_PRODUCTS_REQUEST,
-  FETCH_PRODUCTS_SUCCESS
+  FETCH_PRODUCTS_SUCCESS,
+  PRODUCT_DELETE
 } from '../actions/products'
 
 export type ProductsState = {
@@ -39,6 +40,15 @@ export function productsReducer(state = initialState, action: AnyAction) {
         ...state,
         isLoading: false,
         error: 'something is wrong'
+      }
+    }
+    case PRODUCT_DELETE: {
+      const updatedOrders = state.all
+        ? state.all.filter((product) => product.id !== action.payload)
+        : ''
+      return {
+        ...state,
+        all: updatedOrders
       }
     }
     default:

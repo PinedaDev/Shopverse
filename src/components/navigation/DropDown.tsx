@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 
 import { handleToggleCart } from '../../redux/actions/cart'
 import { AppDispatch, RootState } from '../../redux/store'
+import { Link } from 'react-router-dom'
+import Icon from '../global/Icon'
 import MenuBtn from './MenuBtn'
 
 type DropdownMenuProps = {
@@ -49,7 +51,7 @@ const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
           </button>
         </li>
         <li>
-          <button onClick={() => dispatch(handleToggleCart())}>Login</button>
+          <Link to="/login">Login</Link>
         </li>
       </ul>
     </div>

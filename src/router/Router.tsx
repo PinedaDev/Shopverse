@@ -8,6 +8,11 @@ import {
 import App from '../App'
 import Store from '../pages/Store'
 import Page404 from '../pages/Page404'
+import Login from '../auth/Login'
+import Dashboard from '../pages/Dashboard'
+import DashProducts from '../components/dashboard/products/DashProducts'
+import DashOrders from '../components/dashboard/orders/DashOrders'
+import DashUsers from '../components/dashboard/users/DashUsers'
 
 const ErrorBoundary = () => {
   const error = useRouteError()
@@ -18,7 +23,14 @@ const ErrorBoundary = () => {
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />} errorElement={<ErrorBoundary />}>
-      <Route index path="/" element={<Store />}></Route>
+      <Route path="/" element={<Store />}>
+        <Route path="login" element={<Login />} />
+      </Route>
+      <Route path="/dashboard" element={<Dashboard />}>
+        <Route path="products" element={<DashProducts />} />
+        <Route path="orders" element={<DashOrders />} />
+        <Route path="users" element={<DashUsers />} />
+      </Route>
     </Route>
   )
 )

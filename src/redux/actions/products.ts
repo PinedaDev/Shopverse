@@ -9,6 +9,7 @@ export type ProductsAction =
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST'
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS'
 export const FETCH_PRODUCTS_FAILED = 'FETCH_PRODUCTS_FAILED'
+export const PRODUCT_DELETE = 'PRODUCT_DELETE'
 
 export function handleProductsRequest() {
   return {
@@ -20,6 +21,13 @@ export function handleProductsSuccess(products: Product[]) {
   return {
     type: FETCH_PRODUCTS_SUCCESS,
     payload: products
+  }
+}
+
+export function deleteProduct(id: number) {
+  return {
+    type: PRODUCT_DELETE,
+    payload: id
   }
 }
 

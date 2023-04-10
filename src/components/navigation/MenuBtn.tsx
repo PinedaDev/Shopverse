@@ -10,7 +10,7 @@ type MenuBtnProps = {
 const MenuBtn = ({ onClick, menuState }: MenuBtnProps) => {
   const { cart } = useSelector((state: RootState) => state)
   return (
-    <button onClick={onClick} className="relative ml-4 lg:hidden">
+    <button onClick={onClick} className="relative lg:hidden">
       {cart && cart.orders.length > 0 && !menuState && (
         <span
           className="flex items-center justify-center 

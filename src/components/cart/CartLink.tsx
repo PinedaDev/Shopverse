@@ -20,7 +20,7 @@ const CartLink = () => {
   }
   return (
     <button onClick={() => dispatch(handleToggleCart())}>
-      <div className="hidden relative items-center ml-10 lg:flex">
+      <div className="hidden relative items-center lg:flex">
         {cart && cart.orders.length > 0 && showCount()}
         <Icon iconRef="mdi-cart" />
       </div>
