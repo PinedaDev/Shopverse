@@ -4,7 +4,7 @@ import Icon from '../global/Icon'
 
 import { RootState } from '../../redux/store'
 import { Product } from '../../types'
-import { Order } from '../../types'
+import { CartItem } from '../../types'
 
 import VariantSelector from './VariantSelector'
 import CartBtn from '../cart/CartBtn'
@@ -24,7 +24,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
   const [size, setSize] = useState<number>(0)
   const [color, setColor] = useState<string>('')
 
-  const [order, setOrder] = useState<Order>({
+  const [order, setOrder] = useState<CartItem>({
     id: 0,
     name: '',
     img: '',
@@ -40,8 +40,8 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
         id: details.id,
         name: details.name,
         img: details.img,
-        size: details.size[0],
-        color: details.color[0],
+        size: details.sizes[0],
+        color: details.colors[0],
         price: details.price,
         quantity: 1
       })
@@ -105,13 +105,13 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
               variantState={color}
               handleVariant={handleColorChange}
               title="Color"
-              variants={details.color}
+              variants={details.colors}
             />
             <VariantSelector
               variantState={size}
               handleVariant={handleSizeChange}
               title="Size"
-              variants={details.size}
+              variants={details.sizes}
             />
           </div>
         </div>
@@ -127,13 +127,13 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
               variantState={color}
               handleVariant={handleColorChange}
               title="Color"
-              variants={details.color}
+              variants={details.colors}
             />
             <VariantSelector
               variantState={size}
               handleVariant={handleSizeChange}
               title="Size"
-              variants={details.size}
+              variants={details.sizes}
             />
           </div>
 

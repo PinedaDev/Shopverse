@@ -1,4 +1,4 @@
-import { Order } from '../../types'
+import { CartItem } from '../../types'
 
 export type CartAction =
   | ReturnType<typeof handleAddToCart>
@@ -15,7 +15,7 @@ export const CART_PRODUCT_DECREASE_AMOUNT = 'CART_PRODUCT_DECREASE_AMOUNT'
 export const CART_CLEAR = 'CART_CLEAR'
 export const CART_TOGGLE = 'CART_TOGGLE'
 
-export function handleAddToCart(order: Order) {
+export function handleAddToCart(order: CartItem) {
   return {
     type: CART_PRODUCT_ADD,
     payload: order

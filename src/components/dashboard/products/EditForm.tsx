@@ -19,8 +19,8 @@ const initialFormValues: Product = {
   img: '',
   description: '',
   categories: [],
-  size: [0],
-  color: [''],
+  sizes: [0],
+  colors: [''],
   price: 0,
   reviews: 0,
   stars: 0
@@ -90,8 +90,8 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
         />
         <div className="my-2">
           <DashVariantSelector title="Categories" variants={form.categories} />
-          <DashVariantSelector title="Colors" variants={form.color} />
-          <DashVariantSelector title="Sizes" variants={form.size} />
+          <DashVariantSelector title="Colors" variants={form.colors} />
+          <DashVariantSelector title="Sizes" variants={form.sizes} />
         </div>
         <div className="flex justify-around ">
           <button

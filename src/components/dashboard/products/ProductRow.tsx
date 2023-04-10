@@ -17,12 +17,14 @@ const ProductRow = ({ id, name, categories, price, color, size, edit }: ProductR
   const showProductRow = () => {
     return (
       <>
-        <span className="grid place-items-center">{id}</span>
+        <span className="grid place-items-center text-accent font-bold">{id}</span>
         <span className="grid place-items-center">{name}</span>
         <span className="grid place-items-center">{categories.map((category) => category)}</span>
-        <span className="grid place-items-center">{price}</span>
-        <span className="grid place-items-center">{color.map((color) => `${color},`)}</span>
-        <span className="grid place-items-center">{size.map((size) => `${size},`)}</span>
+        <span className="grid place-items-center text-accent text-xl font-bold">{price}.00€</span>
+        <span className="grid place-items-center font-bold">
+          {color.map((color) => `${color}, `)}
+        </span>
+        <span className="grid place-items-center font-bold">{size.map((size) => `${size} `)}</span>
         <div className="flex justify-around space-x-3">
           <button onClick={() => edit(id)}>
             <Icon iconRef="mdi-pencil" />

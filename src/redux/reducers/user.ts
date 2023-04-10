@@ -1,9 +1,9 @@
 import { AnyAction } from 'redux'
-import { UserType } from '../../types'
+import { GoogleUser } from '../../types'
 import { USER_LOGIN, USER_LOGOUT } from '../actions/user'
 
 type UserState = {
-  info: UserType | null
+  info: GoogleUser | null
 }
 
 export const initialUserState: UserState = {

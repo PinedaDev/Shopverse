@@ -4,14 +4,14 @@ export type Product = {
   img: string
   description: string
   categories: string[]
-  size: number[]
-  color: string[]
+  sizes: number[]
+  colors: string[]
   price: number
   reviews: number
   stars: number
 }
 
-export type Order = {
+export type CartItem = {
   id: number
   productID?: number
   name: string
@@ -22,7 +22,7 @@ export type Order = {
   quantity: number
 }
 
-export type UserType = {
+export type GoogleUser = {
   aud: string
   azp: string
   email_verified: boolean

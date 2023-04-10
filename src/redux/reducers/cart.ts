@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux'
-import { Order } from '../../types'
+import { CartItem } from '../../types'
 
 import {
   CART_CLEAR,
@@ -12,7 +12,7 @@ import {
 
 type CartState = {
   cartOpen: boolean
-  orders: Order[]
+  orders: CartItem[]
 }
 
 const initialState: CartState = {
@@ -21,7 +21,7 @@ const initialState: CartState = {
 }
 
 export function cartReducer(state = initialState, action: AnyAction) {
-  function checkMatch(currentOrder: Order) {
+  function checkMatch(currentOrder: CartItem) {
     let equals = false
     const match = state.orders.find(
       (order) =>
@@ -41,7 +41,7 @@ export function cartReducer(state = initialState, action: AnyAction) {
     case CART_PRODUCT_ADD: {
       const productID: number = action.payload.id
       const orderID = new Date().getTime() + productID
-      const newOrder: Order = { ...action.payload, id: orderID, productID: productID }
+      const newOrder: CartItem = { ...action.payload, id: orderID, productID: productID }
 
       const matchOrder = checkMatch(newOrder)
 
