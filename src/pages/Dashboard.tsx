@@ -1,9 +1,7 @@
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { AppDispatch, RootState } from '../redux/store'
+import { RootState } from '../redux/store'
 import { Outlet, useNavigate } from 'react-router'
-import { useDispatch } from 'react-redux'
-import { fetchProducts } from '../redux/actions/products'
 import Header from '../components/dashboard/Header'
 import TableLink from '../components/dashboard/TableLink'
 

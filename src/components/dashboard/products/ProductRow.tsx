@@ -8,11 +8,11 @@ type ProductRowProps = {
   name: string
   categories: string[]
   price: number
-  color: string[]
-  size: number[]
+  colors: string[]
+  sizes: number[]
   edit: (id: number) => void
 }
-const ProductRow = ({ id, name, categories, price, color, size, edit }: ProductRowProps) => {
+const ProductRow = ({ id, name, categories, price, colors, sizes, edit }: ProductRowProps) => {
   const dispatch = useDispatch<AppDispatch>()
   const showProductRow = () => {
     return (
@@ -22,9 +22,9 @@ const ProductRow = ({ id, name, categories, price, color, size, edit }: ProductR
         <span className="grid place-items-center">{categories.map((category) => category)}</span>
         <span className="grid place-items-center text-accent text-xl font-bold">{price}.00€</span>
         <span className="grid place-items-center font-bold">
-          {color.map((color) => `${color}, `)}
+          {colors.map((color) => `${color}, `)}
         </span>
-        <span className="grid place-items-center font-bold">{size.map((size) => `${size} `)}</span>
+        <span className="grid place-items-center font-bold">{sizes.map((size) => `${size} `)}</span>
         <div className="flex justify-around space-x-3">
           <button onClick={() => edit(id)}>
             <Icon iconRef="mdi-pencil" />

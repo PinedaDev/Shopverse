@@ -5,7 +5,7 @@ import { AppDispatch } from '../redux/store'
 import { useDispatch } from 'react-redux'
 
 import Icon from '../components/global/Icon'
-import { UserType } from '../types'
+import { GoogleUser } from '../types'
 import { login } from '../redux/actions/user'
 
 const Login = () => {
@@ -14,7 +14,7 @@ const Login = () => {
   const handleResponse = (response: any) => {
     if (response.credential) {
       localStorage.setItem('token', response.credential)
-      const userDecoded: UserType = jwtDecode(response.credential)
+      const userDecoded: GoogleUser = jwtDecode(response.credential)
       console.log(userDecoded)
       dispatch(login(userDecoded))
       navigate('/')

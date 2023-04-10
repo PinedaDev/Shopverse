@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 import { handleToggleCart } from '../../redux/actions/cart'
 import { AppDispatch, RootState } from '../../redux/store'
 import { Link } from 'react-router-dom'
-import Icon from '../global/Icon'
 import MenuBtn from './MenuBtn'
 
 type DropdownMenuProps = {
