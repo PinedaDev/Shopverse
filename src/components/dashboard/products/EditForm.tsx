@@ -49,7 +49,7 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
           placeholder="Product Name"
         />
         <label htmlFor="name">Price</label>
-        <input className="p-3 text-black" type="number" id="price" value={target && form.price} />
+        <input className="p-3 text-black" type="number" id="price" value={form.price} />
         <label htmlFor="name">Description</label>
         <textarea
           className="p-3 text-black"
@@ -57,7 +57,7 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
           placeholder="Product Description"
           value={form.description}
         />
-        <div className="flex justify-around">
+        <div className="flex justify-around text-white">
           <button className="my-5 hover:text-cyan-400">Update</button>
           <button onClick={closeEdit} className="my-5 hover:text-red-400">
             Cancel
