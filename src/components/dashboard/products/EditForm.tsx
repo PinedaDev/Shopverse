@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { Product } from '../../../types'
 import { AppDispatch, RootState } from '../../../redux/store'
 import { updateProduct } from '../../../redux/actions/products'
+import DashVariantSelector from './DashVariantSelector'
 
 type EditFormProps = {
   isEditing: boolean
@@ -12,24 +13,27 @@ type EditFormProps = {
   id: number
 }
 
-const initialFormValues = {
+const initialFormValues: Product = {
+  id: 0,
   name: '',
+  img: '',
+  description: '',
+  categories: [],
+  size: [0],
+  color: [''],
   price: 0,
-  description: ''
+  reviews: 0,
+  stars: 0
 }
 
 const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
   const dispatch = useDispatch<AppDispatch>()
   const { products } = useSelector((state: RootState) => state)
-  const target = products.all.find((product: Product) => product.id === id)
-  const [form, setForm] = useState(initialFormValues)
+  const target: Product = products.all.find((product: Product) => product.id === id)
+  const [form, setForm] = useState<Product>(initialFormValues)
   useEffect(() => {
     if (target) {
-      setForm({
-        name: target.name,
-        price: target.price,
-        description: target.description
-      })
+      setForm({ ...target })
     }
   }, [id])
 
@@ -49,10 +53,11 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
     <div
       className={`${
         isEditing ? 'block' : 'hidden'
-      } absolute bg-main top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4
-      w-[30%] p-5 border-2 border-solid duration-300 `}>
+      } absolute bg-main top-4/4 left-2/4 -translate-x-2/4 -translate-y-2/4
+      w-[30%] p-5 border-2 border-solid duration-300 max-h-[80vh] overflow-auto text-white `}>
+      <h1 className="text-2xl text-center">Product Info</h1>
       <form className="grid  m-auto" onSubmit={submitHandler}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">Name :</label>
         <input
           className="p-3 text-black"
           type="text"
@@ -61,7 +66,7 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
           value={form.name}
           onChange={nameHandler}
         />
-        <label htmlFor="name">Price</label>
+        <label htmlFor="name">Price :</label>
         <input
           className="p-3 text-black"
           type="number"
@@ -69,7 +74,7 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
           value={form.price}
           onChange={priceHandler}
         />
-        <label htmlFor="name">Description</label>
+        <label htmlFor="name">Description :</label>
         <textarea
           className="p-3 text-black"
           id="description"
@@ -77,14 +82,21 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
           value={form.description}
           onChange={descriptionHandler}
         />
-        <div className="flex justify-around text-white">
+        <div className="my-2">
+          <DashVariantSelector title="Categories" variants={form.categories} />
+          <DashVariantSelector title="Colors" variants={form.color} />
+          <DashVariantSelector title="Sizes" variants={form.size} />
+        </div>
+        <div className="flex justify-around ">
           <button
-            className="my-5 hover:text-cyan-400"
+            className="my-5 p-2 border-2 border-solid border-gray-300 hover:text-cyan-400"
             onClick={() => dispatch(updateProduct({ id, changes: form }))}>
             Update
           </button>
-          <button className="my-5 hover:text-red-400" onClick={closeEdit}>
-            Cancel
+          <button
+            className="my-5 p-2 border-2 border-solid border-gray-300 hover:text-red-400"
+            onClick={closeEdit}>
+            Close
           </button>
         </div>
       </form>

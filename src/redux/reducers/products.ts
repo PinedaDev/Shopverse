@@ -53,7 +53,7 @@ export function productsReducer(state = initialState, action: AnyAction) {
       }
     }
     case PRODUCT_UPDATE: {
-      const updatedOrders = state.all
+      const updatedProducts = state.all
         ? state.all.map((product) => {
             if (product.id === action.payload.id) {
               const updatedProduct = {
@@ -69,7 +69,7 @@ export function productsReducer(state = initialState, action: AnyAction) {
         : ''
       return {
         ...state,
-        all: updatedOrders
+        all: updatedProducts
       }
     }
     default:
