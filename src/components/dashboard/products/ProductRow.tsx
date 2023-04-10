@@ -28,7 +28,7 @@ const ProductRow = ({ id, name, categories, price, color, size, edit }: ProductR
             <Icon iconRef="mdi-pencil" />
           </button>
           <button onClick={() => dispatch(deleteProduct(id))}>
-            <Icon iconRef="mdi-trash-can-outline" />
+            <span className="mdi mdi-trash-can-outline hover:text-red-600 text-2xl"></span>
           </button>
         </div>
       </>

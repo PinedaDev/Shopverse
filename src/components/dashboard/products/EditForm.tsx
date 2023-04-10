@@ -53,30 +53,36 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
     <div
       className={`${
         isEditing ? 'block' : 'hidden'
-      } absolute bg-main top-4/4 left-2/4 -translate-x-2/4 -translate-y-2/4
-      w-[30%] p-5 border-2 border-solid duration-300 max-h-[80vh] overflow-auto text-white `}>
-      <h1 className="text-2xl text-center">Product Info</h1>
+      } absolute bg-secondary top-4/4 left-2/4 -translate-x-2/4 -translate-y-2/4
+      w-[30%] p-5 border-2 border-solid border-main duration-300 max-h-[80vh] overflow-auto text-white `}>
+      <h1 className="text-2xl text-center font-bold">Product Info</h1>
       <form className="grid  m-auto" onSubmit={submitHandler}>
-        <label htmlFor="name">Name :</label>
+        <label className="font-bold my-2" htmlFor="name">
+          Name :
+        </label>
         <input
-          className="p-3 text-black"
+          className="p-3 text-accent bg-main"
           type="text"
           id="name"
           placeholder="Product Name"
           value={form.name}
           onChange={nameHandler}
         />
-        <label htmlFor="name">Price :</label>
+        <label className="font-bold my-2" htmlFor="name">
+          Price :
+        </label>
         <input
-          className="p-3 text-black"
+          className="p-3 text-accent bg-main"
           type="number"
           id="price"
           value={form.price}
           onChange={priceHandler}
         />
-        <label htmlFor="name">Description :</label>
+        <label className="font-bold my-2" htmlFor="name">
+          Description :
+        </label>
         <textarea
-          className="p-3 text-black"
+          className="p-3 text-accent bg-main"
           id="description"
           placeholder="Product Description"
           value={form.description}
@@ -89,12 +95,12 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
         </div>
         <div className="flex justify-around ">
           <button
-            className="my-5 p-2 border-2 border-solid border-gray-300 hover:text-cyan-400"
+            className="my-5 py-2 px-4 duration-300 bg-main text-accent border-gray-300 hover:text-cyan-400"
             onClick={() => dispatch(updateProduct({ id, changes: form }))}>
             Update
           </button>
           <button
-            className="my-5 p-2 border-2 border-solid border-gray-300 hover:text-red-400"
+            className="my-5 py-2 px-4 duration-300 bg-main text-accent border-gray-300 hover:text-red-400"
             onClick={closeEdit}>
             Close
           </button>
