@@ -15,7 +15,7 @@ const DashProducts = () => {
   const closeEditForm = () => {
     setEditState({ isEditing: false, id: 0 })
   }
-  const headers = ['id', 'name', 'categories', 'price', 'color', 'size', 'controlls']
+  const headers = ['Id', 'Name', 'Categories', 'Price', 'Colors', 'Sizes', 'Controlls']
   return (
     <div className="relative">
       <TableHeader headers={headers} />

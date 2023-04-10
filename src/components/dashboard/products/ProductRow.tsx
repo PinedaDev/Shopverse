@@ -1,9 +1,7 @@
 import { useDispatch } from 'react-redux'
-import { Product } from '../../../types'
 import { AppDispatch } from '../../../redux/store'
 import { deleteProduct } from '../../../redux/actions/products'
-import { useState } from 'react'
-import EditForm from './EditForm'
+import Icon from '../../global/Icon'
 
 type ProductRowProps = {
   id: number
@@ -26,8 +24,12 @@ const ProductRow = ({ id, name, categories, price, color, size, edit }: ProductR
         <span className="grid place-items-center">{color.map((color) => `${color},`)}</span>
         <span className="grid place-items-center">{size.map((size) => `${size},`)}</span>
         <div className="flex justify-around space-x-3">
-          <button onClick={() => edit(id)}>edit</button>
-          <button onClick={() => dispatch(deleteProduct(id))}>delete</button>
+          <button onClick={() => edit(id)}>
+            <Icon iconRef="mdi-pencil" />
+          </button>
+          <button onClick={() => dispatch(deleteProduct(id))}>
+            <Icon iconRef="mdi-trash-can-outline" />
+          </button>
         </div>
       </>
     )
