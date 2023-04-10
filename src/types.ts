@@ -11,6 +11,17 @@ export type Product = {
   stars: number
 }
 
+export type Order = {
+  id: number
+  userId: number
+  products: {
+    productID: number
+    quantity: number
+    size: number
+    color: string
+  }[]
+}
+
 export type CartItem = {
   id: number
   productID?: number

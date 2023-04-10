@@ -14,7 +14,7 @@ type ProductRowProps = {
 }
 const ProductRow = ({ id, name, categories, price, colors, sizes, edit }: ProductRowProps) => {
   const dispatch = useDispatch<AppDispatch>()
-  const showProductRow = () => {
+  const showInfo = () => {
     return (
       <>
         <span className="grid place-items-center text-accent font-bold">{id}</span>
@@ -41,7 +41,7 @@ const ProductRow = ({ id, name, categories, price, colors, sizes, edit }: Produc
       className="grid grid-cols-[1fr_repeat(6,_1fr)] 
         p-3 list-none border-t-2 border-b-2 border-secondary
         text-third place-items-center">
-      {showProductRow()}
+      {showInfo()}
     </div>
   )
 }

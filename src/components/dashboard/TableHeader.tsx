@@ -1,9 +1,8 @@
 const TableHeader = ({ headers }: { headers: string[] }) => {
   return (
     <div
-      style={{ gridTemplateColumns: '' }}
-      className={`grid grid-cols grid-cols-[1fr_repeat(6,_1fr)]
-        p-3 list-none border-t-2 border-b-2 border-secondary
+      style={{ gridTemplateColumns: `1fr repeat(${headers.length - 1}, 1fr)` }}
+      className={`grid grid-cols  p-3 list-none border-t-2 border-b-2 border-secondary
         text-third place-items-center`}>
       {headers.map((header) => {
         return (
