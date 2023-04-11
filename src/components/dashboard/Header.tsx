@@ -1,6 +1,4 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import Icon from '../global/Icon'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 

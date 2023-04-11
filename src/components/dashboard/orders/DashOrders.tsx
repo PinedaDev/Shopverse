@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
-import TableHeader from '../TableHeader'
+
 import { Order } from '../../../types'
+
+import TableHeader from '../TableHeader'
 import OrdersRow from './OrdersRow'
 
 type OrdersState = {

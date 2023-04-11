@@ -1,6 +1,8 @@
-import Icon from '../global/Icon'
 import { useSelector } from 'react-redux'
+
 import { RootState } from '../../redux/store'
+
+import Icon from '../global/Icon'
 
 type MenuBtnProps = {
   menuState: boolean

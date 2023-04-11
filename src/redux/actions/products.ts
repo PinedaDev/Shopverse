@@ -5,6 +5,8 @@ export type ProductsAction =
   | ReturnType<typeof handleProductsRequest>
   | ReturnType<typeof handleProductsSuccess>
   | ReturnType<typeof handleProductsFailed>
+  | ReturnType<typeof handleProductDelete>
+  | ReturnType<typeof handleProductUpdate>
 
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST'
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS'
@@ -25,14 +27,14 @@ export function handleProductsSuccess(products: Product[]) {
   }
 }
 
-export function deleteProduct(id: number) {
+export function handleProductDelete(id: number) {
   return {
     type: PRODUCT_DELETE,
     payload: id
   }
 }
 
-export function updateProduct({
+export function handleProductUpdate({
   id,
   changes
 }: {

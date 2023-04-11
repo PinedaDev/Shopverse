@@ -1,11 +1,11 @@
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
+import { logout } from '../../redux/actions/user'
 import { handleToggleCart } from '../../redux/actions/cart'
 import { AppDispatch, RootState } from '../../redux/store'
-import { Link } from 'react-router-dom'
+
 import MenuBtn from './MenuBtn'
-import { logout } from '../../redux/actions/user'
 
 type DropdownMenuProps = {
   changeMenuState: () => void

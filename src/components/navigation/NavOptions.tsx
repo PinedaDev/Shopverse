@@ -1,10 +1,12 @@
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
+import { AppDispatch, RootState } from '../../redux/store'
+import { logout } from '../../redux/actions/user'
+
 import CartLink from '../cart/CartLink'
 import MenuBtn from './MenuBtn'
-import { Link } from 'react-router-dom'
-import { AppDispatch, RootState } from '../../redux/store'
-import { useDispatch } from 'react-redux'
-import { logout } from '../../redux/actions/user'
 import Icon from '../global/Icon'
 
 type NavOptionsProps = {

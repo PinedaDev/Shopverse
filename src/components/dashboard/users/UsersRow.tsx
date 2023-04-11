@@ -1,5 +1,4 @@
 import { User } from '../../../types'
-import Icon from '../../global/Icon'
 
 const UsersRow = ({ id, firstName, lastName, email, orders }: User) => {
   const showInfo = () => {

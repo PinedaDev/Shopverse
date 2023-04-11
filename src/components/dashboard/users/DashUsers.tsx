@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import TableHeader from '../TableHeader'
+
 import { User } from '../../../types'
+
 import UsersRow from './UsersRow'
+import TableHeader from '../TableHeader'
 
 type UsersState = {
   isLoading: boolean

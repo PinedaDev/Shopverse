@@ -1,8 +1,10 @@
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../redux/store'
-import ProductRow from './ProductRow'
-import { Product } from '../../../types'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+
+import { Product } from '../../../types'
+import { RootState } from '../../../redux/store'
+
+import ProductRow from './ProductRow'
 import EditForm from './EditForm'
 import TableHeader from '../TableHeader'
 

@@ -1,7 +1,6 @@
-import Icon from '../global/Icon'
-
 import { Product } from '../../types'
 
+import Icon from '../global/Icon'
 import DetailsBtn from './DetailsBtn'
 
 type ProductCardProps = {

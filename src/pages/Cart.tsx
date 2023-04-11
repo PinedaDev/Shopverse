@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
+import { CartOrder } from '../types'
 import { AppDispatch, RootState } from '../redux/store'
 import { handleClearCart, handleToggleCart } from '../redux/actions/cart'
-import { CartOrder } from '../types'
+
 import CartItem from '../components/cart/CartItem'
 import Icon from '../components/global/Icon'
 

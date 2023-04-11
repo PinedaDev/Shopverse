@@ -1,14 +1,13 @@
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import Icon from '../global/Icon'
-
+import { CartOrder } from '../../types'
 import { RootState } from '../../redux/store'
 import { Product } from '../../types'
-import { CartOrder } from '../../types'
 
+import Icon from '../global/Icon'
 import VariantSelector from './VariantSelector'
 import CartBtn from '../cart/CartBtn'
-import { useEffect, useState } from 'react'
 
 type DetailsProps = {
   detailsState: { productID: number; detailsOpen: boolean }

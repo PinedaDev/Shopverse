@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { Product } from '../../../types'
 import { AppDispatch, RootState } from '../../../redux/store'
-import { updateProduct } from '../../../redux/actions/products'
+import { handleProductUpdate } from '../../../redux/actions/products'
+
 import DashVariantSelector from './DashVariantSelector'
 
 type EditFormProps = {
@@ -96,7 +96,7 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
         <div className="flex justify-around ">
           <button
             className="my-5 py-2 px-4 duration-300 bg-main text-accent border-gray-300 hover:text-cyan-400"
-            onClick={() => dispatch(updateProduct({ id, changes: form }))}>
+            onClick={() => dispatch(handleProductUpdate({ id, changes: form }))}>
             Update
           </button>
           <button

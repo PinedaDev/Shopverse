@@ -1,12 +1,13 @@
 import { GoogleLogin } from '@react-oauth/google'
-import jwtDecode from 'jwt-decode'
-import { Link, useNavigate } from 'react-router-dom'
-import { AppDispatch } from '../redux/store'
 import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import jwtDecode from 'jwt-decode'
 
-import Icon from '../components/global/Icon'
+import { AppDispatch } from '../redux/store'
 import { GoogleUser } from '../types'
 import { login } from '../redux/actions/user'
+
+import Icon from '../components/global/Icon'
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>()

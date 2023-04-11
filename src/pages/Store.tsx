@@ -1,7 +1,8 @@
+import { Outlet } from 'react-router'
+
 import NavBar from '../components/navigation/NavBar'
 import Cart from './Cart'
 import ProductsView from '../components/store/ProductsView'
-import { Outlet } from 'react-router'
 
 const Store = () => {
   return (

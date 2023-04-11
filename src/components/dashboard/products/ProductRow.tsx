@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux'
+
 import { AppDispatch } from '../../../redux/store'
-import { deleteProduct } from '../../../redux/actions/products'
+import { handleProductDelete } from '../../../redux/actions/products'
+
 import Icon from '../../global/Icon'
 
 type ProductRowProps = {
@@ -36,7 +38,7 @@ const ProductRow = ({ id, name, categories, price, colors, sizes, edit }: Produc
           <button
             className="flex space-x-2 items-center text-xl 
           bg-secondary py-2 px-4 rounded-sm duration-300 hover:text-red-500"
-            onClick={() => dispatch(deleteProduct(id))}>
+            onClick={() => dispatch(handleProductDelete(id))}>
             <span className="mdi mdi-trash-can-outline"></span>
             <span>Delete</span>
           </button>

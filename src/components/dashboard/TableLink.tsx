@@ -1,9 +1,10 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
+
 type TableLink = {
   path: string
   tableName: string
 }
+
 const TableLink = ({ path, tableName }: TableLink) => {
   return (
     <>

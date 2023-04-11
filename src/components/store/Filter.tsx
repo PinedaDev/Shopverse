@@ -1,7 +1,7 @@
-import Icon from '../global/Icon'
-
 import { FilterStateProps } from '../../hooks/useFilter'
+
 import Price from './Price'
+import Icon from '../global/Icon'
 
 type FilterProps = {
   filter: FilterStateProps

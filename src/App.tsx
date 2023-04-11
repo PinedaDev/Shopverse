@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 
 import { fetchProducts } from './redux/actions/products'
 import { AppDispatch } from './redux/store'
+
 const App = () => {
   const dispatch = useDispatch<AppDispatch>()
   useEffect(() => {
