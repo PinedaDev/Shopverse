@@ -35,7 +35,7 @@ const NavOptions = ({ menuState, changeMenuState }: NavOptionsProps) => {
       <CartLink />
       <MenuBtn menuState={menuState} onClick={changeMenuState} />
       {user.info && user.info.role === 'ADMIN' ? (
-        <Link to="/dashboard">
+        <Link className="hidden lg:inline" to="/dashboard">
           <Icon iconRef="mdi-cog" />
         </Link>
       ) : (

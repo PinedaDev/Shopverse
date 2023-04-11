@@ -22,6 +22,7 @@ const DashVariantSelector = ({ title, variants }: DashVariantSelectorProps) => {
       <input
         className="p-3 text-accent bg-main text-center"
         type={typeof variants[0] !== 'string' ? 'number' : 'text'}
+        placeholder="Something new ?"
       />
       <button className="mx-3 bg-main text-accent items-center w-fit py-2 px-4 cursor-pointer duration-300 hover:shadow-lg hover:text-white">
         Add

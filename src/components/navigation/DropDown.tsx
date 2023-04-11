@@ -5,6 +5,7 @@ import { handleToggleCart } from '../../redux/actions/cart'
 import { AppDispatch, RootState } from '../../redux/store'
 import { Link } from 'react-router-dom'
 import MenuBtn from './MenuBtn'
+import { logout } from '../../redux/actions/user'
 
 type DropdownMenuProps = {
   changeMenuState: () => void
@@ -14,6 +15,7 @@ type DropdownMenuProps = {
 const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
   const dispatch = useDispatch<AppDispatch>()
   const { cart } = useSelector((state: RootState) => state)
+  const { user } = useSelector((state: RootState) => state)
 
   function menuItemHandler() {
     return new Promise<void>((resolve) => {
@@ -34,24 +36,46 @@ const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
       </span>
 
       <ul className="text-2xl grid gap-12 text-center">
+        {user.info ? (
+          <li>
+            <div className="flex items-center">
+              <img
+                className=" rounded-full max-w-[40px] border-2"
+                src={user?.info?.picture}
+                alt=""
+              />
+              <span className="ml-3 text-2xl">{user?.info?.name}</span>
+            </div>
+          </li>
+        ) : (
+          ''
+        )}
         <li className="relative">
-          {cart && cart.orders.length > 0 ? (
-            <span
-              className={`flex items-center justify-center 
-          absolute top-0 -left-2 h-4 w-4 bg-red-500 
-          rounded-full text-white z-0`}>
-              {cart.orders.length}
-            </span>
-          ) : (
-            ''
-          )}
-          <button onClick={() => menuItemHandler().then(() => dispatch(handleToggleCart()))}>
+          <button
+            className="relative"
+            onClick={() => menuItemHandler().then(() => dispatch(handleToggleCart()))}>
+            {cart && cart.orders.length > 0 ? (
+              <span
+                className={`flex items-center justify-center 
+                  absolute top-0 -left-4 h-4 w-4 bg-red-500 
+                  rounded-full text-white z-0`}>
+                {cart.orders.length}
+              </span>
+            ) : (
+              ''
+            )}
             Cart
           </button>
         </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
+        {!user.info ? (
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        ) : (
+          <button className="text-2xl" onClick={() => dispatch(logout())}>
+            Signout
+          </button>
+        )}
       </ul>
     </div>
   )
