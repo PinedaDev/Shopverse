@@ -4,9 +4,14 @@ export const USER_LOGIN = 'USER_LOGIN'
 export const USER_LOGOUT = 'USER_LOGOUT'
 
 export function login(user: GoogleUser) {
+  const administrators = [
+    'abraham.pineda@integrify.io',
+    'abrahampineda818@gmail.com',
+    'juha.svahn@tietoevry.com'
+  ]
   const newUser = {
     ...user,
-    role: user.email === 'abrahampineda818@gmail.com' ? 'ADMIN' : 'USER'
+    role: administrators.includes(user.email) ? 'ADMIN' : 'USER'
   }
   return {
     type: USER_LOGIN,
