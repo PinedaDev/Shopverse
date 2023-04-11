@@ -4,8 +4,8 @@ export type Product = {
   img: string
   description: string
   categories: string[]
-  size: number[]
-  color: string[]
+  sizes: number[]
+  colors: string[]
   price: number
   reviews: number
   stars: number
@@ -13,7 +13,19 @@ export type Product = {
 
 export type Order = {
   id: number
-  productID?: number
+  userId: number
+  orderItems: {
+    productId: number
+    quantity: number
+    size: number
+    color: string
+  }[]
+  totalInvoice: number
+}
+
+export type CartOrder = {
+  id: number
+  productId?: number
   name: string
   img: string
   size: number
@@ -22,7 +34,15 @@ export type Order = {
   quantity: number
 }
 
-export type UserType = {
+export type User = {
+  id: number
+  firstName: string
+  lastName: string
+  email: string
+  orders: number[]
+}
+
+export type GoogleUser = {
   aud: string
   azp: string
   email_verified: boolean

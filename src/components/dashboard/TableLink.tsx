@@ -9,8 +9,10 @@ const TableLink = ({ path, tableName }: TableLink) => {
     <>
       <NavLink
         to={path}
-        className={({ isActive, isPending }) =>
-          isPending ? styles.pending : isActive ? styles.active : ''
+        className={({ isActive }) =>
+          isActive
+            ? styles.active
+            : 'bg-secondary text-accent font-bold p-2 px-5 rounded-sm text-xl  hover:text-white duration-300'
         }
         end>
         {tableName}
@@ -20,8 +22,7 @@ const TableLink = ({ path, tableName }: TableLink) => {
 }
 
 const styles = {
-  active: 'bg-cyan-300 text-black',
-  pending: ''
+  active: 'bg-accent text-white font-bold p-2 px-5 rounded-sm text-xl'
 }
 
 export default TableLink

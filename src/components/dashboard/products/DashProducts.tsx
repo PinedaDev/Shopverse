@@ -4,6 +4,7 @@ import ProductRow from './ProductRow'
 import { Product } from '../../../types'
 import { useState } from 'react'
 import EditForm from './EditForm'
+import TableHeader from '../TableHeader'
 
 const DashProducts = () => {
   const { products } = useSelector((state: RootState) => state)
@@ -14,8 +15,10 @@ const DashProducts = () => {
   const closeEditForm = () => {
     setEditState({ isEditing: false, id: 0 })
   }
+  const headers = ['Id', 'Name', 'Categories', 'Price', 'Colors', 'Sizes', 'Controls']
   return (
-    <div className="relative">
+    <div>
+      <TableHeader headers={headers} />
       {products.all.length > 0 &&
         products.all.map((product: Product) => (
           <ProductRow key={product.id} {...product} edit={openEditForm} />

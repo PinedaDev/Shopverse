@@ -14,7 +14,7 @@ const ProductCard = ({ product, openDetails }: ProductCardProps) => {
     .fill('')
     .map((_, i) => <Icon key={i} iconRef="mdi-star-outline" />)
   return (
-    <div className=" text-gray-300 backdrop-blur-lg p-4 backdrop-brightness-125 duration-300 ease-in-out rounded-xl shadow-md hover:shadow-gray-400">
+    <div className=" text-gray-300  p-4 backdrop-blur-lg backdrop-brightness-125 duration-300 ease-in-out rounded-xl shadow-md hover:shadow-gray-400">
       {/* Top section */}
       <div>
         <DetailsBtn productID={product.id} openDetails={openDetails} />
@@ -23,9 +23,9 @@ const ProductCard = ({ product, openDetails }: ProductCardProps) => {
       <div className="grid place-items-center">
         <span className="w-full text-center text-xl">{product.name}</span> <br />
         <img
-          width="279px"
-          height="279px"
-          className="w-2/4"
+          width="179px"
+          height="179px"
+          className="max-h-[179px] object-contain scale-150"
           src={`../../../productImgs/${product.img}`}
         />
         <span className="text-xl">{product.price}.00 €</span>

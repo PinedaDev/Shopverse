@@ -16,10 +16,13 @@ const NavOptions = ({ menuState, changeMenuState }: NavOptionsProps) => {
   const dispatch = useDispatch<AppDispatch>()
   const { user } = useSelector((state: RootState) => state)
   return (
-    <div className="items-center text-gray-300 mr-2 flex justify-around md:space-x-12">
+    <div className="items-center text-gray-300 mr-2 flex justify-around lg:space-x-3 xl:space-x-12">
       {user.info ? (
         <>
-          <span className="hidden text-2xl  lg:inline">{`${user.info.given_name} ${user.info.family_name}`}</span>
+          <div className="hidden lg:flex items-center">
+            <img className=" rounded-full max-w-[40px] border-2" src={user?.info?.picture} alt="" />
+            <span className="ml-3 text-2xl">{user?.info?.given_name}</span>
+          </div>
           <button className="hidden text-2xl lg:inline" onClick={() => dispatch(logout())}>
             Signout
           </button>
@@ -32,7 +35,7 @@ const NavOptions = ({ menuState, changeMenuState }: NavOptionsProps) => {
       <CartLink />
       <MenuBtn menuState={menuState} onClick={changeMenuState} />
       {user.info && user.info.role === 'ADMIN' ? (
-        <Link to="/dashboard">
+        <Link className="hidden lg:inline" to="/dashboard">
           <Icon iconRef="mdi-cog" />
         </Link>
       ) : (

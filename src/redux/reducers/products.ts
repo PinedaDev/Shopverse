@@ -5,7 +5,8 @@ import {
   FETCH_PRODUCTS_FAILED,
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_SUCCESS,
-  PRODUCT_DELETE
+  PRODUCT_DELETE,
+  PRODUCT_UPDATE
 } from '../actions/products'
 
 export type ProductsState = {
@@ -49,6 +50,26 @@ export function productsReducer(state = initialState, action: AnyAction) {
       return {
         ...state,
         all: updatedOrders
+      }
+    }
+    case PRODUCT_UPDATE: {
+      const updatedProducts = state.all
+        ? state.all.map((product) => {
+            if (product.id === action.payload.id) {
+              const updatedProduct = {
+                ...product,
+                name: action.payload.changes.name,
+                price: action.payload.changes.price,
+                description: action.payload.changes.description
+              }
+              return updatedProduct
+            }
+            return product
+          })
+        : ''
+      return {
+        ...state,
+        all: updatedProducts
       }
     }
     default:
