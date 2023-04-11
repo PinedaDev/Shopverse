@@ -143,14 +143,14 @@ Install Node.js and NPM (Node Package Manager) on your system if you haven't alr
 
 Create a new directory on your system and navigate to it using your terminal / command prompt.
 
-Clone the repository to the current repo or create a new file named package.json and copy the content of the file with the same name from the this repository into it.
+Clone the repository to the directory that you created before
 
 Run the command npm install to install all the dependencies listed in the dependencies and devDependencies sections of the package.json file.
 
 Once the installation is complete, you can run the following commands:
 
-npm run dev to start the development server using Vite.
-npm run build to build the production-ready code.
-npm run preview to preview the built production code.
+- npm run dev : to start the development server using Vite.
+- npm run build : to build the production-ready code.
+- npm run preview : to preview the built production code.
 
 ## Usage:
