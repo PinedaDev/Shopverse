@@ -6,7 +6,7 @@ One problem that this front-end project solves is the difficulty customers face 
 
 ## Shopverse Solution:
 
-Here we offer a modern and user-friendly interface that makes it easy for customers to browse and purchase products. With intuitive search and filtering options, customers can quickly find the products they are looking for and make a purchase with just a few clicks.
+Here you have a modern and user-friendly interface that makes it easy for customers to browse and purchase products. With intuitive search and filtering options, customers can quickly find the products they are looking for and make a purchase with just a few clicks.
 
 ![image](https://user-images.githubusercontent.com/90119717/231150033-c6b7fa08-e35a-433c-8bc0-c673d04ee5d5.png)
 
