@@ -17,7 +17,7 @@ const DashProducts = () => {
   }
   const headers = ['Id', 'Name', 'Categories', 'Price', 'Colors', 'Sizes', 'Controls']
   return (
-    <div className="relative">
+    <div>
       <TableHeader headers={headers} />
       {products.all.length > 0 &&
         products.all.map((product: Product) => (
