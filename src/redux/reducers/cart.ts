@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux'
-import { CartItem } from '../../types'
+import { CartOrder } from '../../types'
 
 import {
   CART_CLEAR,
@@ -12,7 +12,7 @@ import {
 
 type CartState = {
   cartOpen: boolean
-  orders: CartItem[]
+  orders: CartOrder[]
 }
 
 const initialState: CartState = {
@@ -21,11 +21,11 @@ const initialState: CartState = {
 }
 
 export function cartReducer(state = initialState, action: AnyAction) {
-  function checkMatch(currentOrder: CartItem) {
+  function checkMatch(currentOrder: CartOrder) {
     let equals = false
     const match = state.orders.find(
       (order) =>
-        currentOrder.productID === order.productID &&
+        currentOrder.productId === order.productId &&
         currentOrder.color === order.color &&
         currentOrder.size === order.size
     )
@@ -39,9 +39,9 @@ export function cartReducer(state = initialState, action: AnyAction) {
   // Get the product to add to the cart
   switch (action.type) {
     case CART_PRODUCT_ADD: {
-      const productID: number = action.payload.id
-      const orderID = new Date().getTime() + productID
-      const newOrder: CartItem = { ...action.payload, id: orderID, productID: productID }
+      const productId: number = action.payload.id
+      const orderID = new Date().getTime() + productId
+      const newOrder: CartOrder = { ...action.payload, id: orderID, productId: productId }
 
       const matchOrder = checkMatch(newOrder)
 
@@ -53,7 +53,7 @@ export function cartReducer(state = initialState, action: AnyAction) {
       }
 
       const updatedOrders = state.orders.map((order) => {
-        if (order.productID === newOrder.productID) {
+        if (order.productId === newOrder.productId) {
           const updatedOrder = { ...order }
           updatedOrder.quantity += 1
           return updatedOrder

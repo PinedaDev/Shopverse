@@ -23,9 +23,9 @@ export type Order = {
   totalInvoice: number
 }
 
-export type CartItem = {
+export type CartOrder = {
   id: number
-  productID?: number
+  productId?: number
   name: string
   img: string
   size: number
