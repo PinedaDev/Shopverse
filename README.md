@@ -8,13 +8,19 @@ One problem that this front-end project solves is the difficulty customers face 
 
 Here we offer a modern and user-friendly interface that makes it easy for customers to browse and purchase products. With intuitive search and filtering options, customers can quickly find the products they are looking for and make a purchase with just a few clicks.
 
+![image](https://user-images.githubusercontent.com/90119717/231150033-c6b7fa08-e35a-433c-8bc0-c673d04ee5d5.png)
+
 In addition, the store is optimized and has responsive design ensuring that customers can shop from any device, whether it be a desktop computer or a mobile phone, providing a seamless shopping experience from start to finish. By solving these common problems, Shopverse design for the front-end can help businesses increase sales and improve customer satisfaction.
+
+![image](https://user-images.githubusercontent.com/90119717/231150361-b2e9f604-dcdf-46aa-845b-2b018fb3638a.png)
 
 ## Features
 
 ### ** Ready to use **
 
 -Google Authentication
+
+![image](https://user-images.githubusercontent.com/90119717/231150508-8622d643-1bab-425a-b53d-489077f71908.png)
 
 ** --Customers-- **
 
@@ -26,15 +32,22 @@ In addition, the store is optimized and has responsive design ensuring that cust
   - Product variants selection
   - Add product to Cart
 
+![image](https://user-images.githubusercontent.com/90119717/231151495-3251667a-dd9e-464e-81f4-a96054fcab88.png)
+![image](https://user-images.githubusercontent.com/90119717/231150957-9ec47fb3-dd90-4787-8850-5e6d67067bc7.png)
+
 - Cart:
   - Increase and decrease order ammount
   - Remove product from cart
   - Clear all items from cart
 
+![image](https://user-images.githubusercontent.com/90119717/231151126-1610bd24-72ed-4830-acd0-9ca07c629fe4.png)
+
 ** --Admins-- **
 
--All customer features included
--Access to admin dashboard through gear icon in navigation bar
+- All customer features included
+- Access to admin dashboard through gear icon in navigation bar
+
+![image](https://user-images.githubusercontent.com/90119717/231151909-3dba9316-5db1-41b5-8092-009316673256.png)
 
 Dashboard:
 
@@ -46,6 +59,9 @@ Dashboard:
   - Products data visualization (relationship between data sources)
 - Users Table:
   - Users data visialization
+
+![image](https://user-images.githubusercontent.com/90119717/231152228-16f01225-15d3-4997-9c0e-a5f7f3b8ea28.png)
+![image](https://user-images.githubusercontent.com/90119717/231152355-ac5169cf-8eef-44e5-9eac-1025edbcc2bd.png)
 
 ### **In development **
 
