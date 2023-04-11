@@ -1,5 +1,5 @@
-# Shopverse Frontend project
-<img src="/src/assets/logo.png" alt="Alt text" title="Optional title">
+# <img src="/src/assets/logo.png" alt="Alt text" title="Optional title"> Shopverse Frontend project
+
 ## The Problem:
 
 One problem that this front-end project solves is the difficulty customers face in finding and purchasing products online. With so many online stores available, customers often struggle to navigate confusing or outdated interfaces, leading to frustration and lost sales.
