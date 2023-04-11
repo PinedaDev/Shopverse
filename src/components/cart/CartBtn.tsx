@@ -2,10 +2,10 @@ import { useDispatch } from 'react-redux'
 
 import { handleAddToCart } from '../../redux/actions/cart'
 import { AppDispatch } from '../../redux/store'
-import { Order } from '../../types'
+import { CartOrder } from '../../types'
 
 type CartBtnProps = {
-  order: Order
+  order: CartOrder
 }
 
 const CartBtn = ({ order }: CartBtnProps) => {

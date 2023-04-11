@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { AppDispatch, RootState } from '../redux/store'
 import { handleClearCart, handleToggleCart } from '../redux/actions/cart'
-import { Order } from '../types'
+import { CartOrder } from '../types'
 import CartItem from '../components/cart/CartItem'
 import Icon from '../components/global/Icon'
 
@@ -11,7 +11,7 @@ const Cart = () => {
   const dispatch = useDispatch<AppDispatch>()
   const { cart } = useSelector((state: RootState) => state)
   const [total, setTotal] = useState<number>(0)
-  function getTotal(orders: Order[]): number {
+  function getTotal(orders: CartOrder[]): number {
     let sum = 0
     if (orders) {
       orders.forEach((order) => {
@@ -23,7 +23,7 @@ const Cart = () => {
   const showOrders = () => {
     return (
       <ul className="grid gap-3 list-none lg:mx-10 overflow-y-auto">
-        {cart.orders.map((order: Order) => (
+        {cart.orders.map((order) => (
           <li key={`${order.id}${order.name}`}>
             <CartItem {...order} />
           </li>

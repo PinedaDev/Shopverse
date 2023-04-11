@@ -4,7 +4,7 @@ import Icon from '../global/Icon'
 
 import { RootState } from '../../redux/store'
 import { Product } from '../../types'
-import { CartItem } from '../../types'
+import { CartOrder } from '../../types'
 
 import VariantSelector from './VariantSelector'
 import CartBtn from '../cart/CartBtn'
@@ -24,7 +24,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
   const [size, setSize] = useState<number>(0)
   const [color, setColor] = useState<string>('')
 
-  const [order, setOrder] = useState<CartItem>({
+  const [cartOrder, setCartOrder] = useState<CartOrder>({
     id: 0,
     name: '',
     img: '',
@@ -36,7 +36,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
 
   useEffect(() => {
     if (detailsState.productID !== 0) {
-      setOrder({
+      setCartOrder({
         id: details.id,
         name: details.name,
         img: details.img,
@@ -48,10 +48,10 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
     }
   }, [detailsState.productID])
   useEffect(() => {
-    setOrder({ ...order, size: size })
+    setCartOrder({ ...cartOrder, size: size })
   }, [size])
   useEffect(() => {
-    setOrder({ ...order, color: color })
+    setCartOrder({ ...cartOrder, color: color })
   }, [color])
 
   const [addedAlert, setAddedAlert] = useState(false)
@@ -138,7 +138,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
           </div>
 
           <div className="grid gap-3 place-items-center mt-3 pb-3 lg:flex">
-            <CartBtn order={order} />
+            <CartBtn order={cartOrder} />
           </div>
         </div>
       </>
