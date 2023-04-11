@@ -1,20 +1,26 @@
-# Shopverse Frontend project
-
+# <img src="/src/assets/logo.png" alt="Alt text" title="Optional title"> Shopverse Frontend project
+Live Demo: https://shopverse-store.netlify.app/
 ## The Problem:
 
 One problem that this front-end project solves is the difficulty customers face in finding and purchasing products online. With so many online stores available, customers often struggle to navigate confusing or outdated interfaces, leading to frustration and lost sales.
 
 ## Shopverse Solution:
 
-Here we offer a modern and user-friendly interface that makes it easy for customers to browse and purchase products. With intuitive search and filtering options, customers can quickly find the products they are looking for and make a purchase with just a few clicks.
+Here you have a modern and user-friendly interface that makes it easy for customers to browse and purchase products. With intuitive search and filtering options, customers can quickly find the products they are looking for and make a purchase with just a few clicks.
+
+![image](https://user-images.githubusercontent.com/90119717/231150033-c6b7fa08-e35a-433c-8bc0-c673d04ee5d5.png)
 
 In addition, the store is optimized and has responsive design ensuring that customers can shop from any device, whether it be a desktop computer or a mobile phone, providing a seamless shopping experience from start to finish. By solving these common problems, Shopverse design for the front-end can help businesses increase sales and improve customer satisfaction.
+
+![image](https://user-images.githubusercontent.com/90119717/231150361-b2e9f604-dcdf-46aa-845b-2b018fb3638a.png)
 
 ## Features
 
 ### ** Ready to use **
 
 -Google Authentication
+
+![image](https://user-images.githubusercontent.com/90119717/231150508-8622d643-1bab-425a-b53d-489077f71908.png)
 
 ** --Customers-- **
 
@@ -26,15 +32,22 @@ In addition, the store is optimized and has responsive design ensuring that cust
   - Product variants selection
   - Add product to Cart
 
+![image](https://user-images.githubusercontent.com/90119717/231151495-3251667a-dd9e-464e-81f4-a96054fcab88.png)
+![image](https://user-images.githubusercontent.com/90119717/231150957-9ec47fb3-dd90-4787-8850-5e6d67067bc7.png)
+
 - Cart:
   - Increase and decrease order ammount
   - Remove product from cart
   - Clear all items from cart
 
+![image](https://user-images.githubusercontent.com/90119717/231151126-1610bd24-72ed-4830-acd0-9ca07c629fe4.png)
+
 ** --Admins-- **
 
--All customer features included
--Access to admin dashboard through gear icon in navigation bar
+- All customer features included
+- Access to admin dashboard through gear icon in navigation bar
+
+![image](https://user-images.githubusercontent.com/90119717/231151909-3dba9316-5db1-41b5-8092-009316673256.png)
 
 Dashboard:
 
@@ -46,6 +59,9 @@ Dashboard:
   - Products data visualization (relationship between data sources)
 - Users Table:
   - Users data visialization
+
+![image](https://user-images.githubusercontent.com/90119717/231152228-16f01225-15d3-4997-9c0e-a5f7f3b8ea28.png)
+![image](https://user-images.githubusercontent.com/90119717/231152355-ac5169cf-8eef-44e5-9eac-1025edbcc2bd.png)
 
 ### **In development **
 
@@ -127,14 +143,56 @@ Install Node.js and NPM (Node Package Manager) on your system if you haven't alr
 
 Create a new directory on your system and navigate to it using your terminal / command prompt.
 
-Clone the repository to the current repo or create a new file named package.json and copy the content of the file with the same name from the this repository into it.
+Clone the repository to the directory that you created before
 
 Run the command npm install to install all the dependencies listed in the dependencies and devDependencies sections of the package.json file.
 
 Once the installation is complete, you can run the following commands:
 
-npm run dev to start the development server using Vite.
-npm run build to build the production-ready code.
-npm run preview to preview the built production code.
+- npm run dev : to start the development server using Vite.
+- npm run build : to build the production-ready code.
+- npm run preview : to preview the built production code.
 
-## Usage:
+## Project Concepts:
+
+### Data
+
+Main data sources: Structures and Types:
+
+![image](https://user-images.githubusercontent.com/90119717/231159721-36f0916a-813f-4960-857f-efb03cef4a5d.png)
+
+Data relationship: 
+
+![image](https://user-images.githubusercontent.com/90119717/231160029-4a1bdbd7-ef30-4f7f-aea2-d9870b84e932.png)
+
+### User experience flow
+
+Checklog component represents an authentication or login request from the app
+
+![image](https://user-images.githubusercontent.com/90119717/231160306-2bb23abe-e72b-4945-8217-cd1c8de40a54.png)
+
+### Redux State Management
+
+![image](https://user-images.githubusercontent.com/90119717/231160434-3d57dfc2-d38a-4ad5-b645-4b1c04a63a84.png)
+
+### State usage by components
+
+- products :
+  - Store (page)
+  - Products view (component)
+  - Details (component)
+  - useFilter (custom hook)
+  - useSearch (custom hook)
+  - dashboard (page)
+
+- cart :
+  - cart (page)
+  - cart item (component)
+  - cart button (component)
+  - ammount (component)
+
+ - user :
+  - login (component)
+  - navigation bar (component)
+  - ammount (component)
+  - dashboard (page)
