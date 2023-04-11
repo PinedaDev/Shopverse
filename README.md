@@ -19,16 +19,17 @@ In addition, the store is optimized and has responsive design ensuring that cust
 ** --Customers-- **
 
 - Products:
-  -Prducts Search
-  -Filter products by price
-  -Clear Filters
-  -Product variants selection
-  -Add product to Cart
+
+  - Prducts Search
+  - Filter products by price
+  - Clear Filters
+  - Product variants selection
+  - Add product to Cart
 
 - Cart:
-  -Increase order ammount
-  -Remove product from cart
-  -Clear all items from cart
+  - Increase order ammount
+  - Remove product from cart
+  - Clear all items from cart
 
 ** --Admins-- **
 
