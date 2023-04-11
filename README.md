@@ -1,127 +1,138 @@
-# Frontend project
+# Shopverse Frontend project
 
-## Expectation
+## The Problem:
 
-### `Tech Stack:`
+One problem that this front-end project solves is the difficulty customers face in finding and purchasing products online. With so many online stores available, customers often struggle to navigate confusing or outdated interfaces, leading to frustration and lost sales.
 
-React, TypeScript and Redux. And for styling, choose whatever you like (ideally, something you already know.)
+## Shopverse Solution:
 
-### `Outcome:`
+Here we offer a modern and user-friendly interface that makes it easy for customers to browse and purchase products. With intuitive search and filtering options, customers can quickly find the products they are looking for and make a purchase with just a few clicks.
 
-Build a front end for an E-commerce or a Library System and deploy it.
+In addition, the store is optimized and has responsive design ensuring that customers can shop from any device, whether it be a desktop computer or a mobile phone, providing a seamless shopping experience from start to finish. By solving these common problems, Shopverse design for the front-end can help businesses increase sales and improve customer satisfaction.
 
-The Frontend should be talking to a mock data that stored locally in your project and later (in the fullstack project) you would plug it (to your backend.), refactor, and add more features(maybe).
+## Features
 
-## Assignment
+### ** Ready to use **
 
----
+-Google Authentication
 
-### `Option 1`
+** --Customers-- **
 
-**A Library management system**
+- Products:
+  -Prducts Search
+  -Filter products by price
+  -Clear Filters
+  -Product variants selection
+  -Add product to Cart
 
-you have to have `at least` these data sources:
-(the properties that being mentioned below each data source are the minimum)
+- Cart:
+  -Increase order ammount
+  -Remove product from cart
+  -Clear all items from cart
 
-- Books
-  - ISBN
-  - title
-  - description
-  - publisher
-  - authors
-  - status: available or borrowed
-  - borrowerId
-  - publishedDate
-  - borrowDate
-  - returnDate
-- Authors
-  - name
-- Users (as visitor or admin)
-  - firstName (from google)
-  - lastName (from google)
-  - email (from google)
+** --Admins-- **
 
-**Use cases:**
+-All customer features included
+-Access to admin dashboard through gear icon in navigation bar
 
-Visitor can:
+Dashboard:
 
-- login (using login via google)
-- explore list of books
-- filter and search
-- borrow a book
-- return a borrowed book
+- Products Table:
+  -Products data visualization
+  -Edit a product (name, price, description)
+  -Delete a product
+- Orders Table:
+  -Products data visualization (relationship between data sources)
+- Users Table:
+  -Users data visialization
 
-Admin can:
+### **In development **
 
-- add new book
-- update info of a book
-- remove a book
-- add a new author
-- update info of an author
-- remove an author
+** --Customers-- **
 
-PS. if you want to store some data, you could use LocalStorage for now.
+- Products:
+  -Filter products by Categories
+  -Filter products by Color
+  -Filter products by Size
+  -User input for Rating System
+  -Direct Buy button from the product view
+  -Visual signal to know if product instance is in the cart
+  -Variant selection system
 
----
+- Cart:
+  -Add variant selection from the cart
+  -Create checkout method conected to stripe
 
-### `Option 2`
+** --Admins-- **
 
-**An E-commerce website**
+Dashboard:
 
-you have to have `at least` these data sources:
-(the properties that being mentioned are the minimum)
+- Products Table:
+  -Increase edit controls for product(Categories, Colors, Sizes)
+  -Create new product
+- Orders Table:
+  -Cancel Order
+  -Add order status
+- Users Table:
+  -User management (ban and unban an user)
+  -Check users roles
 
-- Products
-  - id
-  - name
-  - description
-  - categories
-  - variants
-  - sizes
-- Orders
-  - productId
-  - userId
-  - purchasedAt
-- Users (as visitor or admin)
-  - firstName (from google)
-  - lastName (from google)
-  - email (from google)
+## Tech Stack and Dependencies:
 
-**Use cases:**
+** Core Tech **
 
-Visitor can:
+-React
+-TypeScript
+-Redux
+-Tailwind CSS
 
-- login (using login via google)
-- explore list of products
-- filter and search
-- Add to a cart
-- checkout product/s
+** Project Dependencies **
 
-Admin can:
+- @react-oauth/google: ^0.9.0
+- @reduxjs/toolkit: ^1.9.3
+- framer-motion: ^10.8.4
+- jwt-decode: ^3.1.2
+- react: ^18.2.0
+- react-dom: ^18.2.0
+- react-redux: ^8.0.5
+- react-router: ^6.9.0
+- react-router-dom: ^6.9.0
+- redux: ^4.2.1
+- redux-thunk: ^2.4.2
 
-- add new product
-- update info of a product
-- remove a product
-- ban a user
+** Dev Dependencies **
 
-PS. if you want to store some data, you could use LocalStorage for now.
+- "@types/react": "^18.0.28",
+- "@types/react-dom": "^18.0.11",
+- "@types/react-redux": "^7.1.25",
+- "@typescript-eslint/eslint-plugin": "^5.55.0",
+- "@typescript-eslint/parser": "^5.55.0",
+- "@vitejs/plugin-react": "^3.1.0",
+- "autoprefixer": "^10.4.14",
+- "eslint": "^8.36.0",
+- "eslint-config-prettier": "^8.8.0",
+- "eslint-plugin-prettier": "^4.2.1",
+- "eslint-plugin-react": "^7.32.2",
+- "postcss": "^8.4.21",
+- "prettier": "^2.8.4",
+- "tailwindcss": "^3.2.7",
+- "typescript": "^4.9.3",
+- "vite": "^4.2.0"
 
----
+## Set up
 
-## Way of working
+Install Node.js and NPM (Node Package Manager) on your system if you haven't already. You can download the latest version of Node.js and NPM from their official website. node:https://nodejs.org/en
 
-Your task here is to prepare the UI part of it and its functionalities ie.
-you are working on the UI of adding new item
+Create a new directory on your system and navigate to it using your terminal / command prompt.
 
-here's how to approach it:
+Clone the repository to the current repo or create a new file named package.json and copy the content of the file with the same name from the this repository into it.
 
-1. create the UI part (including form)
-2. handle the validation
-3. make sure the form is working and when you submit you get the new item
-4. send it to Redux and skip the part where you send a request (you will add it later) and return the new data to the state.
+Run the command npm install to install all the dependencies listed in the dependencies and devDependencies sections of the package.json file.
 
----
+Once the installation is complete, you can run the following commands:
 
-## Lastly
+npm run dev to start the development server using Vite.
+npm run build to build the production-ready code.
+npm run preview to preview the built production code.
 
-Any additional features are welcome, like switching theme or other cool stuff. **but make sure you work on the required ones first.**
+## Usage:
