@@ -85,12 +85,6 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
             className="w-2/4 mt-3 mb-3"
             src={`../../../productImgs/${details.img}`}
           />
-          <div
-            className={`absolute top-2/4 left-2/4 duration-300 -translate-x-2/4 text-center text-2xl text-gray-900 p-2 font-bold rounded-xl bg-cyan-500 ${
-              addedAlert ? 'opacity-1' : 'opacity-0'
-            }`}>
-            Added to the cart
-          </div>
           <span className="flex justify-around items-center lg:text-xl">
             user ratings: {details.reviews}
             <Icon iconRef="mdi-account-multiple" />
@@ -118,10 +112,16 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
 
         {/* Second Details Column */}
         <div className="grid place-items-center">
-          <span className="block mt-3 mb-3">description:</span>
+          {/* Alert that the Item has been added */}
+          <div
+            className={`absolute top-2/4 left-2/4 duration-300 -translate-x-2/4 text-center text-2xl text-gray-900 p-2 font-bold rounded-xl bg-cyan-500 ${
+              addedAlert ? 'opacity-1' : 'opacity-0'
+            }`}>
+            Added to the cart
+          </div>
+          <span className="block mt-3 mb-3">Description:</span>
           <p className="lg:text-2xl">{details.description}</p>
           <span className="mt-3 text-3xl lg:text-3xl">{details.price}.00 €</span>
-
           <div className="flex mt-3 justify-around w-full lg:hidden">
             <VariantSelector
               variantState={color}
@@ -153,7 +153,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
       ${detailsState.detailsOpen ? 'visible' : 'hidden'}`}>
       {/* Details Content Container */}
       <div className="relative grid place-items-center text-gray-300">
-        <button className="absolute top-0 left-[90%] lg:left-[95%] z-40" onClick={closeDetails}>
+        <button className="absolute top-0 left-[95%] lg:left-[95%] z-40" onClick={closeDetails}>
           <Icon iconRef="mdi-close" />
         </button>
         <div className="grid lg:grid-cols-2">

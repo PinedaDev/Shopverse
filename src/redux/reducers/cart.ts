@@ -30,7 +30,6 @@ export function cartReducer(state = initialState, action: AnyAction) {
         currentOrder.size === order.size
     )
     if (match) {
-      console.log('found in cart')
       equals = true
       return equals
     }

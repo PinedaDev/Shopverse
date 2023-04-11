@@ -2,6 +2,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import { Outlet } from 'react-router'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+
 import { fetchProducts } from './redux/actions/products'
 import { AppDispatch } from './redux/store'
 const App = () => {

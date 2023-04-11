@@ -34,7 +34,10 @@ const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) =>
             !filterOpen ? 'backdrop-brightness-125' : 'backdrop-brightness-[3]'
           } z-20`}>
       <div onClick={toggleFilter} className="relative flex items-center justify-between">
-        <span className="text-gray-400 text-xl">Filter</span>
+        <span
+          className={` text-xl ${filter.isFiltering ? 'text-accent font-bold' : 'text-gray-400'}`}>
+          {filter.isFiltering ? 'Filtering!' : 'Filter'}
+        </span>
         <Icon iconRef={`${filterOpen ? 'mdi-close' : 'mdi-tune'}`} />
       </div>
       {/* Filters */}
