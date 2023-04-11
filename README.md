@@ -1,5 +1,5 @@
 # <img src="/src/assets/logo.png" alt="Alt text" title="Optional title"> Shopverse Frontend project
-
+Live Demo: https://shopverse-store.netlify.app/
 ## The Problem:
 
 One problem that this front-end project solves is the difficulty customers face in finding and purchasing products online. With so many online stores available, customers often struggle to navigate confusing or outdated interfaces, leading to frustration and lost sales.
@@ -153,4 +153,46 @@ Once the installation is complete, you can run the following commands:
 - npm run build : to build the production-ready code.
 - npm run preview : to preview the built production code.
 
-## Usage:
+## Project Concepts:
+
+### Data
+
+Main data sources: Structures and Types:
+
+![image](https://user-images.githubusercontent.com/90119717/231159721-36f0916a-813f-4960-857f-efb03cef4a5d.png)
+
+Data relationship: 
+
+![image](https://user-images.githubusercontent.com/90119717/231160029-4a1bdbd7-ef30-4f7f-aea2-d9870b84e932.png)
+
+### User experience flow
+
+Checklog component represents an authentication or login request from the app
+
+![image](https://user-images.githubusercontent.com/90119717/231160306-2bb23abe-e72b-4945-8217-cd1c8de40a54.png)
+
+### Redux State Management
+
+![image](https://user-images.githubusercontent.com/90119717/231160434-3d57dfc2-d38a-4ad5-b645-4b1c04a63a84.png)
+
+### State usage by components
+
+- products :
+  - Store (page)
+  - Products view (component)
+  - Details (component)
+  - useFilter (custom hook)
+  - useSearch (custom hook)
+  - dashboard (page)
+
+- cart :
+  - cart (page)
+  - cart item (component)
+  - cart button (component)
+  - ammount (component)
+
+ - user :
+  - login (component)
+  - navigation bar (component)
+  - ammount (component)
+  - dashboard (page)
