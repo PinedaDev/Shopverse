@@ -39,44 +39,45 @@ In addition, the store is optimized and has responsive design ensuring that cust
 Dashboard:
 
 - Products Table:
-  -Products data visualization
-  -Edit a product (name, price, description)
-  -Delete a product
+  - Products data visualization
+  - Edit a product (name, price, description)
+  - Delete a product
 - Orders Table:
-  -Products data visualization (relationship between data sources)
+  - Products data visualization (relationship between data sources)
 - Users Table:
-  -Users data visialization
+  - Users data visialization
 
 ### **In development **
 
 ** --Customers-- **
 
 - Products:
-  -Filter products by Categories
-  -Filter products by Color
-  -Filter products by Size
-  -User input for Rating System
-  -Direct Buy button from the product view
-  -Visual signal to know if product instance is in the cart
-  -Variant selection system
+
+  - Filter products by Categories
+  - Filter products by Color
+  - Filter products by Size
+  - User input for Rating System
+  - Direct Buy button from the product view
+  - Visual signal to know if product instance is in the cart
+  - Variant selection system
 
 - Cart:
-  -Add variant selection from the cart
-  -Create checkout method conected to stripe
+  - Add variant selection from the cart
+  - Create checkout method conected to stripe
 
 ** --Admins-- **
 
 Dashboard:
 
 - Products Table:
-  -Increase edit controls for product(Categories, Colors, Sizes)
-  -Create new product
+  - Increase edit controls for product(Categories, Colors, Sizes)
+  - Create new product
 - Orders Table:
-  -Cancel Order
-  -Add order status
+  - Cancel Order
+  - Add order status
 - Users Table:
-  -User management (ban and unban an user)
-  -Check users roles
+  - User management (ban and unban an user)
+  - Check users roles
 
 ## Tech Stack and Dependencies:
 
