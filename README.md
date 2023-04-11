@@ -27,7 +27,7 @@ In addition, the store is optimized and has responsive design ensuring that cust
   - Add product to Cart
 
 - Cart:
-  - Increase order ammount
+  - Increase and decrease order ammount
   - Remove product from cart
   - Clear all items from cart
 
