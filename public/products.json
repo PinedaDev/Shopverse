@@ -78,7 +78,7 @@
       "img": "Puma-Anzarun-Lite.png",
       "description": "The freshest look for any occasion, the Anzarun Lite Trainers are PUMA's most refined shoe yet. Featuring the breezy Anzarun DNA mesh upper, a cushy SoftFoam+ sockliner and discreet PUMA branding throughout, you're sure to look great, wherever the day takes you.",
       "categories": ["sneaker"],
-      "colors": ["white, black"],
+      "colors": ["white", "black"],
       "sizes": [38, 39, 40],
       "price": 120,
       "reviews": 247,

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { logout } from '../../redux/actions/user'
 import { handleToggleCart } from '../../redux/actions/cart'
 import { AppDispatch, RootState } from '../../redux/store'
+import { CartOrder } from '../../types'
 
 import MenuBtn from './MenuBtn'
 
@@ -24,6 +25,14 @@ const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
   }
   const hidden = 'opacity-0 invisible'
   const visible = 'opacity-1 visible'
+
+  const itemsInCart = (ordersList: CartOrder[]): number => {
+    let totalOrders = 0
+    ordersList.forEach((order) => {
+      totalOrders += order.quantity
+    })
+    return totalOrders
+  }
 
   return (
     <div
@@ -59,7 +68,7 @@ const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
                 className={`flex items-center justify-center 
                   absolute top-0 -left-4 h-4 w-4 bg-red-500 
                   rounded-full text-white z-0`}>
-                {cart.orders.length}
+                {itemsInCart(cart.orders)}
               </span>
             ) : (
               ''
