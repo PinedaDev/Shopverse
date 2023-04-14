@@ -2,6 +2,7 @@ import { FilterStateProps } from '../../hooks/useFilter'
 
 import Price from './Price'
 import Icon from '../global/Icon'
+import Selector from './Selector'
 
 type FilterProps = {
   filter: FilterStateProps
@@ -11,6 +12,11 @@ type FilterProps = {
 }
 
 const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) => {
+  const filters = {
+    colors: ['white', 'black', 'blue', 'orange'],
+    categories: ['sneakers', 'sports', 'outdoors']
+  }
+
   const applyFilter = () => {
     setFilter({ ...filter, isFiltering: true })
   }
@@ -44,6 +50,8 @@ const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) =>
       <div className={`${filterOpen ? 'visible' : 'hidden'}`}>
         <hr className="mt-2 mb-2" />
         <Price filter={filter} setFilter={setFilter} />
+        <Selector criterias={filters.categories} setFilter={setFilter} title="Categories" />
+        <Selector criterias={filters.colors} setFilter={setFilter} title="Colors" />
         <div className="text-gray-300 grid place-items-center gap-3">
           <button
             className=" rounded-lg p-1 min-w-[6rem] mt-3 duration-300 ease-in-out bg-gray-900 hover:bg-black"
