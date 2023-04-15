@@ -1,23 +1,43 @@
+import { useEffect, useState } from 'react'
 import { FilterStateProps } from '../../hooks/useFilter'
 
 type SelectorProps = {
   setFilter: ({ ...props }: FilterStateProps) => void
+  filter: FilterStateProps
   title: string
-  criterias: string[] | number[]
+  options: string[] | number[]
 }
 
-const Selector = ({ criterias, setFilter, title }: SelectorProps) => {
+const Selector = ({ options, filter, setFilter, title }: SelectorProps) => {
+  const [selector, setSelector] = useState<string[]>([])
+  const selectionHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.currentTarget.value
+    selector?.includes(target)
+      ? setSelector(selector.filter((option) => (option === target ? '' : true)))
+      : setSelector([...selector, target])
+  }
+
+  useEffect(() => {
+    setFilter({
+      ...filter,
+      criteria: {
+        ...filter.criteria,
+        categories: selector
+      }
+    })
+  }, [selector])
   const showOptions = () =>
-    criterias.map((criteria) => (
-      <li key={criteria} className="flex flex-row-reverse justify-end ">
-        <label className="cursor-pointer" htmlFor={`filterSelector${criteria}`}>
-          {criteria}
+    options.map((option) => (
+      <li key={option} className="flex flex-row-reverse justify-end ">
+        <label className="cursor-pointer" htmlFor={`filterSelector${option}`}>
+          {option}
         </label>
         <input
+          onChange={selectionHandler}
           className="mx-3 cursor-pointer"
           type="checkbox"
-          id={`filterSelector${criteria}`}
-          value={criteria}
+          id={`filterSelector${option}`}
+          value={option}
         />
       </li>
     ))

@@ -17,11 +17,14 @@ const Price = ({ filter, setFilter }: PriceProps) => {
   const maxPrice = Math.max(...products.all.map((product: Product) => product.price))
 
   useEffect(() => {
-    setFilter({ ...filter, criteria: { price: minPrice } })
+    setFilter({ ...filter, criteria: { ...filter.criteria, price: minPrice } })
   }, [])
 
   const priceHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    setFilter({ ...filter, criteria: { price: Number(event.currentTarget.value) } })
+    setFilter({
+      ...filter,
+      criteria: { ...filter.criteria, price: Number(event.currentTarget.value) }
+    })
   }
   return (
     <div className="text-gray-300 w-3/4 m-auto">

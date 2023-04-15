@@ -1,3 +1,7 @@
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+
+import { Product } from '../../types'
 import { FilterStateProps } from '../../hooks/useFilter'
 
 import Price from './Price'
@@ -12,11 +16,12 @@ type FilterProps = {
 }
 
 const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) => {
+  const { products } = useSelector((state: RootState) => state)
   const filters = {
-    colors: ['white', 'black', 'blue', 'orange'],
-    categories: ['sneakers', 'sports', 'outdoors']
+    categories: ['sneakers', 'sports', 'outdoors'],
+    colors: ['white', 'black', 'blue', 'orange']
   }
-
+  const minPrice = Math.min(...products.all.map((product: Product) => product.price))
   const applyFilter = () => {
     setFilter({ ...filter, isFiltering: true })
   }
@@ -25,9 +30,11 @@ const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) =>
     setFilter({
       isFiltering: false,
       criteria: {
-        price: 0
+        price: minPrice,
+        categories: []
       },
       filteredProducts: {
+        byCategory: [],
         byPrice: [],
         all: []
       }
@@ -37,7 +44,7 @@ const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) =>
     <div
       className={`relative w-3/4 m-auto   backdrop-blur-xl p-3 mt-8 mb-8 
           rounded-lg lg:w-1/5 lg:absolute lg:top-14 lg:left-10 duration-300 ease-in-out  ${
-            !filterOpen ? 'backdrop-brightness-125' : 'backdrop-brightness-[3]'
+            !filterOpen ? 'backdrop-brightness-125' : 'backdrop-brightness-[5]'
           } z-20`}>
       <div onClick={toggleFilter} className="relative flex items-center justify-between">
         <span
@@ -50,8 +57,12 @@ const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) =>
       <div className={`${filterOpen ? 'visible' : 'hidden'}`}>
         <hr className="mt-2 mb-2" />
         <Price filter={filter} setFilter={setFilter} />
-        <Selector criterias={filters.categories} setFilter={setFilter} title="Categories" />
-        <Selector criterias={filters.colors} setFilter={setFilter} title="Colors" />
+        <Selector
+          options={filters.categories}
+          filter={filter}
+          setFilter={setFilter}
+          title="Categories"
+        />
         <div className="text-gray-300 grid place-items-center gap-3">
           <button
             className=" rounded-lg p-1 min-w-[6rem] mt-3 duration-300 ease-in-out bg-gray-900 hover:bg-black"
