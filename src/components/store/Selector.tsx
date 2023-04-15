@@ -22,7 +22,7 @@ const Selector = ({ options, filter, setFilter, title }: SelectorProps) => {
       ...filter,
       criteria: {
         ...filter.criteria,
-        categories: selector
+        tags: selector
       }
     })
   }, [selector])

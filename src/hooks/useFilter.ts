@@ -8,29 +8,32 @@ export type FilterStateProps = {
   isFiltering: boolean
   criteria: {
     price: number
-    categories: string[]
+    tags: string[]
   }
   filteredProducts: {
     byPrice: Product[]
-    byCategory: Product[]
+    byTag: Product[]
     all: Product[]
   }
 }
-const initialFilterState: FilterStateProps = {
-  isFiltering: false,
-  criteria: {
-    price: 0,
-    categories: []
-  },
-  filteredProducts: {
-    byPrice: [],
-    byCategory: [],
-    all: []
-  }
-}
+
 export function useFilter() {
-  const [filter, setFilter] = useState<FilterStateProps>(initialFilterState)
   const { products } = useSelector((state: RootState) => state)
+
+  const initialFilterState: FilterStateProps = {
+    isFiltering: false,
+    criteria: {
+      price: Math.min(...products.all.map((product: Product) => product.price)),
+      tags: []
+    },
+    filteredProducts: {
+      byPrice: [],
+      byTag: [],
+      all: []
+    }
+  }
+
+  const [filter, setFilter] = useState<FilterStateProps>(initialFilterState)
 
   const filterByPrice = () => {
     const filteredByPrice: Product[] = products.all.filter((product: Product) =>
@@ -46,16 +49,16 @@ export function useFilter() {
     })
   }
 
-  const filterByCategory = () => {
-    const filteredByCategory: Product[] = products.all.filter((product: Product) =>
-      filter.criteria.categories.includes(product.categories[0]) ? true : ''
+  const filterByTag = () => {
+    const filteredByTag: Product[] = products.all.filter((product: Product) =>
+      filter.criteria.tags.includes(product.categories[0]) ? true : ''
     )
     setFilter({
       ...filter,
       filteredProducts: {
         ...filter.filteredProducts,
-        all: [...filteredByCategory],
-        byCategory: filteredByCategory
+        all: [...filteredByTag],
+        byTag: filteredByTag
       }
     })
   }
@@ -63,7 +66,7 @@ export function useFilter() {
   useEffect(() => {
     if (filter.isFiltering) {
       filterByPrice()
-      filter.criteria.categories.length > 0 ? filterByCategory() : ''
+      filter.criteria.tags.length > 0 ? filterByTag() : ''
     }
   }, [filter.isFiltering, filter.criteria])
   return { filter, setFilter }
