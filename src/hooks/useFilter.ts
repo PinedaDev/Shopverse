@@ -50,15 +50,27 @@ export function useFilter() {
   }
 
   const filterByTag = () => {
-    const filteredByTag: Product[] = products.all.filter((product: Product) =>
-      filter.criteria.tags.includes(product.categories[0]) ? true : ''
-    )
+    const filteredByTag = (): Product[] => {
+      const filteredProductsByTag: Product[] = []
+      products.all.forEach((product: Product) => {
+        product.categories.forEach((category) => {
+          if (filter.criteria.tags.includes(category)) {
+            console.log(filteredProductsByTag.find((product) => product.id))
+            filteredProductsByTag.find((product) => product.id)
+              ? ''
+              : filteredProductsByTag.push(product)
+          }
+        })
+      })
+      console.log(filteredProductsByTag)
+      return filteredProductsByTag
+    }
     setFilter({
       ...filter,
       filteredProducts: {
         ...filter.filteredProducts,
-        all: [...filteredByTag],
-        byTag: filteredByTag
+        all: [...filteredByTag()],
+        byTag: filteredByTag()
       }
     })
   }

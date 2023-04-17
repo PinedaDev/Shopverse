@@ -18,7 +18,8 @@ type FilterProps = {
 const Filter = ({ filter, setFilter, filterOpen, toggleFilter }: FilterProps) => {
   const { products } = useSelector((state: RootState) => state)
   const filters = {
-    categories: ['sports', 'running', 'sneaker']
+    categories: ['sports', 'running', 'sneaker'],
+    colors: ['white', 'black', 'blue', 'green', 'red', 'violet']
   }
   const minPrice = Math.min(...products.all.map((product: Product) => product.price))
   const applyFilter = () => {
