@@ -46,6 +46,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
       })
     }
   }, [detailsState.productID])
+
   useEffect(() => {
     setCartOrder({ ...cartOrder, size: size })
   }, [size])
