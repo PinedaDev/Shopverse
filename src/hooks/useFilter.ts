@@ -43,42 +43,49 @@ export function useFilter() {
       ...filter,
       filteredProducts: {
         ...filter.filteredProducts,
-        all: [...filteredByPrice],
         byPrice: filteredByPrice
       }
     })
   }
 
-  const filterByTag = () => {
-    const filteredByTag = (): Product[] => {
-      const filteredProductsByTag: Product[] = []
-
-      products.all.forEach((product: Product) => {
-        product.categories.forEach((category) => {
-          if (filter.criteria.tags.includes(category)) {
-            filteredProductsByTag.push(product)
-          }
-        })
+  const filterByTag = (productsArray: Product[]) => {
+    const filteredProductsByTag: Product[] = []
+    productsArray.forEach((product: Product) => {
+      product.categories.forEach((category) => {
+        if (filter.criteria.tags.includes(category)) {
+          filteredProductsByTag.push(product)
+        }
       })
-
-      console.log(filteredProductsByTag)
-      return filteredProductsByTag
-    }
+    })
     setFilter({
       ...filter,
       filteredProducts: {
         ...filter.filteredProducts,
-        all: [...filteredByTag()],
-        byTag: filteredByTag()
+        byTag: filteredProductsByTag
       }
     })
+    return filteredProductsByTag
+  }
+
+  const filterCombiner = () => {
+    const filtersUnion: Product[] = [
+      ...filter.filteredProducts.byPrice,
+      ...filter.filteredProducts.byTag
+    ]
+
+    console.log(filtersUnion)
+  }
+
+  const applyFilters = () => {
+    setFilter({ ...filter, isFiltering: true })
+    filterCombiner()
   }
 
   useEffect(() => {
-    if (filter.isFiltering) {
-      filterByPrice()
-      filter.criteria.tags.length > 0 ? filterByTag() : ''
-    }
-  }, [filter.isFiltering, filter.criteria])
-  return { filter, setFilter }
+    filterByPrice()
+  }, [filter.criteria.price])
+  useEffect(() => {
+    filterByTag(products.all)
+  }, [filter.criteria.tags])
+  return { filter, setFilter, applyFilters }
 }

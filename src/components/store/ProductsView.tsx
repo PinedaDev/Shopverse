@@ -24,7 +24,7 @@ const initialDetails = {
 const ProductsView = () => {
   const { products } = useSelector((state: RootState) => state)
   //Custom hook to manage the filter values
-  const { filter, setFilter } = useFilter()
+  const { filter, setFilter, applyFilters } = useFilter()
   //Hook to manage the seach value along side with the filter
   const { search, setSearch } = useSearch({ productCollection: filter.filteredProducts.all })
   //State of the filter window UI
@@ -98,6 +98,7 @@ const ProductsView = () => {
         toggleFilter={toggleFilter}
         filter={filter}
         setFilter={setFilter}
+        applyFilters={applyFilters}
       />
       {/* Products container */}
       <div
