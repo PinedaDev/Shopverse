@@ -68,12 +68,33 @@ export function useFilter() {
   }
 
   const filterCombiner = () => {
-    const filtersUnion: Product[] = [
-      ...filter.filteredProducts.byPrice,
-      ...filter.filteredProducts.byTag
-    ]
+    const productsByTag = filter.filteredProducts.byTag
+    const productByPrice = filter.filteredProducts.byPrice
+    const tagCriteria = filter.criteria.tags
+    const priceCriteria = filter.criteria.price
+    const minPrice = Math.min(...products.all.map((product: Product) => product.price))
 
-    console.log(filtersUnion)
+    // Handler in case of applied multiple filtering with results
+    if (priceCriteria >= minPrice && tagCriteria.length > 0) {
+      const filteredProductsUnion = productsByTag.filter(
+        (product) => product.price <= filter.criteria.price
+      )
+      setFilter({
+        ...filter,
+        filteredProducts: {
+          ...filter.filteredProducts,
+          all: filteredProductsUnion
+        }
+      })
+      return
+    }
+    setFilter({
+      ...filter,
+      filteredProducts: {
+        ...filter.filteredProducts,
+        all: []
+      }
+    })
   }
 
   const applyFilters = () => {
