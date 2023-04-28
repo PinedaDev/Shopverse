@@ -19,11 +19,16 @@ export type FilterStateProps = {
 
 export function useFilter() {
   const { products } = useSelector((state: RootState) => state)
+  let minPrice = 0
+  useEffect(() => {
+    minPrice = Math.min(...products.all.map((product: Product) => product.price))
+    setFilter({ ...filter, criteria: { ...filter.criteria, price: minPrice } })
+  }, [products.all])
 
   const initialFilterState: FilterStateProps = {
     isFiltering: false,
     criteria: {
-      price: Math.min(...products.all.map((product: Product) => product.price)),
+      price: minPrice,
       tags: []
     },
     filteredProducts: {
@@ -53,7 +58,9 @@ export function useFilter() {
     productsArray.forEach((product: Product) => {
       product.categories.forEach((category) => {
         if (filter.criteria.tags.includes(category)) {
-          filteredProductsByTag.push(product)
+          if (!filteredProductsByTag.find((target) => target.id === product.id)) {
+            filteredProductsByTag.push(product)
+          }
         }
       })
     })
@@ -64,7 +71,6 @@ export function useFilter() {
         byTag: filteredProductsByTag
       }
     })
-    return filteredProductsByTag
   }
 
   const filterCombiner = () => {
@@ -72,13 +78,15 @@ export function useFilter() {
     const productByPrice = filter.filteredProducts.byPrice
     const tagCriteria = filter.criteria.tags
     const priceCriteria = filter.criteria.price
-    const minPrice = Math.min(...products.all.map((product: Product) => product.price))
 
     // Handler in case of applied multiple filtering with results
-    if (priceCriteria >= minPrice && tagCriteria.length > 0) {
+    if (tagCriteria.length > 0) {
       const filteredProductsUnion = productsByTag.filter(
         (product) => product.price <= filter.criteria.price
       )
+      console.log('multiple filters applied:')
+      console.log(filteredProductsUnion)
+
       setFilter({
         ...filter,
         filteredProducts: {
@@ -86,20 +94,19 @@ export function useFilter() {
           all: filteredProductsUnion
         }
       })
-      return
     }
-    setFilter({
-      ...filter,
-      filteredProducts: {
-        ...filter.filteredProducts,
-        all: []
-      }
-    })
+    if (priceCriteria >= 75 && tagCriteria.length < 1) {
+      filterByPrice()
+      console.log('only price filter applied:')
+      console.log(filter.filteredProducts.byPrice)
+    }
   }
 
   const applyFilters = () => {
     setFilter({ ...filter, isFiltering: true })
     filterCombiner()
+    console.log('All filtered products:')
+    console.log(filter.filteredProducts.all)
   }
 
   useEffect(() => {
@@ -108,5 +115,9 @@ export function useFilter() {
   useEffect(() => {
     filterByTag(products.all)
   }, [filter.criteria.tags])
+  useEffect(() => {
+    console.log('All filtered products:')
+    console.log(filter.filteredProducts.all)
+  }, [filter.filteredProducts.all])
   return { filter, setFilter, applyFilters }
 }
