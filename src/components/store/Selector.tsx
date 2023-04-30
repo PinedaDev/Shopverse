@@ -5,11 +5,12 @@ type SelectorProps = {
   setFilter: ({ ...props }: FilterStateProps) => void
   filter: FilterStateProps
   title: string
-  options: string[] | number[]
+  options: string[]
 }
 
 const Selector = ({ options, filter, setFilter, title }: SelectorProps) => {
   const [selector, setSelector] = useState<string[]>([])
+
   const selectionHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget.value
     selector?.includes(target)
@@ -18,16 +19,25 @@ const Selector = ({ options, filter, setFilter, title }: SelectorProps) => {
   }
 
   useEffect(() => {
-    setFilter({
-      ...filter,
-      criteria: {
-        ...filter.criteria,
-        tags: selector
-      }
-    })
+    if (selector.length !== 0) {
+      setFilter({
+        ...filter,
+        criteria: {
+          ...filter.criteria,
+          tags: selector
+        }
+      })
+    }
   }, [selector])
+
+  useEffect(() => {
+    if (filter.criteria.tags.length === 0) {
+      setSelector((prev) => (prev = []))
+    }
+  }, [filter.criteria.tags])
+
   const showOptions = () =>
-    options.map((option) => (
+    options.map((option, i) => (
       <li key={option} className="flex flex-row-reverse justify-end ">
         <label className="cursor-pointer" htmlFor={`filterSelector${option}`}>
           {option}
@@ -38,6 +48,7 @@ const Selector = ({ options, filter, setFilter, title }: SelectorProps) => {
           type="checkbox"
           id={`filterSelector${option}`}
           value={option}
+          checked={selector.includes(option) ? true : false}
         />
       </li>
     ))

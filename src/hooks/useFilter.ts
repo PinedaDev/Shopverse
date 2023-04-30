@@ -19,16 +19,16 @@ export type FilterStateProps = {
 
 export function useFilter() {
   const { products } = useSelector((state: RootState) => state)
-  let minPrice = 0
+  let maxPrice = 0
   useEffect(() => {
-    minPrice = Math.min(...products.all.map((product: Product) => product.price))
-    setFilter({ ...filter, criteria: { ...filter.criteria, price: minPrice } })
+    maxPrice = Math.max(...products.all.map((product: Product) => product.price))
+    setFilter({ ...filter, criteria: { ...filter.criteria, price: maxPrice } })
   }, [products.all])
 
   const initialFilterState: FilterStateProps = {
     isFiltering: false,
     criteria: {
-      price: minPrice,
+      price: maxPrice,
       tags: []
     },
     filteredProducts: {
@@ -101,16 +101,12 @@ export function useFilter() {
         ...prev,
         filteredProducts: { ...prev.filteredProducts, all: productByPrice }
       }))
-      console.log('only price filter applied:')
-      console.log(filter.filteredProducts.byPrice)
     }
   }
 
   const applyFilters = () => {
     filterCombiner()
     setFilter((prev) => ({ ...prev, isFiltering: true }))
-    console.log('All filtered products:')
-    console.log(filter.filteredProducts.all)
   }
 
   useEffect(() => {
@@ -128,9 +124,5 @@ export function useFilter() {
   useEffect(() => {
     filterByTag(products.all)
   }, [filter.criteria.tags])
-  useEffect(() => {
-    console.log('All filtered products:')
-    console.log(filter.filteredProducts.all)
-  }, [filter.filteredProducts.all])
   return { filter, setFilter, applyFilters }
 }
