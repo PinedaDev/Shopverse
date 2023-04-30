@@ -44,13 +44,13 @@ export function useFilter() {
     const filteredByPrice: Product[] = products.all.filter((product: Product) =>
       product.price <= filter.criteria.price ? true : ''
     )
-    setFilter({
-      ...filter,
+    setFilter((prev) => ({
+      ...prev,
       filteredProducts: {
         ...filter.filteredProducts,
         byPrice: filteredByPrice
       }
-    })
+    }))
   }
 
   const filterByTag = (productsArray: Product[]) => {
@@ -64,13 +64,13 @@ export function useFilter() {
         }
       })
     })
-    setFilter({
-      ...filter,
+    setFilter((prev) => ({
+      ...prev,
       filteredProducts: {
         ...filter.filteredProducts,
         byTag: filteredProductsByTag
       }
-    })
+    }))
   }
 
   const filterCombiner = () => {
@@ -87,31 +87,44 @@ export function useFilter() {
       console.log('multiple filters applied:')
       console.log(filteredProductsUnion)
 
-      setFilter({
-        ...filter,
+      setFilter((prev) => ({
+        ...prev,
         filteredProducts: {
           ...filter.filteredProducts,
           all: filteredProductsUnion
         }
-      })
+      }))
     }
     if (priceCriteria >= 75 && tagCriteria.length < 1) {
       filterByPrice()
+      setFilter((prev) => ({
+        ...prev,
+        filteredProducts: { ...prev.filteredProducts, all: productByPrice }
+      }))
       console.log('only price filter applied:')
       console.log(filter.filteredProducts.byPrice)
     }
   }
 
   const applyFilters = () => {
-    setFilter({ ...filter, isFiltering: true })
     filterCombiner()
+    setFilter((prev) => ({ ...prev, isFiltering: true }))
     console.log('All filtered products:')
     console.log(filter.filteredProducts.all)
   }
 
   useEffect(() => {
     filterByPrice()
-  }, [filter.criteria.price])
+    if (filter.filteredProducts.all.length < 1) {
+      setFilter((prev) => ({
+        ...prev,
+        filteredProducts: {
+          ...prev.filteredProducts,
+          all: filter.filteredProducts.byPrice
+        }
+      }))
+    }
+  }, [filter.criteria.price, filter.isFiltering])
   useEffect(() => {
     filterByTag(products.all)
   }, [filter.criteria.tags])

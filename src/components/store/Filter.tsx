@@ -22,13 +22,13 @@ const Filter = ({ filter, setFilter, filterOpen, toggleFilter, applyFilters }: F
     categories: ['sports', 'running', 'sneaker'],
     colors: ['white', 'black', 'blue', 'green', 'red', 'violet']
   }
-  const minPrice = Math.min(...products.all.map((product: Product) => product.price))
+  const maxPrice = Math.max(...products.all.map((product: Product) => product.price))
 
   const clearFilter = () => {
     setFilter({
       isFiltering: false,
       criteria: {
-        price: minPrice,
+        price: maxPrice,
         tags: []
       },
       filteredProducts: {
