@@ -1,5 +1,7 @@
 import { Dispatch } from 'redux'
 import { Product } from '../../types'
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 export type ProductsAction =
   | ReturnType<typeof handleProductsRequest>
@@ -58,14 +60,17 @@ export function fetchProducts() {
   return async (dispatch: Dispatch) => {
     try {
       dispatch(handleProductsRequest())
-      const req = await fetch('../products.json')
-      const res = await req.json()
-      const products = res.data
-      if (!req.ok) throw products
-
-      dispatch(handleProductsSuccess(products))
+      const req = await axios.get(`${import.meta.env.VITE_BASE_API_URL}products`)
+      const res = req.data
+      if (req.status != 200) throw res
+      dispatch(handleProductsSuccess(res))
+      console.log(res.data)
+      console.log(`${import.meta.env.VITE_BASE_API_URL}products`)
     } catch (error) {
       dispatch(handleProductsFailed())
+      if (error) {
+        console.log(error)
+      }
     }
   }
 }
