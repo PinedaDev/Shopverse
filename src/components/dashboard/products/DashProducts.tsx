@@ -7,16 +7,11 @@ import { RootState } from '../../../redux/store'
 import ProductRow from './ProductRow'
 import EditForm from './EditForm'
 import TableHeader from '../TableHeader'
+import { useForm } from '../../../hooks/useForm'
 
 const DashProducts = () => {
   const { products } = useSelector((state: RootState) => state)
-  const [editState, setEditState] = useState({ isEditing: false, id: '' })
-  const openEditForm = (id: string) => {
-    setEditState({ isEditing: true, id: id })
-  }
-  const closeEditForm = () => {
-    setEditState({ isEditing: false, id: '' })
-  }
+  const { editState, openEditForm, closeEditForm } = useForm()
   const headers = ['Id', 'Name', 'Categories', 'Price', 'Colors', 'Sizes', 'Controls']
   return (
     <div>
