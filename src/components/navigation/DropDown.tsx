@@ -15,8 +15,7 @@ type DropdownMenuProps = {
 
 const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
   const dispatch = useDispatch<AppDispatch>()
-  const { cart } = useSelector((state: RootState) => state)
-  const { user } = useSelector((state: RootState) => state)
+  const { cart, user } = useSelector((state: RootState) => state)
 
   function menuItemHandler() {
     return new Promise<void>((resolve) => {
