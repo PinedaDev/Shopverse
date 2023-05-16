@@ -68,3 +68,14 @@ export function fetchProducts() {
     }
   }
 }
+
+export const deleteProductThunk = (id: string) => async (dispatch: Dispatch) => {
+  try {
+    const req = await axios.delete(`${import.meta.env.VITE_BASE_API_URL}products/${id}`)
+    const res = req.data
+    if (req.status != 200) throw res
+    dispatch(handleProductDelete(id))
+  } catch (error) {
+    console.log(error)
+  }
+}
