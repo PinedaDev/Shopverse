@@ -5,6 +5,7 @@ import { Product } from '../../../types'
 import { AppDispatch, RootState } from '../../../redux/store'
 import { handleProductUpdate } from '../../../redux/actions/products'
 import FormBg from './FormBg'
+import FormEntry from './FormEntry'
 
 type FormProps = {
   isEditing: boolean
@@ -52,7 +53,29 @@ const Form = ({ isEditing, closeEdit, id }: FormProps) => {
   return (
     <FormBg isEditing={isEditing}>
       <h1 className="text-2xl text-center font-bold">Product Info</h1>
-      <form className="grid  m-auto" onSubmit={submitHandler}></form>
+      <form className="grid  m-auto" onSubmit={submitHandler}>
+        <FormEntry
+          id="name"
+          placeHolder="Product Name"
+          type="text"
+          inputValue={form.name}
+          handler={nameHandler}
+        />
+        <FormEntry
+          id="price"
+          placeHolder="Product Price"
+          type="number"
+          inputValue={form.price}
+          handler={priceHandler}
+        />
+        <textarea
+          className="p-3 text-accent bg-main"
+          id="description"
+          placeholder="Product Description"
+          value={form.description}
+          onChange={descriptionHandler}
+        />
+      </form>
     </FormBg>
   )
 }
