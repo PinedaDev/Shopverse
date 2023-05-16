@@ -63,13 +63,8 @@ export function fetchProducts() {
       const res = req.data
       if (req.status != 200) throw res
       dispatch(handleProductsSuccess(res))
-      console.log(res.data)
-      console.log(`${import.meta.env.VITE_BASE_API_URL}products`)
     } catch (error) {
       dispatch(handleProductsFailed())
-      if (error) {
-        console.log(error)
-      }
     }
   }
 }
