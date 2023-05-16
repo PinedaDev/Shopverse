@@ -1,6 +1,5 @@
 import { Dispatch } from 'redux'
 import { Product } from '../../types'
-import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export type ProductsAction =
