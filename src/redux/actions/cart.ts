@@ -22,21 +22,21 @@ export function handleAddToCart(order: CartOrder) {
   }
 }
 
-export function handleRemoveFromCart(id: number) {
+export function handleRemoveFromCart(id: string) {
   return {
     type: CART_PRODUCT_REMOVE,
     payload: id
   }
 }
 
-export function handleIncreaseAmount(id: number) {
+export function handleIncreaseAmount(id: string) {
   return {
     type: CART_PRODUCT_INCREASE_AMOUNT,
     payload: id
   }
 }
 
-export function handleDecreaseAmount(id: number) {
+export function handleDecreaseAmount(id: string) {
   return {
     type: CART_PRODUCT_DECREASE_AMOUNT,
     payload: id

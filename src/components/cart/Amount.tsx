@@ -4,7 +4,7 @@ import Icon from '../global/Icon'
 import { handleIncreaseAmount } from '../../redux/actions/cart'
 import { handleDecreaseAmount } from '../../redux/actions/cart'
 import { AppDispatch } from '../../redux/store'
-const Amount = ({ value, id }: { value: number; id: number }) => {
+const Amount = ({ value, id }: { value: number; id: string }) => {
   const dispatch = useDispatch<AppDispatch>()
   return (
     <div className="flex items-center justify-around">

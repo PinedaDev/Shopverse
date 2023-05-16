@@ -6,13 +6,13 @@ import { handleProductDelete } from '../../../redux/actions/products'
 import Icon from '../../global/Icon'
 
 type ProductRowProps = {
-  id: number
+  id: string
   name: string
   categories: string[]
   price: number
   colors: string[]
   sizes: number[]
-  edit: (id: number) => void
+  edit: (id: string) => void
 }
 const ProductRow = ({ id, name, categories, price, colors, sizes, edit }: ProductRowProps) => {
   const dispatch = useDispatch<AppDispatch>()

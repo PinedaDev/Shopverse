@@ -10,12 +10,12 @@ import TableHeader from '../TableHeader'
 
 const DashProducts = () => {
   const { products } = useSelector((state: RootState) => state)
-  const [editState, setEditState] = useState({ isEditing: false, id: 0 })
-  const openEditForm = (id: number) => {
+  const [editState, setEditState] = useState({ isEditing: false, id: '' })
+  const openEditForm = (id: string) => {
     setEditState({ isEditing: true, id: id })
   }
   const closeEditForm = () => {
-    setEditState({ isEditing: false, id: 0 })
+    setEditState({ isEditing: false, id: '' })
   }
   const headers = ['Id', 'Name', 'Categories', 'Price', 'Colors', 'Sizes', 'Controls']
   return (

@@ -28,7 +28,7 @@ export function handleProductsSuccess(products: Product[]) {
   }
 }
 
-export function handleProductDelete(id: number) {
+export function handleProductDelete(id: string) {
   return {
     type: PRODUCT_DELETE,
     payload: id
@@ -39,7 +39,7 @@ export function handleProductUpdate({
   id,
   changes
 }: {
-  id: number
+  id: string
   changes: { name: string; price: number; description: string }
 }) {
   return {

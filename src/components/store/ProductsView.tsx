@@ -14,11 +14,11 @@ import Details from './Details'
 // Type and initial value of details window UI for the products
 type DetailsState = {
   detailsOpen: boolean
-  productID: number
+  productID: string
 }
 const initialDetails = {
   detailsOpen: false,
-  productID: 0
+  productID: ''
 }
 
 const ProductsView = () => {
@@ -36,7 +36,7 @@ const ProductsView = () => {
     setFilterIsOpen((prev) => !prev)
   }
   // Controls for the details window UI
-  const openDetails = (productID: number) => {
+  const openDetails = (productID: string) => {
     setDetails({ productID, detailsOpen: true })
   }
   const closeDetails = () => {

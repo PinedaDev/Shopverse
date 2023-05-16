@@ -1,5 +1,5 @@
 export type Product = {
-  id: number
+  id: string
   name: string
   img: string
   description: string
@@ -24,7 +24,7 @@ export type Order = {
 }
 
 export type CartOrder = {
-  id: number
+  id: string
   productId?: number
   name: string
   img: string

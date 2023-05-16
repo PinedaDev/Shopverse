@@ -10,7 +10,7 @@ import VariantSelector from './VariantSelector'
 import CartBtn from '../cart/CartBtn'
 
 type DetailsProps = {
-  detailsState: { productID: number; detailsOpen: boolean }
+  detailsState: { productID: string; detailsOpen: boolean }
   closeDetails: () => void
 }
 
@@ -24,7 +24,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
   const [color, setColor] = useState<string>('')
 
   const [cartOrder, setCartOrder] = useState<CartOrder>({
-    id: 0,
+    id: '',
     name: '',
     img: '',
     size: 0,
@@ -34,7 +34,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
   })
 
   useEffect(() => {
-    if (detailsState.productID !== 0) {
+    if (detailsState.productID !== '') {
       setCartOrder({
         id: details.id,
         name: details.name,
@@ -157,7 +157,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
           <Icon iconRef="mdi-close" />
         </button>
         <div className="grid lg:grid-cols-2">
-          {detailsState.productID !== 0 ? showDetails() : ''}
+          {detailsState.productID !== '' ? showDetails() : ''}
         </div>
       </div>
     </div>

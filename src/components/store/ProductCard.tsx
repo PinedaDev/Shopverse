@@ -5,7 +5,7 @@ import DetailsBtn from './DetailsBtn'
 
 type ProductCardProps = {
   product: Product
-  openDetails: (productID: number) => void
+  openDetails: (productID: string) => void
 }
 
 const ProductCard = ({ product, openDetails }: ProductCardProps) => {

@@ -10,11 +10,11 @@ import DashVariantSelector from './DashVariantSelector'
 type EditFormProps = {
   isEditing: boolean
   closeEdit: () => void
-  id: number
+  id: string
 }
 
 const initialFormValues: Product = {
-  id: 0,
+  id: '',
   name: '',
   img: '',
   description: '',

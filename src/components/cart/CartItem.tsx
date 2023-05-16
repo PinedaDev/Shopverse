@@ -6,7 +6,7 @@ import Icon from '../global/Icon'
 import { AppDispatch } from '../../redux/store'
 
 type CartItemProps = {
-  id: number
+  id: string
   name: string
   img: string
   price: number

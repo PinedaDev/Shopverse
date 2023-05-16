@@ -1,8 +1,8 @@
 import Icon from '../global/Icon'
 
 type DetailsBtnProps = {
-  productID: number
-  openDetails: (productID: number) => void
+  productID: string
+  openDetails: (productID: string) => void
 }
 
 const DetailsBtn = ({ openDetails, productID }: DetailsBtnProps) => {
