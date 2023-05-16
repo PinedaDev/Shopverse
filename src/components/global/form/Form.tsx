@@ -77,6 +77,9 @@ const Form = ({ isEditing, closeEdit, id }: FormProps) => {
           inputValue={form.price}
           handler={priceHandler}
         />
+        <label className="font-bold my-2" htmlFor="name">
+          Description :
+        </label>
         <textarea
           className="p-3 text-accent bg-main"
           id="description"

@@ -6,6 +6,7 @@ import { RootState } from '../../../redux/store'
 
 import ProductRow from './ProductRow'
 import EditForm from './EditForm'
+import Form from '../../global/form/Form'
 import TableHeader from '../TableHeader'
 import { useForm } from '../../../hooks/useForm'
 
@@ -20,7 +21,7 @@ const DashProducts = () => {
         products.all.map((product: Product) => (
           <ProductRow key={product.id} {...product} edit={openEditForm} />
         ))}
-      <EditForm {...editState} closeEdit={closeEditForm} />
+      <Form {...editState} closeEdit={closeEditForm} />
     </div>
   )
 }
