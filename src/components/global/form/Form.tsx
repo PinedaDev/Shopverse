@@ -4,8 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Product } from '../../../types'
 import { AppDispatch, RootState } from '../../../redux/store'
 import { handleProductUpdate } from '../../../redux/actions/products'
+
 import FormBg from './FormBg'
 import FormEntry from './FormEntry'
+import DashVariantSelector from '../../dashboard/products/DashVariantSelector'
+import FormBtn from './FormBtn'
 
 type FormProps = {
   isEditing: boolean
@@ -49,6 +52,12 @@ const Form = ({ isEditing, closeEdit, id }: FormProps) => {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
   }
+  const closeHandler = () => {
+    closeEdit()
+  }
+  const updateHandler = () => {
+    dispatch(handleProductUpdate({ id, changes: form }))
+  }
 
   return (
     <FormBg isEditing={isEditing}>
@@ -75,6 +84,15 @@ const Form = ({ isEditing, closeEdit, id }: FormProps) => {
           value={form.description}
           onChange={descriptionHandler}
         />
+        <div className="my-2">
+          <DashVariantSelector title="Categories" variants={form.categories} />
+          <DashVariantSelector title="Colors" variants={form.colors} />
+          <DashVariantSelector title="Sizes" variants={form.sizes} />
+        </div>
+        <div className="flex justify-around ">
+          <FormBtn btnName="Update" colorVariant="cyan" action={updateHandler} />
+          <FormBtn btnName="Close" colorVariant="red" action={closeHandler} />
+        </div>
       </form>
     </FormBg>
   )
