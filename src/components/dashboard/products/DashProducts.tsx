@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import { Product } from '../../../types'
 import { RootState } from '../../../redux/store'
 
+import Form from '../../global/form/Form'
 import ProductRow from './ProductRow'
-import EditForm from './EditForm'
 import TableHeader from '../TableHeader'
 import { useForm } from '../../../hooks/useForm'
 
@@ -31,7 +31,7 @@ const DashProducts = () => {
         products.all.map((product: Product) => (
           <ProductRow key={product.id} {...product} edit={openForm} />
         ))}
-      <EditForm
+      <Form
         {...formIsOpen}
         form={form}
         closeForm={closeForm}

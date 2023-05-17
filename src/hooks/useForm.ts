@@ -30,6 +30,7 @@ export function useForm() {
   }
   const closeForm = () => {
     setEditState({ formIsOpen: false, id: '' })
+    setForm(initialFormValues)
   }
 
   // form handlers

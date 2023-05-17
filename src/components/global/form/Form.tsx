@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 
-import FormBg from '../../global/form/FormBg'
-import FormEntry from '../../global/form/FormEntry'
+import FormBg from './FormBg'
+import FormEntry from './FormEntry'
 import DashVariantSelector from '../../dashboard/products/DashVariantSelector'
-import FormBtn from '../../global/form/FormBtn'
-import FormTextArea from '../../global/form/FormTextArea'
+import FormBtn from './FormBtn'
+import FormTextArea from './FormTextArea'
 import { Product } from '../../../types'
 
 type EditFormProps = {
@@ -21,7 +21,7 @@ type EditFormProps = {
   updateHandler: () => void
 }
 
-const EditForm = ({
+const Form = ({
   formIsOpen,
   id,
   closeHandler,
@@ -72,4 +72,4 @@ const EditForm = ({
   )
 }
 
-export default EditForm
+export default Form
