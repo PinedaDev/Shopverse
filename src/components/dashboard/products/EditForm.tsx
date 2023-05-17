@@ -5,11 +5,15 @@ import { Product } from '../../../types'
 import { AppDispatch, RootState } from '../../../redux/store'
 import { handleProductUpdate } from '../../../redux/actions/products'
 
-import DashVariantSelector from './DashVariantSelector'
+import FormBg from '../../global/form/FormBg'
+import FormEntry from '../../global/form/FormEntry'
+import DashVariantSelector from '../../dashboard/products/DashVariantSelector'
+import FormBtn from '../../global/form/FormBtn'
+import FormTextArea from '../../global/form/FormTextArea'
 
-type EditFormProps = {
-  isEditing: boolean
-  closeEdit: () => void
+type FormProps = {
+  formIsOpen: boolean
+  closeForm: () => void
   id: string
 }
 
@@ -26,7 +30,7 @@ const initialFormValues: Product = {
   stars: 0
 }
 
-const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
+const Form = ({ formIsOpen, closeForm, id }: FormProps) => {
   const dispatch = useDispatch<AppDispatch>()
   const { products } = useSelector((state: RootState) => state)
   const target: Product = products.all.find((product: Product) => product.id === id)
@@ -49,65 +53,44 @@ const EditForm = ({ isEditing, closeEdit, id }: EditFormProps) => {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
   }
+  const closeHandler = () => {
+    closeForm()
+  }
+  const updateHandler = () => {
+    dispatch(handleProductUpdate({ id, changes: form }))
+  }
+
   return (
-    <div
-      className={`${
-        isEditing ? 'block' : 'hidden'
-      } absolute bg-secondary top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4
-      w-[30%] p-5 border-2 border-solid border-main duration-300 max-h-[80vh] overflow-auto text-white `}>
+    <FormBg formIsOpen={formIsOpen}>
       <h1 className="text-2xl text-center font-bold">Product Info</h1>
       <form className="grid  m-auto" onSubmit={submitHandler}>
-        <label className="font-bold my-2" htmlFor="name">
-          Name :
-        </label>
-        <input
-          className="p-3 text-accent bg-main"
-          type="text"
+        <FormEntry
           id="name"
-          placeholder="Product Name"
-          value={form.name}
-          onChange={nameHandler}
+          placeHolder="Product Name"
+          type="text"
+          inputValue={form.name}
+          handler={nameHandler}
         />
-        <label className="font-bold my-2" htmlFor="name">
-          Price :
-        </label>
-        <input
-          className="p-3 text-accent bg-main"
-          type="number"
+        <FormEntry
           id="price"
-          value={form.price}
-          onChange={priceHandler}
+          placeHolder="Product Price"
+          type="number"
+          inputValue={form.price}
+          handler={priceHandler}
         />
-        <label className="font-bold my-2" htmlFor="name">
-          Description :
-        </label>
-        <textarea
-          className="p-3 text-accent bg-main"
-          id="description"
-          placeholder="Product Description"
-          value={form.description}
-          onChange={descriptionHandler}
-        />
+        <FormTextArea id="description" text={form.description} onChange={descriptionHandler} />
         <div className="my-2">
           <DashVariantSelector title="Categories" variants={form.categories} />
           <DashVariantSelector title="Colors" variants={form.colors} />
           <DashVariantSelector title="Sizes" variants={form.sizes} />
         </div>
         <div className="flex justify-around ">
-          <button
-            className="my-5 py-2 px-4 duration-300 bg-main text-accent border-gray-300 hover:text-cyan-400"
-            onClick={() => dispatch(handleProductUpdate({ id, changes: form }))}>
-            Update
-          </button>
-          <button
-            className="my-5 py-2 px-4 duration-300 bg-main text-accent border-gray-300 hover:text-red-400"
-            onClick={closeEdit}>
-            Close
-          </button>
+          <FormBtn btnName="Update" colorVariant="cyan" action={updateHandler} />
+          <FormBtn btnName="Close" colorVariant="red" action={closeHandler} />
         </div>
       </form>
-    </div>
+    </FormBg>
   )
 }
 
-export default EditForm
+export default Form

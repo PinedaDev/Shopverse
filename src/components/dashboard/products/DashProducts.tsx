@@ -12,16 +12,16 @@ import { useForm } from '../../../hooks/useForm'
 
 const DashProducts = () => {
   const { products } = useSelector((state: RootState) => state)
-  const { editState, openEditForm, closeEditForm } = useForm()
+  const { formIsOpen, openForm, closeForm } = useForm()
   const headers = ['Id', 'Name', 'Categories', 'Price', 'Colors', 'Sizes', 'Controls']
   return (
     <div>
       <TableHeader headers={headers} />
       {products.all.length > 0 &&
         products.all.map((product: Product) => (
-          <ProductRow key={product.id} {...product} edit={openEditForm} />
+          <ProductRow key={product.id} {...product} edit={openForm} />
         ))}
-      <Form {...editState} closeEdit={closeEditForm} />
+      <EditForm {...formIsOpen} closeForm={closeForm} />
     </div>
   )
 }

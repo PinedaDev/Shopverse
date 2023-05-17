@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
 export function useForm() {
-  const [editState, setEditState] = useState({ isEditing: false, id: '' })
+  const [formIsOpen, setEditState] = useState({ formIsOpen: false, id: '' })
 
-  const openEditForm = (id: string) => {
-    setEditState({ isEditing: true, id: id })
+  const openForm = (id: string) => {
+    setEditState({ formIsOpen: true, id: id })
   }
-  const closeEditForm = () => {
-    setEditState({ isEditing: false, id: '' })
+  const closeForm = () => {
+    setEditState({ formIsOpen: false, id: '' })
   }
-  return { editState, openEditForm, closeEditForm }
+  return { formIsOpen, openForm, closeForm }
 }

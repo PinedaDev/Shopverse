@@ -1,5 +1,3 @@
-import React from 'react'
-
 type FormBtnProps = {
   btnName: string
   colorVariant: 'cyan' | 'red'
