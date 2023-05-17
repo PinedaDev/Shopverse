@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { Product } from '../../../types'
@@ -6,13 +5,24 @@ import { RootState } from '../../../redux/store'
 
 import ProductRow from './ProductRow'
 import EditForm from './EditForm'
-import Form from '../../global/form/Form'
 import TableHeader from '../TableHeader'
 import { useForm } from '../../../hooks/useForm'
 
 const DashProducts = () => {
   const { products } = useSelector((state: RootState) => state)
-  const { formIsOpen, openForm, closeForm } = useForm()
+  const {
+    form,
+    formIsOpen,
+    openForm,
+    closeForm,
+    targetHandler,
+    nameHandler,
+    priceHandler,
+    descriptionHandler,
+    submitHandler,
+    closeHandler,
+    updateHandler
+  } = useForm()
   const headers = ['Id', 'Name', 'Categories', 'Price', 'Colors', 'Sizes', 'Controls']
   return (
     <div>
@@ -21,7 +31,18 @@ const DashProducts = () => {
         products.all.map((product: Product) => (
           <ProductRow key={product.id} {...product} edit={openForm} />
         ))}
-      <EditForm {...formIsOpen} closeForm={closeForm} />
+      <EditForm
+        {...formIsOpen}
+        form={form}
+        closeForm={closeForm}
+        targetHandler={targetHandler}
+        nameHandler={nameHandler}
+        priceHandler={priceHandler}
+        descriptionHandler={descriptionHandler}
+        submitHandler={submitHandler}
+        closeHandler={closeHandler}
+        updateHandler={updateHandler}
+      />
     </div>
   )
 }
