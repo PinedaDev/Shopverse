@@ -7,7 +7,7 @@ import FormBtn from './FormBtn'
 import FormTextArea from './FormTextArea'
 import { Product } from '../../../types'
 
-type EditFormProps = {
+type FormProps = {
   id: string
   form: Product
   formIsOpen: boolean
@@ -32,7 +32,7 @@ const Form = ({
   submitHandler,
   updateHandler,
   targetHandler
-}: EditFormProps) => {
+}: FormProps) => {
   useEffect(() => {
     if (id != '') {
       targetHandler(id)

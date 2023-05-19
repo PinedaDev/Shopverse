@@ -35,16 +35,10 @@ export function handleProductDelete(id: string) {
   }
 }
 
-export function handleProductUpdate({
-  id,
-  changes
-}: {
-  id: string
-  changes: { name: string; price: number; description: string }
-}) {
+export function handleProductUpdate({ id, updatedData }: { id: string; updatedData: Product }) {
   return {
     type: PRODUCT_UPDATE,
-    payload: { id, changes }
+    payload: { id, updatedData }
   }
 }
 
@@ -75,6 +69,20 @@ export const deleteProductThunk = (id: string) => async (dispatch: Dispatch) => 
     const res = req.data
     if (req.status != 200) throw res
     dispatch(handleProductDelete(id))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const updateProductThunk = (id: string, data: Product) => async (dispatch: Dispatch) => {
+  const updatedData: Partial<Product> = { ...data }
+  updatedData.id ? delete updatedData.id : ''
+  try {
+    const req = await axios.patch(`${import.meta.env.VITE_BASE_API_URL}products/${id}`, updatedData)
+    const res = req.data
+    if (req.status != 200) throw res
+    console.log(res)
+    dispatch(handleProductUpdate({ id, updatedData: data }))
   } catch (error) {
     console.log(error)
   }

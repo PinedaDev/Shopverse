@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { Product } from '../types'
 import { AppDispatch, RootState } from '../redux/store'
-import { handleProductUpdate } from '../redux/actions/products'
+import { updateProductThunk } from '../redux/actions/products'
 
 const initialFormValues: Product = {
   id: '',
@@ -54,7 +54,7 @@ export function useForm() {
     closeForm()
   }
   const updateHandler = () => {
-    dispatch(handleProductUpdate({ id: form.id, changes: form }))
+    dispatch(updateProductThunk(form.id, form))
   }
   return {
     form,

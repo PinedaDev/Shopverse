@@ -57,10 +57,7 @@ export function productsReducer(state = initialState, action: AnyAction) {
         ? state.all.map((product) => {
             if (product.id === action.payload.id) {
               const updatedProduct = {
-                ...product,
-                name: action.payload.changes.name,
-                price: action.payload.changes.price,
-                description: action.payload.changes.description
+                ...action.payload.updatedData
               }
               return updatedProduct
             }
