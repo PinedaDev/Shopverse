@@ -19,6 +19,7 @@ type FormProps = {
   submitHandler: (e: React.FormEvent<HTMLFormElement>) => void
   closeHandler: () => void
   updateHandler: () => void
+  createHandler: () => void
 }
 
 const Form = ({
@@ -30,6 +31,7 @@ const Form = ({
   priceHandler,
   descriptionHandler,
   submitHandler,
+  createHandler,
   updateHandler,
   targetHandler
 }: FormProps) => {
@@ -64,7 +66,11 @@ const Form = ({
           <DashVariantSelector title="Sizes" variants={form.sizes} />
         </div>
         <div className="flex justify-around ">
-          <FormBtn btnName="Update" colorVariant="cyan" action={updateHandler} />
+          <FormBtn
+            btnName={form.id === '' ? 'Create' : 'Update'}
+            action={form.id === '' ? createHandler : updateHandler}
+            colorVariant="cyan"
+          />
           <FormBtn btnName="Close" colorVariant="red" action={closeHandler} />
         </div>
       </form>

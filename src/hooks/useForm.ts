@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { Product } from '../types'
 import { AppDispatch, RootState } from '../redux/store'
-import { updateProductThunk } from '../redux/actions/products'
+import { createProductThunk, updateProductThunk } from '../redux/actions/products'
 
 const initialFormValues: Product = {
   id: '',
@@ -26,6 +26,7 @@ export function useForm() {
   const dispatch = useDispatch<AppDispatch>()
 
   const openForm = (id: string) => {
+    !id ? (id = '') : id
     setEditState({ formIsOpen: true, id: id })
   }
   const closeForm = () => {
@@ -56,6 +57,9 @@ export function useForm() {
   const updateHandler = () => {
     dispatch(updateProductThunk(form.id, form))
   }
+  const createHandler = () => {
+    dispatch(createProductThunk(form))
+  }
   return {
     form,
     formIsOpen,
@@ -67,6 +71,7 @@ export function useForm() {
     descriptionHandler,
     submitHandler,
     closeHandler,
+    createHandler,
     updateHandler
   }
 }

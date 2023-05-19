@@ -20,6 +20,7 @@ const FormTextArea = ({ text, id, onChange }: TextAreaProps) => {
         placeholder="Product Description"
         value={text}
         onChange={onChange}
+        required
       />
     </>
   )

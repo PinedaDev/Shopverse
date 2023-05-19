@@ -2,11 +2,12 @@ import { useSelector } from 'react-redux'
 
 import { Product } from '../../../types'
 import { RootState } from '../../../redux/store'
+import { useForm } from '../../../hooks/useForm'
 
 import Form from '../../global/form/Form'
 import ProductRow from './ProductRow'
 import TableHeader from '../TableHeader'
-import { useForm } from '../../../hooks/useForm'
+import CreateProduct from './CreateProduct'
 
 const DashProducts = () => {
   const { products } = useSelector((state: RootState) => state)
@@ -20,6 +21,7 @@ const DashProducts = () => {
     priceHandler,
     descriptionHandler,
     submitHandler,
+    createHandler,
     closeHandler,
     updateHandler
   } = useForm()
@@ -31,6 +33,7 @@ const DashProducts = () => {
         products.all.map((product: Product) => (
           <ProductRow key={product.id} {...product} edit={openForm} />
         ))}
+      <CreateProduct action={() => openForm(form.id)} />
       <Form
         {...formIsOpen}
         form={form}
@@ -42,6 +45,7 @@ const DashProducts = () => {
         submitHandler={submitHandler}
         closeHandler={closeHandler}
         updateHandler={updateHandler}
+        createHandler={createHandler}
       />
     </div>
   )

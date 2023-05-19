@@ -63,6 +63,19 @@ export function fetchProducts() {
   }
 }
 
+export const createProductThunk = (data: Product) => async (dispatch: Dispatch) => {
+  const newProductData: Partial<Product> = { ...data }
+  newProductData.id ? delete newProductData.id : ''
+  try {
+    const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}products/`, newProductData)
+    const res = req.data
+    if (req.status != 200) throw res
+    console.log(res)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const deleteProductThunk = (id: string) => async (dispatch: Dispatch) => {
   try {
     const req = await axios.delete(`${import.meta.env.VITE_BASE_API_URL}products/${id}`)
