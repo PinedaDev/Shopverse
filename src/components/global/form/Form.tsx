@@ -16,6 +16,8 @@ type FormProps = {
   nameHandler: (event: React.FormEvent<HTMLInputElement>) => void
   priceHandler: (event: React.FormEvent<HTMLInputElement>) => void
   descriptionHandler: (event: React.FormEvent<HTMLTextAreaElement>) => void
+  variantsHandler: (variantName: string, input: string | number) => void
+  deleteVariantHandler: (variantCategory: string, value: string | number) => void
   submitHandler: (e: React.FormEvent<HTMLFormElement>) => void
   closeHandler: () => void
   updateHandler: () => void
@@ -30,6 +32,8 @@ const Form = ({
   nameHandler,
   priceHandler,
   descriptionHandler,
+  variantsHandler,
+  deleteVariantHandler,
   submitHandler,
   createHandler,
   updateHandler,
@@ -61,9 +65,24 @@ const Form = ({
         />
         <FormTextArea id="description" text={form.description} onChange={descriptionHandler} />
         <div className="my-2">
-          <DashVariantSelector title="Categories" variants={form.categories} />
-          <DashVariantSelector title="Colors" variants={form.colors} />
-          <DashVariantSelector title="Sizes" variants={form.sizes} />
+          <DashVariantSelector
+            title="Categories"
+            variants={form.categories}
+            handler={variantsHandler}
+            deleteHandler={deleteVariantHandler}
+          />
+          <DashVariantSelector
+            title="Colors"
+            deleteHandler={deleteVariantHandler}
+            variants={form.colors}
+            handler={variantsHandler}
+          />
+          <DashVariantSelector
+            title="Sizes"
+            variants={form.sizes}
+            handler={variantsHandler}
+            deleteHandler={deleteVariantHandler}
+          />
         </div>
         <div className="flex justify-around ">
           <FormBtn

@@ -23,8 +23,6 @@ const FormEntry = ({ id, placeHolder, type, inputValue, handler }: InputProps) =
         placeholder={placeHolder}
         value={inputValue}
         onChange={handler}
-        min={1}
-        required
       />
     </>
   )

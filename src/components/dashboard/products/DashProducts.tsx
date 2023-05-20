@@ -20,6 +20,8 @@ const DashProducts = () => {
     nameHandler,
     priceHandler,
     descriptionHandler,
+    variantsHandler,
+    deleteVariantHandler,
     submitHandler,
     createHandler,
     closeHandler,
@@ -46,6 +48,8 @@ const DashProducts = () => {
         closeHandler={closeHandler}
         updateHandler={updateHandler}
         createHandler={createHandler}
+        variantsHandler={variantsHandler}
+        deleteVariantHandler={deleteVariantHandler}
       />
     </div>
   )

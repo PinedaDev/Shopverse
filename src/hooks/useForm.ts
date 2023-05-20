@@ -11,8 +11,8 @@ const initialFormValues: Product = {
   img: '',
   description: '',
   categories: [],
-  sizes: [0],
-  colors: [''],
+  sizes: [],
+  colors: [],
   price: 0,
   reviews: 0,
   stars: 0
@@ -44,6 +44,51 @@ export function useForm() {
   const descriptionHandler = (event: React.FormEvent<HTMLTextAreaElement>) => {
     setForm({ ...form, description: event.currentTarget.value })
   }
+  const variantsHandler = (variantName: string, input: string | number): void => {
+    switch (variantName) {
+      case 'categories': {
+        setForm({ ...form, categories: [...form.categories, String(input)] })
+        break
+      }
+      case 'colors': {
+        setForm({ ...form, colors: [...form.colors, String(input)] })
+        break
+      }
+      case 'sizes': {
+        setForm({ ...form, sizes: [...form.sizes, Number(input)] })
+        break
+      }
+      default:
+        break
+    }
+  }
+  const deleteVariantHandler = (variantCategory: string, value: string | number): void => {
+    switch (variantCategory) {
+      case 'categories': {
+        setForm((prev) => ({
+          ...prev,
+          categories: prev.categories.filter((category: string) => (category !== value ? true : ''))
+        }))
+        break
+      }
+      case 'colors': {
+        setForm((prev) => ({
+          ...prev,
+          colors: prev.colors.filter((color: string) => (color !== value ? true : ''))
+        }))
+        break
+      }
+      case 'sizes': {
+        setForm((prev) => ({
+          ...prev,
+          sizes: prev.sizes.filter((size: number) => (size !== value ? true : ''))
+        }))
+        break
+      }
+      default:
+        break
+    }
+  }
   const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
   }
@@ -69,6 +114,8 @@ export function useForm() {
     nameHandler,
     priceHandler,
     descriptionHandler,
+    variantsHandler,
+    deleteVariantHandler,
     submitHandler,
     closeHandler,
     createHandler,
