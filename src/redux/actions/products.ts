@@ -12,6 +12,7 @@ export type ProductsAction =
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST'
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS'
 export const FETCH_PRODUCTS_FAILED = 'FETCH_PRODUCTS_FAILED'
+export const PRODUCT_CREATE = 'PRODUCT_CREATE'
 export const PRODUCT_DELETE = 'PRODUCT_DELETE'
 export const PRODUCT_UPDATE = 'PRODUCT_UPDATE'
 
@@ -25,6 +26,13 @@ export function handleProductsSuccess(products: Product[]) {
   return {
     type: FETCH_PRODUCTS_SUCCESS,
     payload: products
+  }
+}
+
+export function handleProductCreate(product: Product) {
+  return {
+    type: PRODUCT_CREATE,
+    payload: product
   }
 }
 
@@ -67,10 +75,12 @@ export const createProductThunk = (data: Product) => async (dispatch: Dispatch) 
   const newProductData: Partial<Product> = { ...data }
   newProductData.id ? delete newProductData.id : ''
   try {
-    const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}products/`, newProductData)
+    const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}products`, newProductData)
     const res = req.data
-    if (req.status != 200) throw res
+    res.createdAt ? delete res.createdAt : ''
     console.log(res)
+    if (req.status != 201) throw res
+    dispatch(handleProductCreate(res))
   } catch (error) {
     console.log(error)
   }

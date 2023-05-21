@@ -5,6 +5,7 @@ import {
   FETCH_PRODUCTS_FAILED,
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_SUCCESS,
+  PRODUCT_CREATE,
   PRODUCT_DELETE,
   PRODUCT_UPDATE
 } from '../actions/products'
@@ -41,6 +42,14 @@ export function productsReducer(state = initialState, action: AnyAction) {
         ...state,
         isLoading: false,
         error: 'something is wrong'
+      }
+    }
+    case PRODUCT_CREATE: {
+      const newProduct: Product = action.payload
+      const newProductsData: Product[] = [...(<[]>state.all), newProduct]
+      return {
+        ...state,
+        all: newProductsData
       }
     }
     case PRODUCT_DELETE: {
