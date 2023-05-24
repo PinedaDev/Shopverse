@@ -7,9 +7,9 @@ import { AppDispatch, RootState } from '../redux/store'
 import { createProductThunk, updateProductThunk } from '../redux/actions/products'
 
 type FormData = {
-  productId?: string
-  productName: string
-  imageURL?: string
+  id?: string
+  name: string
+  img?: string
   description: string
   price: number
   reviews?: number
@@ -34,16 +34,16 @@ const initialFormValues: Product = {
 
 export function formUtils() {
   const schema: ZodType<FormData> = z.object({
-    productId: z.string().optional(),
-    productName: z.string().min(5).max(30),
-    imageURL: z.string().optional(),
-    description: z.string().min(100).max(300),
+    id: z.string().optional(),
+    name: z.string().min(5).max(30),
+    img: z.string().optional(),
+    description: z.string().min(20).max(300),
     price: z.number().min(1).max(3000),
-    reviews: z.number().min(1).optional(),
-    stars: z.number().min(1).optional(),
-    categories: z.string().array(),
-    colors: z.string().array(),
-    sizes: z.number().array()
+    reviews: z.number().min(0).optional(),
+    stars: z.number().min(0).optional(),
+    categories: z.string().array().min(1).max(3),
+    colors: z.string().array().min(1).max(3),
+    sizes: z.number().array().min(1)
   })
 
   const [form, setForm] = useState<Product>(initialFormValues)
@@ -127,10 +127,20 @@ export function formUtils() {
     closeForm()
   }
   const updateHandler = () => {
-    dispatch(updateProductThunk(form.id, form))
+    const result = schema.safeParse(form)
+    if (!result.success) {
+      console.log('Something is wrong', result.error)
+    } else {
+      dispatch(updateProductThunk(form.id, form))
+    }
   }
   const createHandler = () => {
-    dispatch(createProductThunk(form))
+    const result = schema.safeParse(form)
+    if (!result.success) {
+      console.log('Something is wrong', result.error)
+    } else {
+      dispatch(createProductThunk(form))
+    }
   }
   return {
     form,
