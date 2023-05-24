@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 
 import { Product } from '../../../types'
 import { RootState } from '../../../redux/store'
-import { useForm } from '../../../hooks/useForm'
+import { formUtils } from '../../../utils/formUtils'
 
 import Form from '../../global/form/Form'
 import ProductRow from './ProductRow'
@@ -26,7 +26,7 @@ const DashProducts = () => {
     createHandler,
     closeHandler,
     updateHandler
-  } = useForm()
+  } = formUtils()
   const headers = ['Id', 'Name', 'Categories', 'Price', 'Colors', 'Sizes', 'Controls']
   return (
     <div>

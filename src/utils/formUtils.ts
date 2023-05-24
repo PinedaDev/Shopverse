@@ -1,9 +1,23 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { z, ZodType } from 'zod'
 
 import { Product } from '../types'
 import { AppDispatch, RootState } from '../redux/store'
 import { createProductThunk, updateProductThunk } from '../redux/actions/products'
+
+type FormData = {
+  productId?: string
+  productName: string
+  imageURL?: string
+  description: string
+  price: number
+  reviews?: number
+  stars?: number
+  categories: string[]
+  colors: string[]
+  sizes: number[]
+}
 
 const initialFormValues: Product = {
   id: '',
@@ -18,7 +32,20 @@ const initialFormValues: Product = {
   stars: 0
 }
 
-export function useForm() {
+export function formUtils() {
+  const schema: ZodType<FormData> = z.object({
+    productId: z.string().optional(),
+    productName: z.string().min(5).max(30),
+    imageURL: z.string().optional(),
+    description: z.string().min(100).max(300),
+    price: z.number().min(1).max(3000),
+    reviews: z.number().min(1).optional(),
+    stars: z.number().min(1).optional(),
+    categories: z.string().array(),
+    colors: z.string().array(),
+    sizes: z.number().array()
+  })
+
   const [form, setForm] = useState<Product>(initialFormValues)
   const [formIsOpen, setEditState] = useState({ formIsOpen: false, id: '' })
 
