@@ -29,6 +29,7 @@ export const signinUserThunk =
       if (req.status != 200) throw res
       console.log('sucess', res)
       dispatch(login(res.token))
+      localStorage.setItem('token', res.token)
     } catch (error) {
       console.log(error)
     }

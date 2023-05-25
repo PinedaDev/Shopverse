@@ -2,6 +2,8 @@ import { Dispatch } from 'redux'
 import { Product } from '../../types'
 import axios from 'axios'
 
+import { productsConfig } from '../../utils/axiosConfig'
+
 export type ProductsAction =
   | ReturnType<typeof handleProductsRequest>
   | ReturnType<typeof handleProductsSuccess>
@@ -75,7 +77,7 @@ export const createProductThunk = (data: Product) => async (dispatch: Dispatch) 
   const newProductData: Partial<Product> = { ...data }
   newProductData.id ? delete newProductData.id : ''
   try {
-    const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}products`, newProductData)
+    const req = await axios.post(productsConfig.url, newProductData, productsConfig.config)
     const res = req.data
     res.createdAt ? delete res.createdAt : ''
     console.log(res)
@@ -88,7 +90,10 @@ export const createProductThunk = (data: Product) => async (dispatch: Dispatch) 
 
 export const deleteProductThunk = (id: string) => async (dispatch: Dispatch) => {
   try {
-    const req = await axios.delete(`${import.meta.env.VITE_BASE_API_URL}products/${id}`)
+    const req = await axios.delete(
+      `${import.meta.env.VITE_BASE_API_URL}products/${id}`,
+      productsConfig.config
+    )
     const res = req.data
     if (req.status != 200) throw res
     dispatch(handleProductDelete(id))
@@ -101,7 +106,11 @@ export const updateProductThunk = (id: string, data: Product) => async (dispatch
   const updatedData: Partial<Product> = { ...data }
   updatedData.id ? delete updatedData.id : ''
   try {
-    const req = await axios.patch(`${import.meta.env.VITE_BASE_API_URL}products/${id}`, updatedData)
+    const req = await axios.patch(
+      `${import.meta.env.VITE_BASE_API_URL}products/${id}`,
+      updatedData,
+      productsConfig.config
+    )
     const res = req.data
     if (req.status != 200) throw res
     console.log(res)
