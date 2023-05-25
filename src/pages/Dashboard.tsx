@@ -15,10 +15,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     navigate('/dashboard/products')
-    if (!user.info) {
+    if (user.role !== 'ADMIN') {
       navigate('/')
-    } else {
-      user.info.role !== 'ADMIN' ? navigate('/') : ''
     }
   }, [])
 

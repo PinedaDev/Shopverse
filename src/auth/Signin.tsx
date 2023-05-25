@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { z, ZodType } from 'zod'
 import axios from 'axios'
 import { signinUserThunk } from '../redux/actions/user'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../redux/store'
 
 type SigninData = {
   username: string
@@ -13,6 +15,8 @@ const Signin = () => {
     username: z.string().min(4),
     password: z.string().min(8)
   })
+
+  const dispatch = useDispatch<AppDispatch>()
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -31,7 +35,7 @@ const Signin = () => {
     if (!results.success) {
       alert('Invalit form data')
     } else {
-      signinUserThunk({ username, password })()
+      signinUserThunk({ username, password })(dispatch)
     }
   }
 
