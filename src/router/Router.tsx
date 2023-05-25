@@ -13,6 +13,7 @@ import Dashboard from '../pages/Dashboard'
 import DashProducts from '../components/dashboard/products/DashProducts'
 import DashOrders from '../components/dashboard/orders/DashOrders'
 import DashUsers from '../components/dashboard/users/DashUsers'
+import Signup from '../auth/Signup'
 
 const ErrorBoundary = () => {
   const error = useRouteError()
@@ -25,6 +26,7 @@ const Router = createBrowserRouter(
     <Route element={<App />} errorElement={<ErrorBoundary />}>
       <Route path="/" element={<Store />}>
         <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
       </Route>
       <Route path="/dashboard" element={<Dashboard />}>
         <Route path="products" element={<DashProducts />} />

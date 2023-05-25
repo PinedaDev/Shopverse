@@ -30,9 +30,14 @@ const NavOptions = ({ menuState, changeMenuState }: NavOptionsProps) => {
           </button>
         </>
       ) : (
-        <Link to="/login" className="hidden text-2xl lg:inline">
-          Login
-        </Link>
+        <>
+          <Link to="/login" className="hidden text-2xl lg:inline">
+            Login
+          </Link>
+          <Link to="/signup" className="hidden text-2xl lg:inline">
+            Signup
+          </Link>
+        </>
       )}
       <CartLink />
       <MenuBtn menuState={menuState} onClick={changeMenuState} />
