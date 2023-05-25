@@ -14,6 +14,7 @@ import DashProducts from '../components/dashboard/products/DashProducts'
 import DashOrders from '../components/dashboard/orders/DashOrders'
 import DashUsers from '../components/dashboard/users/DashUsers'
 import Signup from '../auth/Signup'
+import ProtectedRoute from '../auth/ProtectedRoute'
 
 const ErrorBoundary = () => {
   const error = useRouteError()
@@ -21,6 +22,7 @@ const ErrorBoundary = () => {
   // Uncaught ReferenceError: path is not defined
   return <Page404 />
 }
+
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />} errorElement={<ErrorBoundary />}>
@@ -28,7 +30,13 @@ const Router = createBrowserRouter(
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
       </Route>
-      <Route path="/dashboard" element={<Dashboard />}>
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }>
         <Route path="products" element={<DashProducts />} />
         <Route path="orders" element={<DashOrders />} />
         <Route path="users" element={<DashUsers />} />

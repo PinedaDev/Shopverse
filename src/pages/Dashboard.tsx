@@ -8,18 +8,13 @@ import Header from '../components/dashboard/Header'
 import TableLink from '../components/dashboard/TableLink'
 
 const Dashboard = () => {
-  const tables = ['Products', 'Orders', 'Users']
-
-  const { user } = useSelector((state: RootState) => state)
   const navigate = useNavigate()
 
   useEffect(() => {
     navigate('/dashboard/products')
-    if (user.role !== 'ADMIN') {
-      navigate('/')
-    }
   }, [])
 
+  const tables = ['Products', 'Orders', 'Users']
   const showTableLinks = () =>
     tables.map((tableLink, i) => (
       <TableLink
