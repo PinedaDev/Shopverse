@@ -1,8 +1,7 @@
-import React, { ReactHTML, useState } from 'react'
+import { useState } from 'react'
 import { z, ZodType } from 'zod'
-import { Link } from 'react-router-dom'
-import Icon from '../components/global/Icon'
 import axios from 'axios'
+import { signinUserThunk } from '../redux/actions/user'
 
 type SigninData = {
   username: string
@@ -25,16 +24,6 @@ const Signin = () => {
   const passwordHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setPassword(event.currentTarget.value)
   }
-  const signinUser = (data: SigninData) => async () => {
-    try {
-      const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}signin`, data)
-      const res = req.data
-      if (req.status != 200) throw res
-      console.log(res)
-    } catch (error) {
-      console.log(error)
-    }
-  }
   const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     const results = schema.safeParse({ username, password })
@@ -42,7 +31,7 @@ const Signin = () => {
     if (!results.success) {
       alert('Invalit form data')
     } else {
-      signinUser({ username, password })()
+      signinUserThunk({ username, password })()
     }
   }
 
