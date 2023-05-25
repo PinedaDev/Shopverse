@@ -27,7 +27,6 @@ const Signup = () => {
   }
   const signupUser = (data: SignupData) => async () => {
     try {
-      console.log('hi2')
       const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}signup`, data)
       const res = req.data
       if (req.status != 201) throw res

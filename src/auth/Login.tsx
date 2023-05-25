@@ -8,6 +8,7 @@ import { GoogleUser } from '../types'
 import { login } from '../redux/actions/user'
 
 import Icon from '../components/global/Icon'
+import Signin from './Signin'
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -22,14 +23,15 @@ const Login = () => {
   }
   return (
     <div className="absolute grid place-items-center bg-overlay top-0 left-0 h-screen w-full duration-300 z-50">
-      <div className="relative text-white text-2xl backdrop-blur-xl backdrop-brightness-[3] h-2/4 w-9/12 lg:w-[20%] lg:h-[20%] text-center p-3 rounded-xl">
+      <div className="relative text-white text-2xl backdrop-blur-xl backdrop-brightness-[3] h-2/4 w-9/12 lg:w-[40%] lg:h-[40%] text-center p-3 rounded-xl">
         Login via Google
         <span className="absolute top-4 left-[90%]">
           <Link to="/">
             <Icon iconRef="mdi-close" />
           </Link>
         </span>
-        <div className="absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4">
+        <div className="grid absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4">
+          <Signin />
           <GoogleLogin
             onSuccess={(credentialResponse) => {
               handleResponse(credentialResponse)
