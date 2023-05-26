@@ -71,6 +71,9 @@ export function formUtils() {
   const descriptionHandler = (event: React.FormEvent<HTMLTextAreaElement>) => {
     setForm({ ...form, description: event.currentTarget.value })
   }
+  const imgHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setForm({ ...form, img: event.currentTarget.value })
+  }
   const variantsHandler = (variantName: string, input: string | number): void => {
     switch (variantName) {
       case 'categories': {
@@ -150,6 +153,7 @@ export function formUtils() {
     targetHandler,
     nameHandler,
     priceHandler,
+    imgHandler,
     descriptionHandler,
     variantsHandler,
     deleteVariantHandler,

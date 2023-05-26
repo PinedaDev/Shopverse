@@ -17,6 +17,7 @@ const DashProducts = () => {
     openForm,
     closeForm,
     targetHandler,
+    imgHandler,
     nameHandler,
     priceHandler,
     descriptionHandler,
@@ -50,6 +51,7 @@ const DashProducts = () => {
         createHandler={createHandler}
         variantsHandler={variantsHandler}
         deleteVariantHandler={deleteVariantHandler}
+        imgHandler={imgHandler}
       />
     </div>
   )

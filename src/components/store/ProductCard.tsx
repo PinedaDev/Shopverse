@@ -25,7 +25,7 @@ const ProductCard = ({ product, openDetails }: ProductCardProps) => {
           width="179px"
           height="179px"
           className="max-h-[179px] object-contain scale-150"
-          src={`../../../productImgs/${product.img}`}
+          src={product.img}
         />
         <span className="text-xl">{product.price}.00 €</span>
       </div>

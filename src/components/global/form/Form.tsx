@@ -16,6 +16,7 @@ type FormProps = {
   nameHandler: (event: React.FormEvent<HTMLInputElement>) => void
   priceHandler: (event: React.FormEvent<HTMLInputElement>) => void
   descriptionHandler: (event: React.FormEvent<HTMLTextAreaElement>) => void
+  imgHandler: (event: React.FormEvent<HTMLInputElement>) => void
   variantsHandler: (variantName: string, input: string | number) => void
   deleteVariantHandler: (variantCategory: string, value: string | number) => void
   submitHandler: (e: React.FormEvent<HTMLFormElement>) => void
@@ -30,6 +31,7 @@ const Form = ({
   closeHandler,
   form,
   nameHandler,
+  imgHandler,
   priceHandler,
   descriptionHandler,
   variantsHandler,
@@ -62,6 +64,13 @@ const Form = ({
           type="number"
           inputValue={form.price}
           handler={priceHandler}
+        />
+        <FormEntry
+          id="img"
+          placeHolder="Product Image URL"
+          type="text"
+          inputValue={form.img}
+          handler={imgHandler}
         />
         <FormTextArea id="description" text={form.description} onChange={descriptionHandler} />
         <div className="my-2">
