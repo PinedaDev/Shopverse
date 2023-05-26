@@ -44,15 +44,11 @@ const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
       </span>
 
       <ul className="text-2xl grid gap-12 text-center">
-        {user.info ? (
+        {user.id !== '' ? (
           <li>
             <div className="flex items-center">
-              <img
-                className=" rounded-full max-w-[40px] border-2"
-                src={user?.info?.picture}
-                alt=""
-              />
-              <span className="ml-3 text-2xl">{user?.info?.name}</span>
+              <img className=" rounded-full max-w-[40px] border-2" src="" alt="" />
+              <span className="ml-3 text-2xl">{user.username}</span>
             </div>
           </li>
         ) : (
@@ -75,7 +71,7 @@ const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
             Cart
           </button>
         </li>
-        {!user.info ? (
+        {user.id === '' ? (
           <li>
             <Link to="/login">Login</Link>
           </li>
