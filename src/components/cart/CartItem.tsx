@@ -25,7 +25,7 @@ const CartItem = ({ id, name, img, price, size, color, quantity }: CartItemProps
       <div className="lg:flex">
         <div className="grid place-items-center text-lg">
           <span className="lg:hidden">{name}</span>
-          <img height="100px" width="80px" src={`../../../productImgs/${img}`} alt="" />
+          <img height="100px" width="80px" src={img} alt="" />
         </div>
       </div>
       {/* second section wrapper */}

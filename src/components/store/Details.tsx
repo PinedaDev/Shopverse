@@ -79,12 +79,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
         {/* First Details Column */}
         <div className="relative grid place-items-center">
           <span className="w-full text-center text-xl lg:text-4xl">{details.name}</span>
-          <img
-            width="279px"
-            height="279px"
-            className="w-2/4 mt-3 mb-3"
-            src={`../../../productImgs/${details.img}`}
-          />
+          <img width="279px" height="279px" className="w-2/4 mt-3 mb-3" src={details.img} />
           <span className="flex justify-around items-center lg:text-xl">
             user ratings: {details.reviews}
             <Icon iconRef="mdi-account-multiple" />
