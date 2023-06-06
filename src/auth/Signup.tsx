@@ -1,4 +1,4 @@
-import React, { ReactHTML, useState } from 'react'
+import { useState } from 'react'
 import { z, ZodType } from 'zod'
 import { Link } from 'react-router-dom'
 import Icon from '../components/global/Icon'
@@ -27,10 +27,12 @@ const Signup = () => {
   }
   const signupUser = (data: SignupData) => async () => {
     try {
-      const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}signup`, data)
+      const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/v1/signup`, data)
       const res = req.data
-      if (req.status != 201) throw res
+      console.log(req.status)
+      if (req.status !== 200) throw req
       alert('User created')
+      console.log(res)
     } catch (error) {
       console.log(error)
     }

@@ -63,7 +63,7 @@ export function fetchProducts() {
   return async (dispatch: Dispatch) => {
     try {
       dispatch(handleProductsRequest())
-      const req = await axios.get(`${import.meta.env.VITE_BASE_API_URL}products`)
+      const req = await axios.get(`${import.meta.env.VITE_BASE_API_URL}/api/v1/products`)
       const res = req.data
       if (req.status != 200) throw res
       dispatch(handleProductsSuccess(res))
@@ -91,7 +91,7 @@ export const createProductThunk = (data: Product) => async (dispatch: Dispatch) 
 export const deleteProductThunk = (id: string) => async (dispatch: Dispatch) => {
   try {
     const req = await axios.delete(
-      `${import.meta.env.VITE_BASE_API_URL}products/${id}`,
+      `${import.meta.env.VITE_BASE_API_URL}/api/v1/products/${id}`,
       productsConfig.config
     )
     const res = req.data
@@ -107,7 +107,7 @@ export const updateProductThunk = (id: string, data: Product) => async (dispatch
   updatedData.id ? delete updatedData.id : ''
   try {
     const req = await axios.patch(
-      `${import.meta.env.VITE_BASE_API_URL}products/${id}`,
+      `${import.meta.env.VITE_BASE_API_URL}/api/v1/products${id}`,
       updatedData,
       productsConfig.config
     )
