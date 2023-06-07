@@ -4,6 +4,9 @@ import { Order } from '../../../types'
 
 import TableHeader from '../TableHeader'
 import OrdersRow from './OrdersRow'
+import Spinner from '../../global/Spinner'
+import axios from 'axios'
+import { orderConfig } from '../../../utils/axiosConfig'
 
 type OrdersState = {
   isLoading: boolean
@@ -18,13 +21,13 @@ const initialOrders = {
 }
 
 const DashOrders = () => {
-  const headers = ['Id', 'User Id', "Product's Id", 'Total Invoice']
+  const headers = ['Id', 'User Id', 'Username', 'Issued at', 'Status']
 
   const [orders, setOrders] = useState<OrdersState>(initialOrders)
   const showOrders = () => {
     if (orders.all) {
       return orders.all.map((order) => {
-        return <OrdersRow key={order.id} {...order} />
+        return <OrdersRow key={order.orderId} {...order} />
       })
     }
   }
@@ -33,11 +36,13 @@ const DashOrders = () => {
     const getOrders = async () => {
       try {
         setOrders({ ...orders, isLoading: true })
-        const req = await fetch('../orders.json')
-        const res = await req.json()
-        const data = res.data
-        if (!req.ok) throw data
-        setOrders({ ...orders, isLoading: false, all: data })
+        const req = await axios.get(orderConfig.url, orderConfig.config)
+        const res = req.data
+        setOrders({ ...orders, isLoading: false })
+        console.log(req.status)
+        console.log(res)
+        if (req.status !== 200) throw res
+        setOrders({ ...orders, isLoading: false, all: res })
       } catch (error) {
         setOrders({ ...orders, isLoading: false, error: 'Something is wrong' })
       }
@@ -48,7 +53,7 @@ const DashOrders = () => {
   return (
     <div className="relative">
       <TableHeader headers={headers} />
-      {orders.isLoading && <h1>Loading Data</h1>}
+      {orders.isLoading && <Spinner />}
       {!orders.isLoading && showOrders()}
     </div>
   )

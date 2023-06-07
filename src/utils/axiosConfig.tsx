@@ -1,4 +1,7 @@
-const url = import.meta.env.VITE_BASE_API_URL + '/api/v1/products'
+const productsURL = import.meta.env.VITE_BASE_API_URL + '/api/v1/products'
+const orderURL = import.meta.env.VITE_BASE_API_URL + '/api/v1/orders'
+const usersURL = import.meta.env.VITE_BASE_API_URL + '/api/v1/users'
+
 const config = {
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -6,6 +9,16 @@ const config = {
 }
 
 export const productsConfig = {
-  url: url,
+  url: productsURL,
+  config: config
+}
+
+export const orderConfig = {
+  url: orderURL,
+  config: config
+}
+
+export const userConfig = {
+  url: usersURL,
   config: config
 }

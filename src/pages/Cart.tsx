@@ -1,17 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
-import { CartOrder } from '../types'
+import { CartOrder, Order } from '../types'
 import { AppDispatch, RootState } from '../redux/store'
 import { handleClearCart, handleToggleCart } from '../redux/actions/cart'
 
 import CartItem from '../components/cart/CartItem'
 import Icon from '../components/global/Icon'
+import axios from 'axios'
+import Spinner from '../components/global/Spinner'
+import { orderConfig } from '../utils/axiosConfig'
 
 const Cart = () => {
   const dispatch = useDispatch<AppDispatch>()
-  const { cart } = useSelector((state: RootState) => state)
+  const { cart, user } = useSelector((state: RootState) => state)
   const [total, setTotal] = useState<number>(0)
+  const [cartLoading, setCartLoading] = useState(false)
   function getTotal(orders: CartOrder[]): number {
     let sum = 0
     if (orders) {
@@ -38,6 +42,57 @@ const Cart = () => {
   useEffect(() => {
     setTotal(getTotal(cart.orders))
   }, [cart.orders])
+
+  const orderRequest = async (orderData: any) => {
+    try {
+      setCartLoading(true)
+      const req = await axios.post(orderConfig.url, orderData, orderConfig.config)
+      const res = req.data
+      setCartLoading(false)
+      console.log(req)
+      console.log(res)
+      console.log(orderData)
+      if (req.status !== 200) throw req
+      alert('Order made succesfully')
+      console.log(res)
+    } catch (error) {
+      console.log(orderData)
+      console.log(error)
+    }
+  }
+
+  const makeOrder = () => {
+    if (user.username !== '' && cart.orders.length !== 0) {
+      const orderProducts = cart.orders.map((order) => {
+        const newOrderProduct = {
+          productId: order.productId,
+          color: order.color,
+          size: order.size,
+          amount: order.quantity
+        }
+        return newOrderProduct
+      })
+
+      const orderData: Order = {
+        user: {
+          id: user.id
+        },
+        products: orderProducts
+      }
+
+      orderRequest(orderData)
+      return
+    }
+    alert('Probles to make the order')
+
+    if (user.username === '') {
+      alert('Please log in')
+    }
+
+    if (cart.orders.length === 0) {
+      alert('Cart is empty')
+    }
+  }
   return (
     <div
       className={`absolute w-screen h-screen duration-300 
@@ -57,7 +112,9 @@ const Cart = () => {
         {cart.orders.length > 0 && (
           <div className="relative lg:mx-10">
             {showTotal()}
-            <button className="block my-3 p-3 px-6 text-2xl mx-auto font-thin bg-[rgba(0,0,0,.3)] rounded-lg hover:bg-black duration-300">
+            <button
+              onClick={makeOrder}
+              className="block my-3 p-3 px-6 text-2xl mx-auto font-thin bg-[rgba(0,0,0,.3)] rounded-lg hover:bg-black duration-300">
               Checkout!
             </button>
             <button
@@ -66,6 +123,7 @@ const Cart = () => {
               Clear Cart
             </button>
             <hr className="w-11/12 my-3 mx-auto lg:hidden" />
+            {cartLoading ? <Spinner /> : ''}
           </div>
         )}
         <div className="lg:max-w-[80%] overflow-y-auto">

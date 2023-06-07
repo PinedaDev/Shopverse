@@ -11,21 +11,33 @@ export type Product = {
   stars: number
 }
 
-export type Order = {
-  id: number
-  userId: number
-  orderItems: {
-    productId: number
-    quantity: number
-    size: number
+export type OrderRequest = {
+  user: {
+    id: string
+  }
+  products: {
+    productId: string
     color: string
+    size: number
+    amount: number
   }[]
-  totalInvoice: number
+}
+
+export type Order = {
+  orderId: string
+  user: {
+    id: string
+    username: string
+    role: 'ADMIN' | 'USER'
+  }
+  status: 'PENDING' | 'TRAVELING' | 'DELIVERED'
+  issuedAt: Date
+  products: OrderRequest[]
 }
 
 export type CartOrder = {
   id: string
-  productId?: number
+  productId: string
   name: string
   img: string
   size: number
