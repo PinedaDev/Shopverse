@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { z, ZodType } from 'zod'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Icon from '../components/global/Icon'
 import axios from 'axios'
+import Spinner from '../components/global/Spinner'
 
 type SignupData = {
   username: string
@@ -14,6 +15,9 @@ const Signup = () => {
     username: z.string().min(4),
     password: z.string().min(8)
   })
+
+  const navigate = useNavigate()
+  const [request, setRequest] = useState(false)
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -31,13 +35,17 @@ const Signup = () => {
   }
   const signupUser = (data: SignupData) => async () => {
     try {
+      setRequest(true)
       const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/v1/users/signup`, data)
       const res = req.data
       console.log(req.status)
+      setRequest(false)
       if (req.status !== 200) throw req
       alert('User created')
       console.log(res)
+      navigate('/')
     } catch (error) {
+      alert('Problems while creating user')
       console.log(error)
     }
   }
@@ -60,6 +68,7 @@ const Signup = () => {
 
   return (
     <div className="absolute grid place-items-center bg-overlay top-0 left-0 h-screen w-full duration-300 z-50">
+      <div className="absolute text-white top-[10%]">{request === true && <Spinner />}</div>
       <form
         className="relative grid place-items-center text-white text-2xl backdrop-blur-xl backdrop-brightness-[3] text-center p-3 rounded-xl"
         onSubmit={submitHandler}>

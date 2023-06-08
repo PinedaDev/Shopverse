@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { z, ZodType } from 'zod'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { signinUserThunk } from '../redux/actions/user'
 import { useDispatch } from 'react-redux'
 import Icon from '../components/global/Icon'
-import { AppDispatch } from '../redux/store'
+import { AppDispatch, RootState } from '../redux/store'
+import { useSelector } from 'react-redux'
+import Spinner from '../components/global/Spinner'
 
 type SigninData = {
   username: string
@@ -17,7 +19,12 @@ const Signin = () => {
     password: z.string().min(8)
   })
 
+  const navigate = useNavigate()
+
+  const { user } = useSelector((state: RootState) => state)
+
   const dispatch = useDispatch<AppDispatch>()
+  const [request, setRequest] = useState(false)
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -33,15 +40,23 @@ const Signin = () => {
     e.preventDefault()
     const results = schema.safeParse({ username, password })
 
+    const sentRequest = async () => {
+      setRequest(true)
+      await signinUserThunk({ username, password })(dispatch)
+      setRequest(false)
+      navigate('/')
+    }
+
     if (!results.success) {
       alert('Invalit form data')
     } else {
-      signinUserThunk({ username, password })(dispatch)
+      sentRequest()
     }
   }
 
   return (
     <div className="absolute grid place-items-center bg-overlay top-0 left-0 h-screen w-full duration-300 z-50">
+      <div className="absolute text-white top-[10%]">{request === true && <Spinner />}</div>
       <form
         className="relative grid place-items-center text-white text-2xl backdrop-blur-xl backdrop-brightness-[3] text-center p-3 rounded-xl"
         onSubmit={submitHandler}>
