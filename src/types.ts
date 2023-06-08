@@ -12,10 +12,8 @@ export type Product = {
 }
 
 export type OrderRequest = {
-  user: {
-    id: string
-  }
-  products: {
+  user: { id: string }
+  orderProducts: {
     productId: string
     color: string
     size: number
@@ -47,11 +45,9 @@ export type CartOrder = {
 }
 
 export type User = {
-  id: number
-  firstName: string
-  lastName: string
-  email: string
-  orders: number[]
+  username: string
+  id: string
+  role: 'ADMIN' | 'USER'
 }
 
 export type GoogleUser = {

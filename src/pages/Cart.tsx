@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
-import { CartOrder, Order } from '../types'
+import { CartOrder, Order, OrderRequest } from '../types'
 import { AppDispatch, RootState } from '../redux/store'
 import { handleClearCart, handleToggleCart } from '../redux/actions/cart'
 
@@ -43,27 +43,24 @@ const Cart = () => {
     setTotal(getTotal(cart.orders))
   }, [cart.orders])
 
-  const orderRequest = async (orderData: any) => {
+  const orderRequest = async (orderData: OrderRequest) => {
     try {
       setCartLoading(true)
       const req = await axios.post(orderConfig.url, orderData, orderConfig.config)
       const res = req.data
       setCartLoading(false)
-      console.log(req)
-      console.log(res)
       console.log(orderData)
       if (req.status !== 200) throw req
       alert('Order made succesfully')
       console.log(res)
     } catch (error) {
-      console.log(orderData)
       console.log(error)
     }
   }
 
   const makeOrder = () => {
     if (user.username !== '' && cart.orders.length !== 0) {
-      const orderProducts = cart.orders.map((order) => {
+      const products = cart.orders.map((order) => {
         const newOrderProduct = {
           productId: order.productId,
           color: order.color,
@@ -73,13 +70,12 @@ const Cart = () => {
         return newOrderProduct
       })
 
-      const orderData: Order = {
-        user: {
-          id: user.id
-        },
-        products: orderProducts
+      const orderData: OrderRequest = {
+        user: { id: user.id },
+        orderProducts: products
       }
 
+      console.log(orderData)
       orderRequest(orderData)
       return
     }

@@ -27,7 +27,7 @@ const Signup = () => {
   }
   const signupUser = (data: SignupData) => async () => {
     try {
-      const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/v1/signup`, data)
+      const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/v1/users/signup`, data)
       const res = req.data
       console.log(req.status)
       if (req.status !== 200) throw req

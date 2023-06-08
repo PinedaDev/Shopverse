@@ -1,18 +1,12 @@
 import { User } from '../../../types'
 
-const UsersRow = ({ id, firstName, lastName, email, orders }: User) => {
+const UsersRow = ({ id, username, role }: User) => {
   const showInfo = () => {
     return (
       <>
         <span className="text-accent">{id}</span>
-        <span>{`${firstName} ${lastName}`}</span>
-        <span>{email}</span>
-        <span>
-          {orders.map(
-            (order, index) => `${index !== orders.length - 1 ? `${order}, ` : `${order}`}`
-          )}
-          {orders.length < 1 && 'no orders'}
-        </span>
+        <span>{username}</span>
+        <span>{role}</span>
         <button
           className="flex space-x-2 items-center text-xl 
         bg-secondary py-2 px-4 rounded-sm duration-300 hover:text-red-500">
@@ -24,7 +18,7 @@ const UsersRow = ({ id, firstName, lastName, email, orders }: User) => {
   }
   return (
     <div
-      className="grid grid-cols-[1fr_repeat(4,_1fr)] 
+      className="grid grid-cols-[1fr_repeat(3,_1fr)] 
         p-3 list-none border-t-2 border-b-2 border-secondary
         text-third place-items-center font-bold">
       {showInfo()}

@@ -4,6 +4,8 @@ import { User } from '../../../types'
 
 import UsersRow from './UsersRow'
 import TableHeader from '../TableHeader'
+import axios from 'axios'
+import { userConfig } from '../../../utils/axiosConfig'
 
 type UsersState = {
   isLoading: boolean
@@ -18,7 +20,7 @@ const initialUsers = {
 }
 
 const DashUsers = () => {
-  const headers = ['Id', 'Name', 'Email', 'Orders', 'Controls']
+  const headers = ['Id', 'Username', 'Role', 'Controls']
 
   const [users, setUsers] = useState<UsersState>(initialUsers)
   const showUsers = () => {
@@ -32,11 +34,10 @@ const DashUsers = () => {
     const getUsers = async () => {
       try {
         setUsers({ ...users, isLoading: true })
-        const req = await fetch('../users.json')
-        const res = await req.json()
-        const data = res.data
-        if (!req.ok) throw data
-        setUsers({ ...users, isLoading: false, all: data })
+        const req = await axios.get(userConfig.url, userConfig.config)
+        const res = await req.data
+        if (req.status != 200) throw req
+        setUsers({ ...users, isLoading: false, all: res })
       } catch (error) {
         setUsers({ ...users, isLoading: false, error: 'Something is wrong' })
       }

@@ -7,7 +7,7 @@ const OrdersRow = ({ orderId, user, products, issuedAt, status }: Order) => {
     return (
       <>
         <span className="text-accent">{orderId}</span>
-        <span>{user.id}</span>
+        <span className="text-center">{user.id}</span>
         <span className="text-accent">{user.username}</span>
         <span>{issueDate}</span>
         <span className="text-accent">{status}</span>
