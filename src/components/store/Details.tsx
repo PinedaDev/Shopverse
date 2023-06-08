@@ -25,6 +25,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
 
   const [cartOrder, setCartOrder] = useState<CartOrder>({
     id: '',
+    productId: '',
     name: '',
     img: '',
     size: 0,
@@ -37,6 +38,7 @@ const Details = ({ detailsState, closeDetails }: DetailsProps) => {
     if (detailsState.productID !== '') {
       setCartOrder({
         id: details.id,
+        productId: details.id,
         name: details.name,
         img: details.img,
         size: details.sizes[0],
