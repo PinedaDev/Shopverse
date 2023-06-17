@@ -76,8 +76,17 @@ export function fetchProducts() {
 export const createProductThunk = (data: Product) => async (dispatch: Dispatch) => {
   const newProductData: Partial<Product> = { ...data }
   newProductData.id ? delete newProductData.id : ''
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    }
+  }
   try {
-    const req = await axios.post(productsConfig.url, newProductData, productsConfig.config)
+    const req = await axios.post(
+      `${import.meta.env.VITE_BASE_API_URL}/api/v1/products`,
+      newProductData,
+      config
+    )
     const res = req.data
     res.createdAt ? delete res.createdAt : ''
     console.log(res)
@@ -89,10 +98,15 @@ export const createProductThunk = (data: Product) => async (dispatch: Dispatch) 
 }
 
 export const deleteProductThunk = (id: string) => async (dispatch: Dispatch) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    }
+  }
   try {
     const req = await axios.delete(
       `${import.meta.env.VITE_BASE_API_URL}/api/v1/products/${id}`,
-      productsConfig.config
+      config
     )
     const res = req.data
     if (req.status != 200) throw res
@@ -105,15 +119,21 @@ export const deleteProductThunk = (id: string) => async (dispatch: Dispatch) => 
 export const updateProductThunk = (id: string, data: Product) => async (dispatch: Dispatch) => {
   const updatedData: Partial<Product> = { ...data }
   updatedData.id ? delete updatedData.id : ''
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    }
+  }
   try {
     const req = await axios.patch(
-      `${import.meta.env.VITE_BASE_API_URL}/api/v1/products${id}`,
+      `${import.meta.env.VITE_BASE_API_URL}/api/v1/products/${id}`,
       updatedData,
-      productsConfig.config
+      config
     )
     const res = req.data
+    console.log(productsConfig.config)
+    console.log('hi')
     if (req.status != 200) throw res
-    console.log(res)
     dispatch(handleProductUpdate({ id, updatedData: data }))
   } catch (error) {
     console.log(error)

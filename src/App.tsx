@@ -10,11 +10,9 @@ const App = () => {
   const dispatch = useDispatch<AppDispatch>()
   useEffect(() => {
     dispatch(fetchProducts())
+    localStorage.clear()
+    sessionStorage.clear()
   }, [])
-  useEffect(() => {
-    console.log('Token updated')
-    console.log(localStorage.getItem('token'))
-  }, [localStorage.getItem('token')])
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <div className="App">

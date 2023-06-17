@@ -2,34 +2,53 @@ const productsURL = import.meta.env.VITE_BASE_API_URL + '/api/v1/products'
 const orderURL = import.meta.env.VITE_BASE_API_URL + '/api/v1/orders'
 const usersURL = import.meta.env.VITE_BASE_API_URL + '/api/v1/users'
 
-let accessToken = localStorage.getItem('token')
+let accessToken: string | null = null
 
-const config = {
+function getToken() {
+  accessToken = localStorage.getItem('accessToken')
+}
+
+getToken()
+
+console.log(accessToken)
+
+let config = {
   headers: {
     Authorization: `Bearer ${accessToken}`
   }
 }
+function entitiesConfig() {
+  return config
+}
+export function updateAxiosConfig() {
+  getToken()
 
-window.addEventListener('storage', function (event) {
-  if (event.key === 'token') {
-    // Update the variable if the local storage item changes
-    accessToken = event.newValue
-    console.log('Variable updated:', accessToken)
-    config.headers.Authorization = `Bearer ${accessToken}` // Update the authorization header in the config
+  if (accessToken !== null) {
+    const updatedConfig = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    }
+
+    config = updatedConfig
+    console.log('Token updated')
+    console.log(accessToken)
+    return
   }
-})
 
+  console.log('Token problem')
+}
 export const productsConfig = {
   url: productsURL,
-  config: config
+  config: entitiesConfig()
 }
 
 export const orderConfig = {
   url: orderURL,
-  config: config
+  config: entitiesConfig()
 }
 
 export const userConfig = {
   url: usersURL,
-  config: config
+  config: entitiesConfig()
 }

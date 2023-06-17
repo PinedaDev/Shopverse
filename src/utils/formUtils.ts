@@ -37,7 +37,7 @@ export function formUtils() {
     id: z.string().optional(),
     name: z.string().min(5).max(30),
     img: z.string().optional(),
-    description: z.string().min(20).max(300),
+    description: z.string().min(20).max(500),
     price: z.number().min(1).max(3000),
     reviews: z.number().min(0).optional(),
     stars: z.number().min(0).optional(),

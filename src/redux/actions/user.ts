@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Dispatch } from 'redux'
+import { updateAxiosConfig } from '../../utils/axiosConfig'
 
 export const USER_LOGIN = 'USER_LOGIN'
 export const USER_LOGOUT = 'USER_LOGOUT'
@@ -23,11 +24,12 @@ export const signinUserThunk =
     try {
       const req = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/api/v1/users/signin`, data)
       const res = req.data
-      console.log(res)
       if (req.status !== 200) throw res
       alert('Logged in')
-      dispatch(login(res.token))
-      localStorage.setItem('token', res.token)
+      localStorage.setItem('accessToken', res.token)
+      updateAxiosConfig()
+      const accessToken = localStorage.getItem('accessToken')
+      if (accessToken !== null) dispatch(login(accessToken))
     } catch (error) {
       console.log(error)
       console.log('Something is wrong')

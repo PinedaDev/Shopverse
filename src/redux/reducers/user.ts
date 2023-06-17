@@ -29,7 +29,6 @@ export function userReducer(state = initialUserState, action: AnyAction) {
     case USER_LOGIN: {
       const accessToken: string = action.payload
       const decodedInfo: DecodedInfo = jwtDecode(accessToken)
-      console.log(decodedInfo)
       return {
         ...state,
         id: decodedInfo.user_id,
@@ -38,6 +37,7 @@ export function userReducer(state = initialUserState, action: AnyAction) {
       }
     }
     case USER_LOGOUT: {
+      localStorage.clear()
       return {
         ...initialUserState
       }
