@@ -55,7 +55,7 @@ const Signin = () => {
   }
 
   return (
-    <div className="absolute grid place-items-center bg-overlay top-0 left-0 h-screen w-full duration-300 z-50">
+    <div className="absolute grid place-items-center top-0 left-0 h-screen w-full duration-300 z-50 lg:bg-overlay">
       <div className="absolute text-white top-[10%]">{request === true && <Spinner />}</div>
       <form
         className="relative grid place-items-center text-white text-2xl backdrop-blur-xl backdrop-brightness-[3] text-center p-3 rounded-xl"

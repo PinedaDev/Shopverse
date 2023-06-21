@@ -1,11 +1,4 @@
-import { GoogleLogin } from '@react-oauth/google'
-import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import jwtDecode from 'jwt-decode'
-
-import { AppDispatch } from '../redux/store'
-import { GoogleUser } from '../types'
-import { login } from '../redux/actions/user'
+import { Link } from 'react-router-dom'
 
 import Icon from '../components/global/Icon'
 import Signin from './Signin'
