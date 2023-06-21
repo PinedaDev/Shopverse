@@ -72,9 +72,14 @@ const DropdownMenu = ({ changeMenuState, menuState }: DropdownMenuProps) => {
           </button>
         </li>
         {user.id === '' ? (
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
+          <>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Signup</Link>
+            </li>
+          </>
         ) : (
           <button className="text-2xl" onClick={() => dispatch(logout())}>
             Signout

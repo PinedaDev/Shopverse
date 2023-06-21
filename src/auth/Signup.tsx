@@ -67,7 +67,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="absolute grid place-items-center bg-overlay top-0 left-0 h-screen w-full duration-300 z-50">
+    <div className="absolute grid place-items-center lg:bg-overlay top-0 left-0 h-screen w-full duration-300 z-50">
       <div className="absolute text-white top-[10%]">{request === true && <Spinner />}</div>
       <form
         className="relative grid place-items-center text-white text-2xl backdrop-blur-xl backdrop-brightness-[3] text-center p-3 rounded-xl"
@@ -96,7 +96,7 @@ const Signup = () => {
           type="password"
           id="password"
         />
-        <label className="text-xl" htmlFor="password">
+        <label className="text-xl" htmlFor="confirmPassword">
           Confirm password
         </label>
         <input
@@ -104,7 +104,7 @@ const Signup = () => {
           onChange={password2Handler}
           value={password2}
           type="password"
-          id="password"
+          id="confirmPassword"
         />
         <input
           className="duration-300 bg-[rgba(0,0,0,.5)] font-bold text-gray-500 p-2 mb-2 px-4 rounded-lg hover:cursor-pointer hover:text-accent"
