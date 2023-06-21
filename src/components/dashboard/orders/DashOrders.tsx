@@ -39,8 +39,6 @@ const DashOrders = () => {
         const req = await axios.get(orderConfig.url, orderConfig.config)
         const res = req.data
         setOrders({ ...orders, isLoading: false })
-        console.log(req.status)
-        console.log(res)
         if (req.status !== 200) throw res
         setOrders({ ...orders, isLoading: false, all: res })
       } catch (error) {

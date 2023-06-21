@@ -44,9 +44,6 @@ const DashUsers = () => {
     }
     getUsers()
   }, [])
-  useEffect(() => {
-    console.log(users)
-  }, [users])
 
   return (
     <div className="relative">

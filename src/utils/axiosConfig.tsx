@@ -10,8 +10,6 @@ function getToken() {
 
 getToken()
 
-console.log(accessToken)
-
 let config = {
   headers: {
     Authorization: `Bearer ${accessToken}`
@@ -31,12 +29,8 @@ export function updateAxiosConfig() {
     }
 
     config = updatedConfig
-    console.log('Token updated')
-    console.log(accessToken)
     return
   }
-
-  console.log('Token problem')
 }
 export const productsConfig = {
   url: productsURL,

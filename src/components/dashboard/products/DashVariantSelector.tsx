@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Icon from '../../global/Icon'
 
 type DashVariantSelectorProps = {
   title: string
@@ -25,7 +24,6 @@ const DashVariantSelector = ({
   }
   const handleDelete = (variant: string, value: string | number) => {
     deleteHandler(title.toLowerCase(), value)
-    console.log(typeof variant)
   }
   const showOptions = () => {
     return variants?.map((variant, i) => (

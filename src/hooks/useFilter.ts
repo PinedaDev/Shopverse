@@ -84,9 +84,6 @@ export function useFilter() {
       const filteredProductsUnion = productsByTag.filter(
         (product) => product.price <= filter.criteria.price
       )
-      console.log('multiple filters applied:')
-      console.log(filteredProductsUnion)
-
       setFilter((prev) => ({
         ...prev,
         filteredProducts: {

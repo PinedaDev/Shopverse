@@ -44,7 +44,6 @@ const Form = ({
   useEffect(() => {
     if (id != '') {
       targetHandler(id)
-      console.log(id)
     }
   }, [id])
   return (

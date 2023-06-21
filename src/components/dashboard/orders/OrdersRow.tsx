@@ -1,8 +1,7 @@
 import { Order } from '../../../types'
 
-const OrdersRow = ({ orderId, user, products, issuedAt, status }: Order) => {
+const OrdersRow = ({ orderId, user, issuedAt, status }: Order) => {
   const issueDate = new Date(issuedAt).toUTCString()
-  console.log(issueDate)
   const showInfo = () => {
     return (
       <>

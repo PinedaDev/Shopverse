@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
-import { CartOrder, Order, OrderRequest } from '../types'
+import { CartOrder, OrderRequest } from '../types'
 import { AppDispatch, RootState } from '../redux/store'
 import { handleClearCart, handleToggleCart } from '../redux/actions/cart'
 
@@ -49,10 +49,8 @@ const Cart = () => {
       const req = await axios.post(orderConfig.url, orderData, orderConfig.config)
       const res = req.data
       setCartLoading(false)
-      console.log(orderData)
       if (req.status !== 200) throw req
       alert('Order made succesfully')
-      console.log(res)
     } catch (error) {
       console.log(error)
     }
@@ -74,8 +72,6 @@ const Cart = () => {
         user: { id: user.id },
         orderProducts: products
       }
-
-      console.log(orderData)
       orderRequest(orderData)
       return
     }
